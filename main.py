@@ -2443,7 +2443,20 @@ with advanced_col3:
 style_col1, style_col2, style_col3 = st.columns(3)
 
 with style_col1:
-    # st.subheader("📦 Text-Container")
+    st.markdown("""
+    <style>
+    .section-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        padding-left: 0;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    st.markdown('<h3 class="section-header">📦 Text-Container</h3>', unsafe_allow_html=True)
     
     # Container-Form mit dynamischem Index aus Session State
     container_shape_options = [
@@ -2495,7 +2508,20 @@ with style_col1:
     st.session_state['border_style'] = border_style
 
 with style_col2:
-    st.subheader("🖌️ Visuelle Effekte")
+    st.markdown("""
+    <style>
+    .section-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        padding-left: 0;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    st.markdown('<h3 class="section-header">🖌️ Visuelle Effekte</h3>', unsafe_allow_html=True)
     
     # Textur-Stil mit dynamischem Index aus Session State
     texture_style_options = [
@@ -2544,7 +2570,20 @@ with style_col2:
     st.session_state['background_treatment'] = background_treatment
 
 with style_col3:
-    # st.subheader("📐 Layout-Details")
+    st.markdown("""
+    <style>
+    .section-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        padding-left: 0;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    st.markdown('<h3 class="section-header">📐 Layout-Details</h3>', unsafe_allow_html=True)
     
     # Ecken-Rundung mit dynamischem Index aus Session State
     corner_radius_options = [
@@ -2593,7 +2632,20 @@ with style_col3:
 
 # Neue Spalte für Motiv-Qualität und Motiv-Style
 with st.container():
-    st.subheader("🎭 Motiv-Einstellungen")
+    st.markdown("""
+    <style>
+    .section-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        padding-left: 0;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    st.markdown('<h3 class="section-header">🎭 Motiv-Einstellungen</h3>', unsafe_allow_html=True)
     
     motiv_col1, motiv_col2 = st.columns(2)
     
