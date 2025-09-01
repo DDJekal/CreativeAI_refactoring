@@ -1,0 +1,60 @@
+layout_id: skizze7_minimalist_layout
+name: Minimalistisches Layout
+description: Minimalistische Textblöcke mit viel Weißraum
+layout_type: minimalist_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 290
+    y: 40
+    width: 500
+    height: 50
+    content_type: text_elements
+    description: Standort-Block zentriert oben
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 290
+    y: 110
+    width: 500
+    height: 100
+    content_type: text_elements
+    description: Hauptheadline zentriert
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 290
+    y: 300
+    width: 500
+    height: 60
+    content_type: text_elements
+    description: Subline zentriert minimal
+    text_field: subline
+    subline_input: "Untertitel"
+  cta_block:
+    x: 340
+    y: 400
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: Call-to-Action Button zentriert minimal
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    content_type: image_motiv
+    description: Motiv als subtiler Hintergrund
+meta:
+  name: Minimalistisches Layout
+  description: Minimalistische Textblöcke mit viel Weißraum
+  layout_type: minimalist_layout
+  zones_count: 4
+  text_zones: 3
+  image_zones: 1

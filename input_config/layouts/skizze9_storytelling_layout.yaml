@@ -1,0 +1,78 @@
+layout_id: skizze9_storytelling_layout
+name: Storytelling Layout
+description: Storytelling-Style mit narrativer Textstruktur
+layout_type: storytelling_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 100
+    y: 20
+    width: 880
+    height: 60
+    content_type: text_elements
+    description: Standort-Block oben
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 100
+    y: 100
+    width: 880
+    height: 100
+    content_type: text_elements
+    description: Hauptheadline oben
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 240
+    y: 240
+    width: 500
+    height: 80
+    content_type: text_elements
+    description: Subline
+    text_field: subline
+    subline_input: "Untertitel"
+  benefits_block:
+    x: 240
+    y: 340
+    width: 450
+    height: 120
+    content_type: text_elements
+    description: Benefits Block
+    text_field: benefits
+    benefits_input: "Vorteile"
+  stellentitel_block:
+    x: 240
+    y: 480
+    width: 400
+    height: 100
+    content_type: text_elements
+    description: Stellentitel
+    text_field: stellentitel
+    stellentitel_input: "Stellentitel"
+  cta_block:
+    x: 240
+    y: 600
+    width: 350
+    height: 80
+    content_type: text_elements
+    description: Call-to-Action
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 720
+    y: 120
+    width: 320
+    height: 560
+    content_type: image_motiv
+    description: Motiv-Bereich
+meta:
+  name: Storytelling Layout
+  description: Storytelling-Style mit narrativer Textstruktur
+  layout_type: storytelling_layout
+  zones_count: 6
+  text_zones: 5
+  image_zones: 1

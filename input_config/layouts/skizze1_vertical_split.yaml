@@ -1,0 +1,78 @@
+layout_id: skizze1_vertical_split
+name: Vertikales Split Layout
+description: Feste Aufteilung - Text links, Motiv rechts
+layout_type: vertical_split
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 40
+    y: 40
+    width: 300
+    height: 80
+    content_type: text_elements
+    description: Standort-Block oben links
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 40
+    y: 140
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: Hauptheadline
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 40
+    y: 240
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: Subline
+    text_field: subline
+    subline_input: "Untertitel"
+  benefits_block:
+    x: 40
+    y: 340
+    width: 400
+    height: 300
+    content_type: text_elements
+    description: Benefits-Liste
+    text_field: benefits
+    benefits_input: "Vorteile"
+  stellentitel_block:
+    x: 40
+    y: 660
+    width: 400
+    height: 100
+    content_type: text_elements
+    description: Stellentitel
+    text_field: stellentitel
+    stellentitel_input: "Stellentitel"
+  cta_block:
+    x: 140
+    y: 860
+    width: 300
+    height: 100
+    content_type: text_elements
+    description: Call-to-Action Button
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 500
+    y: 0
+    width: 580
+    height: 1080
+    content_type: image_motiv
+    description: Motiv-Bereich für fotografischen Inhalt (rechte Hälfte)
+meta:
+  name: Vertikales Split Layout
+  description: Feste Aufteilung - Text links, Motiv rechts
+  layout_type: vertical_split
+  zones_count: 7
+  text_zones: 6
+  image_zones: 1

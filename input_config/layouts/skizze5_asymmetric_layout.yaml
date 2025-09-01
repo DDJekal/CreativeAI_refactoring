@@ -1,0 +1,69 @@
+layout_id: skizze5_asymmetric_layout
+name: Asymmetrisches Layout
+description: Asymmetrische Textblöcke mit ungleichmäßiger Motiv-Verteilung
+layout_type: asymmetric_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 80
+    y: 40
+    width: 250
+    height: 60
+    content_type: text_elements
+    description: Standort-Block oben links
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 80
+    y: 120
+    width: 420
+    height: 100
+    content_type: text_elements
+    description: Hauptheadline asymmetrisch angeordnet
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 600
+    y: 200
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: Subline rechts asymmetrisch positioniert
+    text_field: subline
+    subline_input: "Untertitel"
+  benefits_block:
+    x: 60
+    y: 400
+    width: 450
+    height: 200
+    content_type: text_elements
+    description: Benefits Block links unten asymmetrisch
+    text_field: benefits
+    benefits_input: "Vorteile"
+  cta_block:
+    x: 700
+    y: 600
+    width: 300
+    height: 100
+    content_type: text_elements
+    description: Call-to-Action Button rechts unten asymmetrisch
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    content_type: image_motiv
+    description: Motiv als vollständiger Hintergrund
+meta:
+  name: Asymmetrisches Layout
+  description: Asymmetrische Textblöcke mit ungleichmäßiger Motiv-Verteilung
+  layout_type: asymmetric_layout
+  zones_count: 5
+  text_zones: 4
+  image_zones: 1

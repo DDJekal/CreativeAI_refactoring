@@ -1,0 +1,78 @@
+layout_id: skizze2_horizontal_split
+name: Horizontales Split Layout
+description: Links Motiv, rechts gestapelter Text
+layout_type: horizontal_split
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 580
+    y: 20
+    width: 480
+    height: 50
+    content_type: text_elements
+    description: Standort-Block oben rechts
+    text_field: location
+    location_input: "Standort"
+  motiv_area:
+    x: 0
+    y: 0
+    width: 540
+    height: 1080
+    content_type: image_motiv
+    description: Fotomotiv auf linker Hälfte
+  headline_block:
+    x: 580
+    y: 80
+    width: 480
+    height: 100
+    content_type: text_elements
+    description: Hauptheadline ganz oben im Textstack
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 580
+    y: 200
+    width: 480
+    height: 80
+    content_type: text_elements
+    description: Subline unterhalb der Headline
+    text_field: subline
+    subline_input: "Untertitel"
+  benefits_block:
+    x: 580
+    y: 300
+    width: 480
+    height: 200
+    content_type: text_elements
+    description: Benefits Block (3 Bullet-Zonen möglich)
+    text_field: benefits
+    benefits_input: "Vorteile"
+  stellentitel_block:
+    x: 580
+    y: 520
+    width: 480
+    height: 100
+    content_type: text_elements
+    description: Stellentitel am unteren Rand des Textstacks
+    text_field: stellentitel
+    stellentitel_input: "Stellentitel"
+  cta_block:
+    x: 680
+    y: 640
+    width: 280
+    height: 100
+    content_type: text_elements
+    description: Call-to-Action Button am Ende des Textstacks
+    text_field: cta
+    cta_input: "Call-to-Action"
+meta:
+  name: Horizontales Split Layout
+  description: Links Motiv, rechts gestapelter Text
+  layout_type: horizontal_split
+  zones_count: 6
+  text_zones: 5
+  image_zones: 1

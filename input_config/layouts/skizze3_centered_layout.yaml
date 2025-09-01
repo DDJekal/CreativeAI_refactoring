@@ -1,0 +1,69 @@
+layout_id: skizze3_centered_layout
+name: Zentriertes Layout
+description: Zentrierte Textblöcke mit umgebendem Motiv
+layout_type: centered_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 240
+    y: 40
+    width: 600
+    height: 60
+    content_type: text_elements
+    description: Standort-Block zentriert oben
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 240
+    y: 120
+    width: 600
+    height: 120
+    content_type: text_elements
+    description: Hauptheadline zentriert
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 290
+    y: 320
+    width: 500
+    height: 80
+    content_type: text_elements
+    description: Subline zentriert
+    text_field: subline
+    subline_input: "Untertitel"
+  benefits_block:
+    x: 340
+    y: 420
+    width: 400
+    height: 200
+    content_type: text_elements
+    description: Benefits Block zentriert
+    text_field: benefits
+    benefits_input: "Vorteile"
+  cta_block:
+    x: 390
+    y: 640
+    width: 300
+    height: 100
+    content_type: text_elements
+    description: Call-to-Action Button zentriert
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    content_type: image_motiv
+    description: Motiv als Hintergrund
+meta:
+  name: Zentriertes Layout
+  description: Zentrierte Textblöcke mit umgebendem Motiv
+  layout_type: centered_layout
+  zones_count: 5
+  text_zones: 4
+  image_zones: 1

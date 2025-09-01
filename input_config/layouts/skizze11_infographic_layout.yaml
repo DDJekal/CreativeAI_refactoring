@@ -1,0 +1,78 @@
+layout_id: skizze11_infographic_layout
+name: Infographic Layout
+description: Infographic-Style mit strukturierten Datenblöcken
+layout_type: infographic_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 80
+    y: 20
+    width: 920
+    height: 40
+    content_type: text_elements
+    description: Standort-Block oben
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 80
+    y: 80
+    width: 920
+    height: 100
+    content_type: text_elements
+    description: Hauptheadline oben
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 300
+    y: 140
+    width: 680
+    height: 40
+    content_type: text_elements
+    description: Untertitel/Erklärung
+    text_field: subline
+    subline_input: "Untertitel"
+  benefits_block:
+    x: 50
+    y: 220
+    width: 480
+    height: 300
+    content_type: text_elements
+    description: Hauptvorteile als strukturierte Liste
+    text_field: benefits
+    benefits_input: "Vorteile"
+  stellentitel_block:
+    x: 550
+    y: 220
+    width: 480
+    height: 300
+    content_type: text_elements
+    description: Stellenbeschreibung und Anforderungen
+    text_field: stellentitel
+    stellentitel_input: "Stellentitel"
+  cta_block:
+    x: 50
+    y: 540
+    width: 980
+    height: 80
+    content_type: text_elements
+    description: Call-to-Action Button
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 50
+    y: 650
+    width: 980
+    height: 380
+    content_type: image_motiv
+    description: Motiv-Bereich als Hintergrund
+meta:
+  name: Infographic Layout
+  description: Infographic-Style mit strukturierten Datenblöcken
+  layout_type: infographic_layout
+  zones_count: 6
+  text_zones: 5
+  image_zones: 1

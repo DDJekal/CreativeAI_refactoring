@@ -1,0 +1,69 @@
+layout_id: skizze6_grid_layout
+name: Grid Layout
+description: Grid-basierte Textblöcke mit strukturierter Motiv-Verteilung
+layout_type: grid_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 200
+    y: 40
+    width: 680
+    height: 60
+    content_type: text_elements
+    description: Standort-Block zentriert oben
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 200
+    y: 120
+    width: 680
+    height: 80
+    content_type: text_elements
+    description: Hauptheadline zentriert
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 200
+    y: 200
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: Subline im Grid
+    text_field: subline
+    subline_input: "Untertitel"
+  benefits_block:
+    x: 200
+    y: 320
+    width: 400
+    height: 200
+    content_type: text_elements
+    description: Benefits Block im Grid
+    text_field: benefits
+    benefits_input: "Vorteile"
+  cta_block:
+    x: 200
+    y: 560
+    width: 400
+    height: 100
+    content_type: text_elements
+    description: Call-to-Action Button im Grid
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 640
+    y: 80
+    width: 400
+    height: 580
+    content_type: image_motiv
+    description: Motiv im Grid
+meta:
+  name: Grid Layout
+  description: Grid-basierte Textblöcke mit strukturierter Motiv-Verteilung
+  layout_type: grid_layout
+  zones_count: 5
+  text_zones: 4
+  image_zones: 1

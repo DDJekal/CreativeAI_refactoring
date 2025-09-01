@@ -1,0 +1,245 @@
+# ========================================
+# LAYOUT INDEX - Übersicht aller verfügbaren Layouts
+# ========================================
+# Dieser Index ermöglicht die einfache Navigation und Auswahl von Layouts
+# Jedes Layout hat eine eindeutige ID und kann über den Layout-Engine geladen werden
+
+layouts:
+  # ========================================
+  # GRUPPE 1: Vertikale Aufteilungen
+  # ========================================
+  skizze1_vertical_split:
+    name: "Vertikale Teilung"
+    description: "Text links, Motiv rechts - klassische Aufteilung"
+    file: "layouts/skizze1_vertical_split.yaml"
+    type: "dynamic_vertical_split"
+    complexity: "medium"
+    tags: ["vertical", "text_left", "image_right", "classic"]
+    preview: "Skizze1.png"
+    
+  skizze2_horizontal_split:
+    name: "Horizontale Teilung"
+    description: "Motiv links, Text rechts - moderne Aufteilung"
+    file: "layouts/skizze2_horizontal_split.yaml"
+    type: "dynamic_horizontal_split"
+    complexity: "medium"
+    tags: ["horizontal", "image_left", "text_right", "modern"]
+    preview: "Skizze2.png"
+    
+  skizze3_centered:
+    name: "Zentriertes Layout"
+    description: "Text zentriert, Motiv als Hintergrund"
+    file: "layouts/skizze3_centered.yaml"
+    type: "dynamic_centered"
+    complexity: "easy"
+    tags: ["centered", "overlay", "background_image", "simple"]
+    preview: "Skizze3.png"
+
+  # ========================================
+  # GRUPPE 2: Moderne Split-Layouts
+  # ========================================
+  skizze10_modern_split:
+    name: "Modern Split"
+    description: "Text links, Motiv rechts mit curved style"
+    file: "layouts/skizze10_modern_split.yaml"
+    type: "dynamic_modern_split"
+    complexity: "medium"
+    tags: ["modern", "curved", "text_left", "image_right", "stylish"]
+    preview: "Skizze10.png"
+    
+  skizze11_asymmetric:
+    name: "Asymmetrisches Layout"
+    description: "Unregelmäßige Aufteilung für dynamische Wirkung"
+    file: "layouts/skizze11_asymmetric.yaml"
+    type: "dynamic_asymmetric"
+    complexity: "hard"
+    tags: ["asymmetric", "dynamic", "irregular", "creative"]
+    preview: "Skizze11.png"
+    
+  skizze12_grid:
+    name: "Grid-Layout"
+    description: "Modulares Grid-System für flexible Inhalte"
+    file: "layouts/skizze12_grid.yaml"
+    type: "dynamic_grid"
+    complexity: "hard"
+    tags: ["grid", "modular", "flexible", "systematic"]
+    preview: "Skizze12.png"
+
+  # ========================================
+  # GRUPPE 3: Spezialisierte Layouts
+  # ========================================
+  skizze4_sidebar:
+    name: "Sidebar-Layout"
+    description: "Schmale Sidebar mit Hauptinhalt"
+    file: "layouts/skizze4_sidebar.yaml"
+    type: "dynamic_sidebar"
+    complexity: "medium"
+    tags: ["sidebar", "narrow", "main_content", "organized"]
+    preview: "Skizze4.png"
+    
+  skizze5_magazine:
+    name: "Magazin-Style"
+    description: "Zeitschriften-ähnliches Layout mit Spalten"
+    file: "layouts/skizze5_magazine.yaml"
+    type: "dynamic_magazine"
+    complexity: "hard"
+    tags: ["magazine", "columns", "editorial", "professional"]
+    preview: "Skizze5.png"
+    
+  skizze6_card:
+    name: "Card-Layout"
+    description: "Karten-basiertes Design für übersichtliche Darstellung"
+    file: "layouts/skizze6_card.yaml"
+    type: "dynamic_card"
+    complexity: "medium"
+    tags: ["card", "clean", "organized", "modern"]
+    preview: "Skizze6.png"
+
+  # ========================================
+  # GRUPPE 4: Kreative Layouts
+  # ========================================
+  skizze7_hero:
+    name: "Hero-Layout"
+    description: "Großes Hero-Bild mit überlagertem Text"
+    file: "layouts/skizze7_hero.yaml"
+    type: "dynamic_hero"
+    complexity: "easy"
+    tags: ["hero", "large_image", "overlay_text", "impactful"]
+    preview: "Skizze7.png"
+    
+  skizze8_mosaic:
+    name: "Mosaik-Layout"
+    description: "Verschiedene Bildgrößen in Mosaik-Anordnung"
+    file: "layouts/skizze8_mosaic.yaml"
+    type: "dynamic_mosaic"
+    complexity: "hard"
+    tags: ["mosaic", "various_sizes", "creative", "dynamic"]
+    preview: "Skizze8.png"
+    
+  skizze9_minimal:
+    name: "Minimalistisches Layout"
+    description: "Weniger ist mehr - klare, reduzierte Gestaltung"
+    file: "layouts/skizze9_minimal.yaml"
+    type: "dynamic_minimal"
+    complexity: "easy"
+    tags: ["minimal", "clean", "reduced", "elegant"]
+    preview: "Skizze9.png"
+
+  skizze13_abstract:
+    name: "Abstraktes Layout"
+    description: "Künstlerische, abstrakte Anordnung der Elemente"
+    file: "layouts/skizze13_abstract.yaml"
+    type: "dynamic_abstract"
+    complexity: "hard"
+    tags: ["abstract", "artistic", "creative", "unique"]
+    preview: "Skizze13.png"
+
+# ========================================
+# LAYOUT-KATEGORIEN
+# ========================================
+categories:
+  vertical_splits:
+    name: "Vertikale Aufteilungen"
+    description: "Klassische vertikale Teilung von Text und Bild"
+    layouts: ["skizze1_vertical_split", "skizze3_centered"]
+    
+  horizontal_splits:
+    name: "Horizontale Aufteilungen"
+    description: "Moderne horizontale Aufteilung"
+    layouts: ["skizze2_horizontal_split", "skizze10_modern_split"]
+    
+  modern_styles:
+    name: "Moderne Styles"
+    description: "Aktuelle, trendige Layout-Ansätze"
+    layouts: ["skizze10_modern_split", "skizze11_asymmetric", "skizze12_grid"]
+    
+  specialized:
+    name: "Spezialisierte Layouts"
+    description: "Für spezifische Anwendungsfälle optimiert"
+    layouts: ["skizze4_sidebar", "skizze5_magazine", "skizze6_card"]
+    
+  creative:
+    name: "Kreative Layouts"
+    description: "Künstlerische und experimentelle Ansätze"
+    layouts: ["skizze7_hero", "skizze8_mosaic", "skizze9_minimal", "skizze13_abstract"]
+
+# ========================================
+# KOMPLEXITÄTS-LEVEL
+# ========================================
+complexity_levels:
+  easy:
+    description: "Einfach zu verwenden, wenige Anpassungen nötig"
+    layouts: ["skizze3_centered", "skizze7_hero", "skizze9_minimal"]
+    
+  medium:
+    description: "Mittlere Komplexität, ausgewogene Flexibilität"
+    layouts: ["skizze1_vertical_split", "skizze2_horizontal_split", "skizze4_sidebar", "skizze6_card", "skizze10_modern_split"]
+    
+  hard:
+    description: "Hohe Komplexität, maximale Flexibilität"
+    layouts: ["skizze5_magazine", "skizze8_mosaic", "skizze11_asymmetric", "skizze12_grid", "skizze13_abstract"]
+
+# ========================================
+# LAYOUT-ENGINE KONFIGURATION
+# ========================================
+layout_engine:
+  # Standard-Einstellungen für alle Layouts
+  defaults:
+    canvas_size: "1080x1080"
+    aspect_ratio: "1:1"
+    min_text_width: 300
+    max_text_width: 800
+    min_image_width: 200
+    max_image_width: 900
+    min_transparency: 0.3
+    max_transparency: 0.9
+    
+  # Unterstützte Slider-Parameter
+  supported_sliders:
+    image_text_ratio:
+      min: 30
+      max: 70
+      default: 50
+      step: 5
+      description: "Verhältnis zwischen Bild und Text (30% = mehr Text, 70% = mehr Bild)"
+      
+    container_transparency:
+      min: 0
+      max: 100
+      default: 80
+      step: 5
+      description: "Transparenz der Container (0 = vollständig transparent, 100 = undurchsichtig)"
+      
+  # Fallback-Verhalten
+  fallbacks:
+    invalid_ratio: "50_50"
+    invalid_transparency: 80
+    layout_error: "skizze1_vertical_split"  # Standard-Fallback
+    
+  # Caching-Einstellungen
+  caching:
+    enabled: true
+    max_size: 32
+    ttl: 3600  # 1 Stunde
+
+# ========================================
+# METADATEN
+# ========================================
+metadata:
+  version: "1.0.0"
+  created: "2024-12-19"
+  last_updated: "2024-12-19"
+  author: "CreativeAI Team"
+  description: "Dynamischer Layout-Index für alle verfügbaren Skizzen mit Slider-Integration"
+  
+  # Kompatibilität
+  compatibility:
+    min_creative_core_version: "1.0.0"
+    supported_formats: ["yaml", "json"]
+    max_layouts: 13
+    
+  # Wartung
+  maintenance:
+    auto_update: false
+    validation_enabled: true
+    backup_enabled: true

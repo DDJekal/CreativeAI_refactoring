@@ -1,0 +1,60 @@
+layout_id: skizze8_hero_layout
+name: Hero Layout
+description: Hero-Style mit großer Headline und prominentem Motiv
+layout_type: hero_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 150
+    y: 40
+    width: 780
+    height: 60
+    content_type: text_elements
+    description: Standort-Block zentriert oben
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 150
+    y: 120
+    width: 780
+    height: 200
+    content_type: text_elements
+    description: Große Hauptheadline (Hero-Style)
+    text_field: headline
+    headline_input: "Hauptüberschrift"
+  subline_block:
+    x: 240
+    y: 340
+    width: 500
+    height: 80
+    content_type: text_elements
+    description: Subline unter der Headline
+    text_field: subline
+    subline_input: "Untertitel"
+  cta_block:
+    x: 240
+    y: 440
+    width: 400
+    height: 100
+    content_type: text_elements
+    description: Call-to-Action Button prominent
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    content_type: image_motiv
+    description: Motiv als Hintergrund
+meta:
+  name: Hero Layout
+  description: Hero-Style mit großer Headline und prominentem Motiv
+  layout_type: hero_layout
+  zones_count: 4
+  text_zones: 3
+  image_zones: 1

@@ -1,0 +1,51 @@
+# CI-Farben Konfiguration (ERWEITERT um vierte Hintergrundfarbe)
+# Standard-CI-Farben für das CreativeAI Projekt
+
+default_colors:
+  primary: "#005EA5"      # Hauptfarbe - Blau
+  secondary: "#B4D9F7"    # Sekundärfarbe - Hellblau
+  accent: "#FFC20E"       # Akzentfarbe - Gelb
+  background: "#FFFFFF"   # Hintergrundfarbe - Weiß
+
+# Alternative Farbschemata (ERWEITERT um vierte Farbe)
+color_schemes:
+  corporate_blue:
+    primary: "#005EA5"
+    secondary: "#B4D9F7"
+    accent: "#FFC20E"
+    background: "#FFFFFF"
+    description: "Klassisches Corporate Blau"
+  
+  modern_green:
+    primary: "#2E7D32"
+    secondary: "#C8E6C9"
+    accent: "#FF7043"
+    background: "#F8F9FA"
+    description: "Modernes Grün mit Orange-Akzent"
+  
+  professional_gray:
+    primary: "#424242"
+    secondary: "#E0E0E0"
+    accent: "#FF5722"
+    background: "#FFFFFF"
+    description: "Professionelles Grau mit Orange-Akzent"
+  
+  vibrant_red:
+    primary: "#D32F2F"
+    secondary: "#FFCDD2"
+    accent: "#4CAF50"
+    background: "#FFFFFF"
+    description: "Vibrantes Rot mit Grün-Akzent"
+
+# Farbvalidierung (ERWEITERT um vierte Farbe)
+validation:
+  require_hex_format: true
+  max_contrast_ratio: 4.5
+  min_contrast_ratio: 3.0
+  required_colors: ["primary", "secondary", "accent", "background"]
+
+# Standard-Einstellungen
+settings:
+  default_scheme: "corporate_blue"
+  auto_contrast_check: true
+  allow_custom_colors: true
