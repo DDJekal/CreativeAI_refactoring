@@ -1,24 +1,31 @@
-layout_id: skizze1_vertical_split
-name: Vertikales Split Layout
-description: Klassisches vertikales Split-Layout mit dynamischer Anpassung basierend auf image_text_ratio Slider. Text links, Motiv rechts mit flexibler Breitenanpassung.
-layout_type: vertical_split
+layout_id: skizze2_vertical_split_left
+name: Vertikaler Split Layout (Motiv Links)
+description: Klassisches vertikales Split-Layout mit Motiv links und Text rechts. Perfekt für starke visuelle Präsenz mit strukturierter Informationsvermittlung.
+layout_type: vertical_split_left
 canvas:
   width: 1080
   height: 1080
   background_color: '#FFFFFF'
   aspect_ratio: '1:1'
 zones:
+  motiv_area:
+    x: 0
+    y: 0
+    width: 540
+    height: 1080
+    content_type: image_motiv
+    description: Hauptmotiv-Bereich links, Breite wird durch image_text_ratio Slider dynamisch angepasst
   standort_block:
-    x: 40
+    x: 580
     y: 40
-    width: 300
+    width: 400
     height: 60
     content_type: text_elements
     description: Standort-Information mit Icon, kompakt und prominent platziert
     text_field: location
     location_input: "Standort"
   headline_block:
-    x: 40
+    x: 580
     y: 120
     width: 400
     height: 100
@@ -27,7 +34,7 @@ zones:
     text_field: headline
     headline_input: "Hauptüberschrift"
   subline_block:
-    x: 40
+    x: 580
     y: 240
     width: 400
     height: 80
@@ -36,7 +43,7 @@ zones:
     text_field: subline
     subline_input: "Untertitel"
   benefits_block:
-    x: 40
+    x: 580
     y: 340
     width: 400
     height: 200
@@ -45,7 +52,7 @@ zones:
     text_field: benefits
     benefits_input: "Vorteile"
   stellentitel_block:
-    x: 40
+    x: 580
     y: 560
     width: 400
     height: 100
@@ -54,7 +61,7 @@ zones:
     text_field: stellentitel
     stellentitel_input: "Stellentitel"
   cta_block:
-    x: 140
+    x: 680
     y: 680
     width: 300
     height: 80
@@ -62,27 +69,20 @@ zones:
     description: Call-to-Action Button, zentriert und prominent für maximale Conversion
     text_field: cta
     cta_input: "Call-to-Action"
-  motiv_area:
-    x: 500
-    y: 0
-    width: 580
-    height: 1080
-    content_type: image_motiv
-    description: Hauptmotiv-Bereich für authentische Fotografie, Breite wird durch image_text_ratio Slider dynamisch angepasst
 meta:
-  name: Vertikales Split Layout
-  description: Klassisches vertikales Split-Layout mit dynamischer Anpassung basierend auf image_text_ratio Slider. Text links, Motiv rechts mit flexibler Breitenanpassung.
-  layout_type: vertical_split
+  name: Vertikaler Split Layout (Motiv Links)
+  description: Klassisches vertikales Split-Layout mit Motiv links und Text rechts. Perfekt für starke visuelle Präsenz mit strukturierter Informationsvermittlung.
+  layout_type: vertical_split_left
   zones_count: 7
   text_zones: 6
   image_zones: 1
   # Prompt-Integration für bessere KI-Generierung
   prompt_instructions:
-    layout_style: "Klassisches vertikales Split-Layout mit dynamischer Anpassung basierend auf image_text_ratio Slider"
-    composition_notes: "Text links, Motiv rechts. Verhältnis wird durch image_text_ratio Slider (30-70%) dynamisch angepasst. 30% = mehr Text (70% Text, 30% Bild), 70% = mehr Bild (30% Text, 70% Bild). Saubere vertikale Trennlinie zwischen den Bereichen."
+    layout_style: "Klassisches vertikales Split-Layout mit Motiv links und Text rechts"
+    composition_notes: "Motiv links, Text rechts. Verhältnis wird durch image_text_ratio Slider (30-70%) dynamisch angepasst. 30% = mehr Text (30% Motiv, 70% Text), 70% = mehr Bild (70% Motiv, 30% Text)."
     visual_style_keywords: ["vertikal", "split", "strukturiert", "klassisch", "ausgewogen", "dynamisch"]
     text_rendering: "separate_layers"
-    background_treatment: "Weißer Hintergrund im Text-Bereich, Motiv als Vollbild im rechten Bereich"
+    background_treatment: "Weißer Hintergrund im Text-Bereich, Motiv als Vollbild im linken Bereich"
     slider_integration:
-      image_text_ratio: "Bestimmt das Verhältnis zwischen Text- und Bildbereich (30-70%)"
+      image_text_ratio: "Bestimmt das Verhältnis zwischen Motiv- und Text-Bereich (30-70%)"
       container_transparency: "Bestimmt die Transparenz der Text-Container (0-100%)"

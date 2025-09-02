@@ -1,0 +1,81 @@
+layout_id: skizze7_split_layout
+name: Split Layout
+description: Obere Hälfte Layout, untere Hälfte Motiv mit dynamischer Y-Koordinate
+layout_type: split_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 50
+    y: 50
+    width: 400
+    height: 60
+    content_type: text_elements
+    description: Standort-Block obere linke Hälfte
+    text_field: location
+    location_input: "Standort"
+  headline_block:
+    x: 50
+    y: 150
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: Headline obere linke Hälfte
+    text_field: headline
+    headline_input: "Headline"
+  benefits_block:
+    x: 50
+    y: 250
+    width: 400
+    height: 200
+    content_type: text_elements
+    description: Benefits obere linke Hälfte
+    text_field: benefits
+    benefits_input: "Vorteile"
+  stellentitel_block:
+    x: 50
+    y: 500
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: Stellentitel obere Seite des Motivs
+    text_field: stellentitel
+    stellentitel_input: "Stellentitel"
+  cta_block:
+    x: 50
+    y: 950
+    width: 400
+    height: 80
+    content_type: text_elements
+    description: CTA unten links
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 0
+    y: 540
+    width: 1080
+    height: 540
+    content_type: image_motiv
+    description: Motiv untere Hälfte mit dynamischer Y-Koordinate
+prompt_instructions:
+  scene_description: "Professional recruitment creative with split layout - upper half for text elements, lower half for background image"
+  visual_structure: "Split composition with text elements in upper half, background image in lower half, dynamic split line based on slider"
+  layout_behavior: "Split layout with standort top-left, headline under standort, benefits DIRECTLY UNDER headline (vertical stack), stellentitel and CTA positioned bottom-left IN FRONT OF the background image with larger spacing from benefits, background image fills complete lower half with dynamic Y-coordinate based on slider (higher slider = smaller Y-coordinate = more image area)"
+  text_positioning: "Text elements in visible white containers with rounded corners, subtle shadows, no borders - standort top-left, headline under standort, benefits DIRECTLY UNDER headline (vertical stack), stellentitel and CTA positioned bottom-left IN FRONT OF the background image with larger spacing"
+  image_positioning: "Background image fills complete lower half with dynamic Y-coordinate - higher slider values result in smaller Y-coordinate (image starts higher up), full width coverage, NO rounded corners or frames around the image"
+  style_guidelines: "Modern, clean design with professional typography, visible white containers with shadows, no borders or outlines, corporate color scheme, split layout"
+  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image, rounded image frames, image containers"
+  separate_layers: true
+  background_motiv_handling: "Split layout with background image in lower half, dynamic positioning based on slider, image fills entire lower area without frames"
+  container_behavior: "Text containers in upper half, image area in lower half with slider-controlled Y-coordinate"
+  split_structure: "Upper half contains text elements (standort, headline, benefits in vertical stack), lower half contains stellentitel, CTA IN FRONT OF the background image and background image with dynamic Y-coordinate"
+meta:
+  name: Split Layout
+  description: Obere Hälfte Layout, untere Hälfte Motiv mit dynamischer Y-Koordinate
+  layout_type: split_layout
+  zones_count: 6
+  text_zones: 5
+  image_zones: 1

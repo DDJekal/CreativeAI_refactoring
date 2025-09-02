@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 import time
 import streamlit as st
+from creative_core.layout import load_layout
 from pathlib import Path
 import logging
 from PIL import Image
@@ -722,9 +723,9 @@ layouts = [
         "sketch": original_sketches.get("Skizze1")
     },
     {
-        "id": "skizze2_horizontal",
-        "name": "Horizontal Strips", 
-        "description": "Horizontale Streifen-Anordnung",
+        "id": "skizze2_vertical_split_left",
+        "name": "Vertikaler Split (Motiv Links)", 
+        "description": "Motiv links, Text rechts",
         "sketch": original_sketches.get("Skizze2")
     },
     {
@@ -814,7 +815,20 @@ if layout_input_mode == "🎯 Manuelle Eingabe":
             display_sketch_preview(layout["sketch"], layout["id"], selected_layout_id)
 
     # Aktuell gewähltes Layout
-    layout_id = selected_layout_id
+    # Layout mit Slider-Werten laden
+try:
+    layout_data = load_layout(
+        layout_id, 
+        image_text_ratio=st.session_state.get('image_text_ratio', 50),
+        container_transparency=st.session_state.get('container_transparency', 80)
+    )
+    st.session_state['layout_data'] = layout_data
+    st.caption(f"✅ Layout geladen: {layout_data.get('name', 'Unbekannt')}")
+except Exception as e:
+    st.error(f"❌ Fehler beim Laden des Layouts: {e}")
+    layout_data = None
+
+layout_id = selected_layout_id
     layout_name = next(l['name'] for l in layouts if l['id'] == layout_id)
 
     st.caption(f"🎯 Gewähltes Layout: {layout_name} ({layout_id})")
@@ -850,6 +864,40 @@ elif layout_input_mode == "🎲 Automatische Eingabe":
             st.rerun()
     
     st.caption(f"🎲 **Automatisch gewählt:** {layout_name} ({layout_id})")
+
+# Layout-Slider Integration
+st.subheader("🎛️ Layout-Anpassungen")
+
+# Image/Text Ratio Slider
+col1, col2 = st.columns(2)
+
+with col1:
+    image_text_ratio = st.slider(
+        "Bild/Text Verhältnis",
+        min_value=30, 
+        max_value=70, 
+        value=50,
+        step=5,
+        help="30% = mehr Text, 70% = mehr Bild. Bestimmt das Verhältnis zwischen Motiv- und Text-Bereich."
+    )
+
+with col2:
+    container_transparency = st.slider(
+        "Container Transparenz",
+        min_value=0, 
+        max_value=100, 
+        value=80,
+        step=5,
+        help="0% = vollständig transparent, 100% = undurchsichtig. Bestimmt die Transparenz der Text-Container."
+    )
+
+# Slider-Werte in Session State speichern
+st.session_state['image_text_ratio'] = image_text_ratio
+st.session_state['container_transparency'] = container_transparency
+
+# Slider-Info anzeigen
+st.caption(f"🎯 **Aktuelles Verhältnis:** {image_text_ratio}% Bild, {100-image_text_ratio}% Text")
+st.caption(f"🎨 **Container Transparenz:** {container_transparency}%")
 
 # CI Color Palette
 st.subheader("🎨 CI-Farbpalette")

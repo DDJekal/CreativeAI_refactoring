@@ -57,6 +57,10 @@ def load_layout(
     # Wende Transparenz-Effekte an
     final_layout = layout_engine.apply_transparency_effects(calculated_layout)
     
+    # Stelle sicher, dass der canvas Key erhalten bleibt
+    if 'canvas' not in final_layout and 'canvas' in layout_dict:
+        final_layout['canvas'] = layout_dict['canvas']
+    
     # Validiere das finale Layout (strikt)
     try:
         validated_layout = layout_engine.validate_layout(final_layout)
@@ -169,7 +173,7 @@ def _get_default_layout(layout_id: str) -> Dict[str, Any]:
     }
 
 
-@lru_cache(maxsize=32)
+# @lru_cache(maxsize=32)  # Temporär deaktiviert für Entwicklung
 def load_layout_cached(
     layout_id: str, 
     image_text_ratio: int = 50,

@@ -1,0 +1,90 @@
+layout_id: skizze9_dual_headline_layout
+name: Dual Headline Layout
+description: Skizze 9 - Zwei separate Headline-Container, kein Benefits, Motiv als Vollbild-Hintergrund
+layout_type: storytelling_layout
+canvas:
+  width: 1080
+  height: 1080
+  background_color: '#FFFFFF'
+  aspect_ratio: '1:1'
+zones:
+  standort_block:
+    x: 54
+    y: 54
+    width: 486
+    height: 65
+    content_type: text_elements
+    description: Standort-Block oben links
+    text_field: location
+    location_input: "Standort"
+  headline_1_block:
+    x: 54
+    y: 162
+    width: 486
+    height: 86
+    content_type: text_elements
+    description: Erste Headline
+    text_field: headline_1
+    headline_1_input: "Dein Rhythmus."
+  headline_2_block:
+    x: 54
+    y: 270
+    width: 486
+    height: 86
+    content_type: text_elements
+    description: Zweite Headline
+    text_field: headline_2
+    headline_2_input: "Dein Job."
+  subline_block:
+    x: 54
+    y: 378
+    width: 486
+    height: 65
+    content_type: text_elements
+    description: Subline unter Headlines
+    text_field: subline
+    subline_input: "Unterüberschrift"
+  stellentitel_block:
+    x: 54
+    y: 486
+    width: 486
+    height: 86
+    content_type: text_elements
+    description: Stellentitel
+    text_field: stellentitel
+    stellentitel_input: "Stellentitel"
+  cta_block:
+    x: 54
+    y: 594
+    width: 486
+    height: 86
+    content_type: text_elements
+    description: Call-to-Action
+    text_field: cta
+    cta_input: "Call-to-Action"
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    content_type: image_motiv
+    description: Motiv als Vollbild-Hintergrund
+prompt_instructions:
+  scene_description: "Professional recruitment creative with dual headline layout - two separate headline containers, no benefits, full background image"
+  visual_structure: "Dual headline arrangement with two separate headline containers stacked vertically, all text elements in visible white containers, full background image"
+  layout_behavior: "Dual headline layout with two separate headline containers (headline_1 and headline_2) stacked vertically, no benefits element, standort top-left, subline under headlines, stellentitel and CTA below, ALL text elements in visible white containers with rounded corners and subtle shadows, full background image covering entire canvas"
+  text_positioning: "Text elements MUST be in visible white containers with rounded corners, subtle shadows, no borders - standort top-left, headline_1 and headline_2 stacked vertically, subline under headlines, stellentitel and CTA below, NO benefits element"
+  image_positioning: "Full background image covering entire canvas (x: 0, y: 0, width: 1080px, height: 1080px), NO frames or borders, image fills complete background, text elements overlay on top of background image"
+  style_guidelines: "Modern, clean design with professional typography, visible white containers with shadows, no borders or outlines, corporate color scheme, dual headline layout"
+  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image, rounded image frames, image containers, benefits element, benefits block, benefits text, multiple benefits"
+  separate_layers: true
+  background_motiv_handling: "Full background image covering entire canvas, text elements overlay on top"
+  container_behavior: "All text elements in visible white containers, dual headline arrangement"
+  dual_headline_structure: "Two separate headline containers (headline_1 and headline_2) stacked vertically, no benefits, full background image"
+meta:
+  name: Dual Headline Layout
+  description: Skizze 9 - Zwei separate Headline-Container, kein Benefits, Motiv als Vollbild-Hintergrund
+  layout_type: storytelling_layout
+  zones_count: 6
+  text_zones: 5
+  image_zones: 1

@@ -9,48 +9,48 @@ canvas:
   aspect_ratio: '1:1'
 zones:
   standort_block:
-    x: 80
+    x: 756
     y: 40
     width: 250
     height: 60
     content_type: text_elements
-    description: Standort-Block oben links
+    description: Standort-Block weiter nach rechts
     text_field: location
     location_input: "Standort"
   headline_block:
-    x: 80
-    y: 120
-    width: 420
-    height: 100
+    x: 324
+    y: 108
+    width: 600
+    height: 120
     content_type: text_elements
-    description: Hauptheadline asymmetrisch angeordnet
+    description: Hauptheadline weiter nach oben
     text_field: headline
     headline_input: "Hauptüberschrift"
   subline_block:
-    x: 600
-    y: 200
-    width: 400
+    x: 378
+    y: 238
+    width: 500
     height: 80
     content_type: text_elements
-    description: Subline rechts asymmetrisch positioniert
+    description: Subline weiter nach oben
     text_field: subline
     subline_input: "Untertitel"
-  benefits_block:
-    x: 60
-    y: 400
-    width: 450
-    height: 200
-    content_type: text_elements
-    description: Benefits Block links unten asymmetrisch
-    text_field: benefits
-    benefits_input: "Vorteile"
-  cta_block:
-    x: 700
-    y: 600
+  stellentitel_block:
+    x: 540
+    y: 540
     width: 300
     height: 100
     content_type: text_elements
-    description: Call-to-Action Button rechts unten asymmetrisch
+    description: Stellentitel zwischen Subline und CTA
+    text_field: stellentitel
+    stellentitel_input: "Stellentitel"
+  cta_block:
+    x: 756
+    y: 918
+    width: 300
+    height: 100
+    content_type: text_elements
+    description: Call-to-Action Button weiter nach rechts
     text_field: cta
     cta_input: "Call-to-Action"
   motiv_area:
@@ -60,9 +60,22 @@ zones:
     height: 1080
     content_type: image_motiv
     description: Motiv als vollständiger Hintergrund
+prompt_instructions:
+  scene_description: "Professional recruitment creative with asymmetric text containers overlaid on background image"
+  visual_structure: "Background image fills entire canvas, asymmetric arrangement of visible white text containers"
+  layout_behavior: "Text containers are arranged asymmetrically with standort positioned in TOP-RIGHT corner (70% from left, 5% from top), headline and subline positioned more centrally and higher up (30-35% from left, 10-22% from top), stellentitel positioned between subline and CTA (50% from left, 50% from top), CTA positioned further right in bottom-right (70% from left, 85% from top), container size varies inversely with slider, background image always visible"
+  text_positioning: "All text elements in visible white containers with rounded corners, subtle shadows, and asymmetric positioning creating dynamic composition. CRITICAL: standort must be positioned in TOP-RIGHT corner, NOT top-left"
+  image_positioning: "Background image covers full canvas (0,0 to 1080,1080), no cropping or borders"
+  style_guidelines: "Modern, clean design with professional typography, visible white containers with shadows, corporate color scheme"
+  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image"
+  separate_layers: true
+  background_motiv_handling: "Full canvas background image with visible white text containers arranged asymmetrically"
+  container_behavior: "Container size scales inversely with layout composition slider - smaller containers = more background visible (inverse logic)"
+  asymmetric_flow: "Text containers positioned asymmetrically: standort in TOP-RIGHT corner (70% from left, 5% from top), headline/subline positioned more centrally and higher up (30-35% from left, 10-22% from top), stellentitel positioned between subline and CTA (50% from left, 50% from top), CTA positioned further right in bottom-right (70% from left, 85% from top) creating balanced asymmetric composition"
+
 meta:
   name: Asymmetrisches Layout
-  description: Asymmetrische Textblöcke mit ungleichmäßiger Motiv-Verteilung
+  description: Asymmetrische Textblöcke mit Hintergrund-Motiv
   layout_type: asymmetric_layout
   zones_count: 5
   text_zones: 4

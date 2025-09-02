@@ -54,15 +54,28 @@ zones:
     text_field: cta
     cta_input: "Call-to-Action"
   motiv_area:
-    x: 500
+    x: 0
     y: 0
-    width: 580
+    width: 1080
     height: 1080
     content_type: image_motiv
-    description: Motiv diagonal positioniert
+    description: Motiv als Hintergrund
+prompt_instructions:
+  scene_description: "Professional recruitment creative with diagonal text containers overlaid on background image"
+  visual_structure: "Background image fills entire canvas, diagonal arrangement of visible white text containers"
+  layout_behavior: "Text containers are arranged diagonally with standort in top-right, text elements in lower-right with extended spacing, and CTA in lower-left with more spacing, container group size varies with slider, background image always visible"
+  text_positioning: "All text elements in visible white containers with rounded corners, subtle shadows, and diagonal positioning creating dynamic flow"
+  image_positioning: "Background image covers full canvas (0,0 to 1080,1080), no cropping or borders"
+  style_guidelines: "Modern, clean design with professional typography, visible white containers with diagonal shadows, corporate color scheme"
+  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image"
+  separate_layers: true
+  background_motiv_handling: "Full canvas background image with visible white text containers arranged diagonally"
+  container_behavior: "Container group size scales with layout composition slider - larger containers = less background visible"
+  diagonal_flow: "Text containers positioned strategically: standort top-right, main text lower-right with extended spacing, CTA lower-left with more spacing creating distinct diagonal composition"
+
 meta:
   name: Diagonales Layout
-  description: Diagonale Textblöcke mit diagonalem Motiv
+  description: Diagonale Textblöcke mit Hintergrund-Motiv
   layout_type: diagonal_layout
   zones_count: 5
   text_zones: 4

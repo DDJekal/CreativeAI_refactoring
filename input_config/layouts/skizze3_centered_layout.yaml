@@ -60,6 +60,18 @@ zones:
     height: 1080
     content_type: image_motiv
     description: Motiv als Hintergrund
+prompt_instructions:
+  scene_description: "Professional recruitment creative with centered text containers overlaid on background image"
+  visual_structure: "Background image fills entire canvas, centered group of visible text containers with white backgrounds"
+  layout_behavior: "Text containers are grouped and centered, container group size varies with slider, background image always visible"
+  text_positioning: "All text elements in visible white containers with rounded corners, subtle shadows, and consistent spacing"
+  image_positioning: "Background image covers full canvas (0,0 to 1080,1080), no cropping or borders"
+  style_guidelines: "Modern, clean design with professional typography, visible white containers with shadows, corporate color scheme"
+  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image"
+  separate_layers: true
+  background_motiv_handling: "Full canvas background image with visible white text containers as overlays"
+  container_behavior: "Container group size scales with layout composition slider - larger containers = less background visible"
+
 meta:
   name: Zentriertes Layout
   description: Zentrierte Textblöcke mit umgebendem Motiv
