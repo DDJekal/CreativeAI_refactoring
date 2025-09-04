@@ -1,0 +1,78 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Infographic-Style mit strukturierten Datenblöcken
+layout_id: skizze11_infographic_layout
+layout_type: infographic_layout
+meta:
+  description: Infographic-Style mit strukturierten Datenblöcken
+  image_zones: 1
+  layout_type: infographic_layout
+  name: Infographic Layout
+  text_zones: 5
+  zones_count: 6
+name: Infographic Layout
+zones:
+  benefits_block:
+    benefits_input: Vorteile
+    content_type: text_elements
+    description: Hauptvorteile als strukturierte Liste
+    height: 300
+    text_field: benefits
+    width: 480
+    x: 50
+    y: 220
+  cta_block:
+    content_type: text_elements
+    cta_input: Call-to-Action
+    description: Call-to-Action Button
+    height: 80
+    text_field: cta
+    width: 980
+    x: 50
+    y: 540
+  headline_block:
+    content_type: text_elements
+    description: Hauptheadline oben
+    headline_input: Hauptüberschrift
+    height: 100
+    text_field: headline
+    width: 920
+    x: 80
+    y: 80
+  motiv_area:
+    content_type: image_motiv
+    description: Motiv-Bereich als Hintergrund
+    height: 380
+    width: 980
+    x: 50
+    y: 650
+  standort_block:
+    content_type: text_elements
+    description: Standort-Block oben
+    height: 40
+    location_input: Standort
+    text_field: location
+    width: 920
+    x: 80
+    y: 20
+  stellentitel_block:
+    content_type: text_elements
+    description: Stellenbeschreibung und Anforderungen
+    height: 300
+    stellentitel_input: Stellentitel
+    text_field: stellentitel
+    width: 480
+    x: 550
+    y: 220
+  subline_block:
+    content_type: text_elements
+    description: Untertitel/Erklärung
+    height: 40
+    subline_input: Untertitel
+    text_field: subline
+    width: 680
+    x: 300
+    y: 140

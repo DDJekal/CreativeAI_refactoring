@@ -1,82 +1,58 @@
 layout_id: skizze4_diagonal_layout
-name: Diagonales Layout
-description: Diagonale Textblöcke mit diagonalem Motiv
+name: "Skizze 4 – Diagonal Layout"
 layout_type: diagonal_layout
+description: "Diagonale Leserichtung: Standort oben rechts, Text unten rechts, CTA unten links. Hintergrundmotiv vollflächig."
+
 canvas:
   width: 1080
   height: 1080
-  background_color: '#FFFFFF'
-  aspect_ratio: '1:1'
+  aspect_ratio: "1:1"
+
 zones:
   standort_block:
-    x: 100
-    y: 40
+    x: 760
+    y: 60
     width: 300
-    height: 60
+    height: 70
+    z: 1
     content_type: text_elements
-    description: Standort-Block oben links
-    text_field: location
-    location_input: "Standort"
+
   headline_block:
-    x: 100
-    y: 120
-    width: 500
-    height: 100
+    x: 580
+    y: 720
+    width: 420
+    height: 120
+    z: 1
     content_type: text_elements
-    description: Hauptheadline diagonal angeordnet
-    text_field: headline
-    headline_input: "Hauptüberschrift"
+
   subline_block:
-    x: 200
-    y: 300
-    width: 450
-    height: 80
-    content_type: text_elements
-    description: Subline diagonal positioniert
-    text_field: subline
-    subline_input: "Untertitel"
-  benefits_block:
-    x: 280
-    y: 420
-    width: 400
-    height: 200
-    content_type: text_elements
-    description: Benefits Block diagonal positioniert
-    text_field: benefits
-    benefits_input: "Vorteile"
-  cta_block:
-    x: 360
-    y: 640
-    width: 300
+    x: 620
+    y: 850
+    width: 380
     height: 100
+    z: 1
     content_type: text_elements
-    description: Call-to-Action Button diagonal positioniert
-    text_field: cta
-    cta_input: "Call-to-Action"
+
+  benefits_block:
+    x: 660
+    y: 960
+    width: 340
+    height: 100
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 60
+    y: 900
+    width: 280
+    height: 120
+    z: 1
+    content_type: text_elements
+
   motiv_area:
     x: 0
     y: 0
     width: 1080
     height: 1080
+    z: 0
     content_type: image_motiv
-    description: Motiv als Hintergrund
-prompt_instructions:
-  scene_description: "Professional recruitment creative with diagonal text containers overlaid on background image"
-  visual_structure: "Background image fills entire canvas, diagonal arrangement of visible white text containers"
-  layout_behavior: "Text containers are arranged diagonally with standort in top-right, text elements in lower-right with extended spacing, and CTA in lower-left with more spacing, container group size varies with slider, background image always visible"
-  text_positioning: "All text elements in visible white containers with rounded corners, subtle shadows, and diagonal positioning creating dynamic flow"
-  image_positioning: "Background image covers full canvas (0,0 to 1080,1080), no cropping or borders"
-  style_guidelines: "Modern, clean design with professional typography, visible white containers with diagonal shadows, corporate color scheme"
-  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image"
-  separate_layers: true
-  background_motiv_handling: "Full canvas background image with visible white text containers arranged diagonally"
-  container_behavior: "Container group size scales with layout composition slider - larger containers = less background visible"
-  diagonal_flow: "Text containers positioned strategically: standort top-right, main text lower-right with extended spacing, CTA lower-left with more spacing creating distinct diagonal composition"
-
-meta:
-  name: Diagonales Layout
-  description: Diagonale Textblöcke mit Hintergrund-Motiv
-  layout_type: diagonal_layout
-  zones_count: 5
-  text_zones: 4
-  image_zones: 1

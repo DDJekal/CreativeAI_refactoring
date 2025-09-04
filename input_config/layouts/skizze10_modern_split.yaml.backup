@@ -1,0 +1,69 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Text links, Motiv rechts mit curved style
+layout_id: skizze10_modern_split
+layout_type: modern_split
+meta:
+  description: Text links, Motiv rechts mit curved style
+  image_zones: 1
+  layout_type: modern_split
+  name: Modern Split
+  text_zones: 5
+  zones_count: 6
+name: Modern Split
+zones:
+  benefits_block:
+    benefits_input: Vorteile
+    content_type: text_elements
+    description: Benefits-Liste
+    height: 200
+    text_field: benefits
+    width: 400
+    x: 40
+    y: 260
+  cta_block:
+    content_type: text_elements
+    cta_input: Call-to-Action
+    description: Call-to-Action Button
+    height: 100
+    text_field: cta
+    width: 300
+    x: 140
+    y: 600
+  headline_block:
+    content_type: text_elements
+    description: Hauptüberschrift
+    headline_input: Hauptüberschrift
+    height: 100
+    text_field: headline
+    width: 400
+    x: 40
+    y: 140
+  motiv_area:
+    content_type: image_motiv
+    description: Motiv-Bereich rechts mit curved style
+    height: 1080
+    width: 580
+    x: 500
+    y: 0
+  standort_block:
+    content_type: text_elements
+    description: Standort-Block oben links
+    height: 80
+    location_input: Standort
+    text_field: location
+    width: 300
+    x: 40
+    y: 40
+  stellentitel_block:
+    content_type: text_elements
+    description: Stellentitel unten links
+    height: 100
+    stellentitel_input: Stellentitel
+    text_field: stellentitel
+    width: 400
+    x: 40
+    y: 480

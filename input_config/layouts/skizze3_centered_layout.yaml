@@ -1,81 +1,58 @@
 layout_id: skizze3_centered_layout
-name: Zentriertes Layout
-description: Zentrierte Textblöcke mit umgebendem Motiv
+name: "Skizze 3 – Centered Layout"
 layout_type: centered_layout
+description: "Zentrierte Container-Gruppe über vollflächigem Hintergrundmotiv."
+
 canvas:
   width: 1080
   height: 1080
-  background_color: '#FFFFFF'
-  aspect_ratio: '1:1'
+  aspect_ratio: "1:1"
+
 zones:
   standort_block:
-    x: 240
-    y: 40
-    width: 600
-    height: 60
-    content_type: text_elements
-    description: Standort-Block zentriert oben
-    text_field: location
-    location_input: "Standort"
-  headline_block:
-    x: 240
-    y: 120
-    width: 600
-    height: 120
-    content_type: text_elements
-    description: Hauptheadline zentriert
-    text_field: headline
-    headline_input: "Hauptüberschrift"
-  subline_block:
-    x: 290
-    y: 320
-    width: 500
-    height: 80
-    content_type: text_elements
-    description: Subline zentriert
-    text_field: subline
-    subline_input: "Untertitel"
-  benefits_block:
     x: 340
-    y: 420
+    y: 120
     width: 400
-    height: 200
+    height: 70
+    z: 1
     content_type: text_elements
-    description: Benefits Block zentriert
-    text_field: benefits
-    benefits_input: "Vorteile"
+
+  headline_block:
+    x: 290
+    y: 210
+    width: 500
+    height: 120
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 320
+    y: 350
+    width: 440
+    height: 100
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 320
+    y: 470
+    width: 440
+    height: 260
+    z: 1
+    content_type: text_elements
+
   cta_block:
     x: 390
-    y: 640
+    y: 760
     width: 300
     height: 100
+    z: 1
     content_type: text_elements
-    description: Call-to-Action Button zentriert
-    text_field: cta
-    cta_input: "Call-to-Action"
+
   motiv_area:
     x: 0
     y: 0
     width: 1080
     height: 1080
+    z: 0
     content_type: image_motiv
-    description: Motiv als Hintergrund
-prompt_instructions:
-  scene_description: "Professional recruitment creative with centered text containers overlaid on background image"
-  visual_structure: "Background image fills entire canvas, centered group of visible text containers with white backgrounds"
-  layout_behavior: "Text containers are grouped and centered, container group size varies with slider, background image always visible"
-  text_positioning: "All text elements in visible white containers with rounded corners, subtle shadows, and consistent spacing"
-  image_positioning: "Background image covers full canvas (0,0 to 1080,1080), no cropping or borders"
-  style_guidelines: "Modern, clean design with professional typography, visible white containers with shadows, corporate color scheme"
-  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image"
-  separate_layers: true
-  background_motiv_handling: "Full canvas background image with visible white text containers as overlays"
-  container_behavior: "Container group size scales with layout composition slider - larger containers = less background visible"
-
-meta:
-  name: Zentriertes Layout
-  description: Zentrierte Textblöcke mit umgebendem Motiv
-  layout_type: centered_layout
-  zones_count: 5
-  text_zones: 4
-  image_zones: 1

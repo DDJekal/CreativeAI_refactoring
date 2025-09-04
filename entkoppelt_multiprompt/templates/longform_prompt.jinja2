@@ -1,0 +1,88 @@
+USER-TEXTE
+- location: {{ spec.user_texts.location }}
+- headline: {{ spec.user_texts.headline }}
+- headline_1: {{ spec.user_texts.headline_1 }}
+- headline_2: {{ spec.user_texts.headline_2 }}
+- subline: {{ spec.user_texts.subline }}
+- benefits:
+{% for b in spec.user_texts.benefits -%}
+  - {{ b }}
+{% endfor -%}
+- stellentitel: {{ spec.user_texts.stellentitel }}
+- cta: {{ spec.user_texts.cta }}
+
+GEWAEHLTE PARAMETER (fix)
+- layout_id: {{ spec.params.layout_id }}
+- layout_style: {{ spec.params.layout_style }}
+- container_shape: {{ spec.params.container_shape }}
+- border_style: {{ spec.params.border_style }}
+- texture_style: {{ spec.params.texture_style }}
+- background_treatment: {{ spec.params.background_treatment }}
+- corner_radius: {{ spec.params.corner_radius }}
+- accent_elements: {{ spec.params.accent_elements }}
+- motiv_quality: {{ spec.params.motiv_quality }}
+- motiv_style: {{ spec.params.motiv_style }}
+- lighting_type: {{ spec.params.lighting_type }}
+- framing: {{ spec.params.framing }}
+
+SLIDER (fix)
+- image_text_ratio: {{ spec.params.sliders.image_text_ratio }}
+- container_transparency: {{ spec.params.sliders.container_transparency }}
+- element_spacing: {{ spec.params.sliders.element_spacing }}
+- container_padding: {{ spec.params.sliders.container_padding }}
+- shadow_intensity: {{ spec.params.sliders.shadow_intensity }}
+
+CI-COLORS (strict)
+- primary: {{ spec.params.ci_colors.primary }}
+- secondary: {{ spec.params.ci_colors.secondary }}
+- accent: {{ spec.params.ci_colors.accent }}
+- background: {{ spec.params.ci_colors.background }}
+
+Szene & Atmosphaere
+Ein einfühlsames Recruiting-Motiv in {{ spec.user_texts.location }}. Die Stimmung ist {{ spec.params.motiv_quality }} mit {{ spec.params.motiv_style }}er Note. Sanftes {{ spec.params.lighting_type }}; {{ spec.params.framing }} für Nähe und Präsenz. Dezente Struktur unterstützt eine organisch-fließende Bildsprache.
+
+Komposition & Layout
+{% set full_bg_ids = ['skizze3_centered_layout','skizze4_diagonal_layout','skizze5_asymmetric_layout','skizze6_grid_layout','skizze9_dual_headline_layout'] %}
+{% set ratio_str = (spec.params.sliders.image_text_ratio|string).strip() %}
+layout_id: {{ spec.params.layout_id }}.
+{% if spec.params.layout_id in full_bg_ids or ratio_str.startswith('100') %}
+Das Motiv füllt 100 % der Leinwand als Vollbild-Hintergrund; Textcontainer liegen als Overlays im Negativraum und folgen der definierten Hierarchie.
+{% else %}
+Klares Split-Layout gemäß Slider: ausgewogene Text-/Bildspalte, konsistente Abstände und sauberer Negativraum. Hierarchie: Headline → Subline → Benefits → Stellentitel → CTA → Standort.
+{% endif %}
+
+Form & Design
+layout_style: {{ spec.params.layout_style }}. Container: {{ spec.params.container_shape }} mit {{ spec.params.corner_radius }} Ecken. border_style: {{ spec.params.border_style }} (dezent). texture_style: {{ spec.params.texture_style }} (matt, haptisch). background_treatment: {{ spec.params.background_treatment }}. accent_elements: {{ spec.params.accent_elements }} (sparsam).
+
+Farbwelt & CI
+Verwende ausschließlich: primary {{ spec.params.ci_colors.primary }}, secondary {{ spec.params.ci_colors.secondary }}, accent {{ spec.params.ci_colors.accent }}, background {{ spec.params.ci_colors.background }}. Klare Lesbarkeit auf halbtransparenten Containern; natürliche Hauttöne beibehalten; Akzentfarbe sparsam.
+
+Text & Content (separate_layers)
+Kein Text im Bild, alle Texte als separate_layers.
+{% if "standort" in spec.meta.active_roles -%}
+- Standort (klein): "{{ spec.user_texts.location }}"
+{% endif -%}
+{% if "headline_1" in spec.meta.active_roles and "headline_2" in spec.meta.active_roles -%}
+- Headline (dual, größte Gewichtung):
+  - headline_1: "{{ spec.user_texts.headline_1 }}"
+  - headline_2: "{{ spec.user_texts.headline_2 }}"
+{% elif "headline" in spec.meta.active_roles -%}
+- Headline (große Gewichtung): "{{ spec.user_texts.headline }}"
+{% endif -%}
+{% if "subline" in spec.meta.active_roles %}- Subline (mittel): "{{ spec.user_texts.subline }}"{% endif %}
+{% if "benefits" in spec.meta.active_roles %}
+- Benefits (Liste, mittel):
+{% for b in spec.user_texts.benefits -%}
+  - "{{ b }}"
+{% endfor -%}
+{% endif %}
+{% if "stellentitel" in spec.meta.active_roles %}- Stellentitel (sekundär): "{{ spec.user_texts.stellentitel }}"{% endif %}
+{% if "cta" in spec.meta.active_roles %}- CTA (hoch sichtbar): "{{ spec.user_texts.cta }}"{% endif %}
+
+Balance & Wirkung
+Vollbild- oder Split-Motiv trägt die emotionale Hauptwirkung; Textcontainer schweben leicht darüber. Halbtransparenz und sanfte Schatten erzeugen Tiefe ohne Dominanz. Die Leserichtung bleibt ruhig und professionell.
+
+Technische Regeln & Engine-Optimierung
+- text_rendering: "separate_layers"
+- 1080×1080, social-ready, keine Rahmen/Wasserzeichen/Logos
+- Slider (fix): image_text_ratio {{ spec.params.sliders.image_text_ratio }}, container_transparency {{ spec.params.sliders.container_transparency }}, element_spacing {{ spec.params.sliders.element_spacing }}, container_padding {{ spec.params.sliders.container_padding }}, shadow_intensity {{ spec.params.sliders.shadow_intensity }}

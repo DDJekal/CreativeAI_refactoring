@@ -1,63 +1,43 @@
 layout_id: skizze6_grid_layout
-name: Grid Layout
-description: Grid-basierte Textblöcke ohne Headline mit vollständigem Hintergrund-Motiv
+name: "Skizze 6 – Grid Layout"
 layout_type: grid_layout
+description: "Grid-basierte Anordnung über vollflächigem Hintergrundmotiv; ohne Headline und CTA."
+
 canvas:
   width: 1080
   height: 1080
-  background_color: '#FFFFFF'
-  aspect_ratio: '1:1'
+  aspect_ratio: "1:1"
+
 zones:
   standort_block:
-    x: 200
-    y: 40
-    width: 680
-    height: 60
+    x: 80
+    y: 80
+    width: 420
+    height: 120
+    z: 1
     content_type: text_elements
-    description: Standort-Block zentriert oben
-    text_field: location
-    location_input: "Standort"
+
   subline_block:
-    x: 200
-    y: 200
-    width: 400
-    height: 80
+    x: 80
+    y: 720
+    width: 420
+    height: 120
+    z: 1
     content_type: text_elements
-    description: Subline im Grid
-    text_field: subline
-    subline_input: "Untertitel"
+
   stellentitel_block:
-    x: 200
-    y: 320
-    width: 400
-    height: 80
+    x: 80
+    y: 860
+    width: 420
+    height: 110
+    z: 1
     content_type: text_elements
-    description: Stellentitel im Grid
-    text_field: stellentitel
-    stellentitel_input: "Stellentitel"
+
   motiv_area:
     x: 0
     y: 0
     width: 1080
     height: 1080
+    z: 0
     content_type: image_motiv
-    description: Motiv als vollständiger Hintergrund
-prompt_instructions:
-  scene_description: "Professional recruitment creative with grid-based text containers overlaid on background image"
-  visual_structure: "Background image fills entire canvas, grid-based arrangement of visible white text containers"
-  layout_behavior: "Text containers arranged in grid pattern with standort at top left, subline and stellentitel at bottom left, container size varies with slider, background image always visible, NO headline element, NO CTA element, NO benefits element"
-  text_positioning: "All text elements in visible white containers with rounded corners, subtle shadows, and grid-based positioning creating structured composition. NO headline should be rendered, NO CTA should be rendered, NO benefits should be rendered"
-  image_positioning: "Background image covers full canvas (0,0 to 1080,1080), no cropping or borders"
-  style_guidelines: "Modern, clean design with professional typography, visible white containers with shadows, corporate color scheme, grid-based layout"
-  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image, headline, main title"
-  separate_layers: true
-  background_motiv_handling: "Full canvas background image with visible white text containers arranged in grid pattern"
-  container_behavior: "Container size scales with layout composition slider - larger containers = more text area visible"
-  grid_structure: "Grid-based layout with standort at top left, subline and stellentitel at bottom left, creating left-aligned composition with full background image"
-meta:
-  name: Grid Layout
-  description: Grid-basierte Textblöcke ohne Headline mit vollständigem Hintergrund-Motiv
-  layout_type: grid_layout
-  zones_count: 4
-  text_zones: 3
-  image_zones: 1
+    

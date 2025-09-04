@@ -12,6 +12,14 @@ from typing import Dict, Any, Union, Optional
 from functools import lru_cache
 from .engine import layout_engine
 from .schema import ensure_numerical_zones, LayoutValidationError
+from pathlib import Path
+import yaml as _yaml
+import logging
+
+try:
+    from tools.template_lint.forbidden_fields import FORBIDDEN_ZONE_KEYS, FORBIDDEN_TOPLEVEL_KEYS
+except Exception:
+    FORBIDDEN_ZONE_KEYS, FORBIDDEN_TOPLEVEL_KEYS = set(), set()
 
 
 def load_layout(
@@ -42,9 +50,10 @@ def load_layout(
     # Lade Layout aus separater YAML-Datei
     layout_dict = _load_from_separate_file(layout_id)
     
-    print(f"DEBUG: Layout geladen: {layout_dict.get('name')}")
-    print(f"DEBUG: Canvas: {layout_dict.get('canvas')}")
-    print(f"DEBUG: Zonen: {list(layout_dict.get('zones', {}).keys())}")
+    logger = logging.getLogger(__name__)
+    logger.debug("Layout geladen: %s", layout_dict.get('name'))
+    logger.debug("Canvas: %s", layout_dict.get('canvas'))
+    logger.debug("Zonen: %s", list(layout_dict.get('zones', {}).keys()))
     
     # Konvertiere position-Strings zu numerischen Koordinaten
     layout_dict = ensure_numerical_zones(layout_dict)
@@ -54,6 +63,26 @@ def load_layout(
         layout_dict, image_text_ratio, container_transparency
     )
     
+    # Style-Resolver: Defaults sicher anwenden, falls kein Design/CI uebergeben wurde
+    try:
+        from creative_core.design_ci.style_resolver import apply_design_styles  # type: ignore
+        default_design = {
+            'corner_radius': 'Mittel 16px',
+            'border_style': 'Weicher Schatten',
+            'container_shape': 'Abgerundet',
+            'texture_style': 'Farbverlauf',
+        }
+        default_ci = {
+            'primary': '#005EA5',
+            'secondary': '#B4D9F7',
+            'accent': '#FFC20E',
+            'background': '#FFFFFF',
+        }
+        calculated_layout = apply_design_styles(calculated_layout, default_design, default_ci, override_existing=True)
+    except Exception:
+        # Fallback: Wenn Resolver (noch) nicht verfuegbar ist, fortfahren wie bisher
+        pass
+
     # Wende Transparenz-Effekte an
     final_layout = layout_engine.apply_transparency_effects(calculated_layout)
     
@@ -63,6 +92,18 @@ def load_layout(
     
     # Validiere das finale Layout (strikt)
     try:
+        # Defensive Warnung: Templates sollten keine verbotenen Felder enthalten
+        zones = final_layout.get('zones', {})
+        logger = logging.getLogger(__name__)
+        for zname, z in zones.items():
+            if isinstance(z, dict):
+                illegal = [k for k in z.keys() if k in FORBIDDEN_ZONE_KEYS]
+                if illegal:
+                    logger.warning("Template zone '%s' contains forbidden keys %s", zname, illegal)
+        for k in list(final_layout.keys()):
+            if k in FORBIDDEN_TOPLEVEL_KEYS:
+                logger.warning("Template contains forbidden toplevel key '%s'", k)
+
         validated_layout = layout_engine.validate_layout(final_layout)
         return validated_layout
     except LayoutValidationError as e:

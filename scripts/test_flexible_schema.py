@@ -20,7 +20,7 @@ from creative_core.layout.schema import (
 from creative_core.layout.loader import load_layout
 
 
-def test_layout_layout(layout_id: str, layout_name: str):
+def _run_layout_layout(layout_id: str, layout_name: str):
     """Generische Test-Funktion für alle Layout-Typen"""
     print("=" * 60)
     print(f"TEST: {layout_name} ({layout_id})")
@@ -74,7 +74,7 @@ def test_all_layouts():
     
     for layout_id, layout_name in test_layouts:
         try:
-            result = test_layout_layout(layout_id, layout_name)
+            result = _run_layout_layout(layout_id, layout_name)
             results.append((layout_name, result))
             print()  # Leerzeile zwischen Tests
         except Exception as e:

@@ -1,78 +1,50 @@
 layout_id: skizze12_magazine_layout
-name: Magazine Layout
-description: Magazine-Style mit mehrspaltiger Textstruktur
-layout_type: magazine_layout
+name: "Skizze 12 – Magazine Layout"
+layout_type: magazine
+description: "Magazin-Layout mit großem Content-Block; Hintergrundmotiv vollflächig."
+
 canvas:
   width: 1080
   height: 1080
-  background_color: '#FFFFFF'
-  aspect_ratio: '1:1'
+  aspect_ratio: "1:1"
+
 zones:
-  standort_block:
-    x: 100
-    y: 20
-    width: 880
-    height: 60
-    content_type: text_elements
-    description: Standort-Block oben
-    text_field: location
-    location_input: "Standort"
   headline_block:
-    x: 100
-    y: 100
-    width: 880
+    x: 80
+    y: 80
+    width: 740
     height: 100
+    z: 1
     content_type: text_elements
-    description: Hauptheadline oben
-    text_field: headline
-    headline_input: "Hauptüberschrift"
+
   subline_block:
-    x: 300
-    y: 140
-    width: 680
-    height: 40
+    x: 80
+    y: 190
+    width: 740
+    height: 90
+    z: 1
     content_type: text_elements
-    description: Untertitel/Teaser
-    text_field: subline
-    subline_input: "Untertitel"
-  benefits_block:
-    x: 50
-    y: 220
-    width: 320
-    height: 400
+
+  content_block:
+    x: 80
+    y: 290
+    width: 740
+    height: 500
+    z: 1
     content_type: text_elements
-    description: Erste Spalte mit Vorteilen
-    text_field: benefits
-    benefits_input: "Vorteile"
-  stellentitel_block:
-    x: 390
-    y: 220
-    width: 320
-    height: 400
-    content_type: text_elements
-    description: Zweite Spalte mit Stellenbeschreibung
-    text_field: stellentitel
-    stellentitel_input: "Stellentitel"
+
   cta_block:
-    x: 730
-    y: 220
-    width: 300
-    height: 400
+    x: 80
+    y: 810
+    width: 320
+    height: 110
+    z: 1
     content_type: text_elements
-    description: Dritte Spalte mit Call-to-Action
-    text_field: cta
-    cta_input: "Call-to-Action"
+
   motiv_area:
-    x: 50
-    y: 650
-    width: 980
-    height: 380
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
     content_type: image_motiv
-    description: Motiv-Bereich als Hintergrund
-meta:
-  name: Magazine Layout
-  description: Magazine-Style mit mehrspaltiger Textstruktur
-  layout_type: magazine_layout
-  zones_count: 6
-  text_zones: 5
-  image_zones: 1

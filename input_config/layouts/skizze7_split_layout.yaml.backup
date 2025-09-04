@@ -1,0 +1,99 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Obere Hälfte Layout, untere Hälfte Motiv mit dynamischer Y-Koordinate
+layout_id: skizze7_split_layout
+layout_type: split_layout
+meta:
+  description: Obere Hälfte Layout, untere Hälfte Motiv mit dynamischer Y-Koordinate
+  image_zones: 1
+  layout_type: split_layout
+  name: Split Layout
+  text_zones: 5
+  zones_count: 6
+name: Split Layout
+prompt_instructions:
+  background_motiv_handling: Split layout with background image in lower half, dynamic
+    positioning based on slider, image fills entire lower area without frames
+  container_behavior: Text containers in upper half, image area in lower half with
+    slider-controlled Y-coordinate
+  image_positioning: Background image fills complete lower half with dynamic Y-coordinate
+    - higher slider values result in smaller Y-coordinate (image starts higher up),
+    full width coverage, NO rounded corners or frames around the image
+  layout_behavior: Split layout with standort top-left, headline under standort, benefits
+    DIRECTLY UNDER headline (vertical stack), stellentitel and CTA positioned bottom-left
+    IN FRONT OF the background image with larger spacing from benefits, background
+    image fills complete lower half with dynamic Y-coordinate based on slider (higher
+    slider = smaller Y-coordinate = more image area)
+  negative_prompts: text rendering, readable text, visible text, text overlay, text
+    on image, rounded image frames, image containers
+  scene_description: Professional recruitment creative with split layout - upper half
+    for text elements, lower half for background image
+  separate_layers: true
+  split_structure: Upper half contains text elements (standort, headline, benefits
+    in vertical stack), lower half contains stellentitel, CTA IN FRONT OF the background
+    image and background image with dynamic Y-coordinate
+  style_guidelines: Modern, clean design with professional typography, visible white
+    containers with shadows, no borders or outlines, corporate color scheme, split
+    layout
+  text_positioning: Text elements in visible white containers with rounded corners,
+    subtle shadows, no borders - standort top-left, headline under standort, benefits
+    DIRECTLY UNDER headline (vertical stack), stellentitel and CTA positioned bottom-left
+    IN FRONT OF the background image with larger spacing
+  visual_structure: Split composition with text elements in upper half, background
+    image in lower half, dynamic split line based on slider
+zones:
+  benefits_block:
+    benefits_input: Vorteile
+    content_type: text_elements
+    description: Benefits obere linke Hälfte
+    height: 200
+    text_field: benefits
+    width: 400
+    x: 50
+    y: 250
+  cta_block:
+    content_type: text_elements
+    cta_input: Call-to-Action
+    description: CTA unten links
+    height: 80
+    text_field: cta
+    width: 400
+    x: 50
+    y: 950
+  headline_block:
+    content_type: text_elements
+    description: Headline obere linke Hälfte
+    headline_input: Headline
+    height: 80
+    text_field: headline
+    width: 400
+    x: 50
+    y: 150
+  motiv_area:
+    content_type: image_motiv
+    description: Motiv untere Hälfte mit dynamischer Y-Koordinate
+    height: 540
+    width: 1080
+    x: 0
+    y: 540
+  standort_block:
+    content_type: text_elements
+    description: Standort-Block obere linke Hälfte
+    height: 60
+    location_input: Standort
+    text_field: location
+    width: 400
+    x: 50
+    y: 50
+  stellentitel_block:
+    content_type: text_elements
+    description: Stellentitel obere Seite des Motivs
+    height: 80
+    stellentitel_input: Stellentitel
+    text_field: stellentitel
+    width: 400
+    x: 50
+    y: 500

@@ -182,7 +182,12 @@ class TextInputProcessor:
         max_score = 100.0
         
         # Vollständigkeit (40 Punkte)
-        required_filled = sum(1 for field in self.required_fields if texts.get(field, '').strip())
+        def _is_non_empty_string(value: Any) -> bool:
+            if isinstance(value, str):
+                return bool(value.strip())
+            return bool(str(value).strip())
+
+        required_filled = sum(1 for field in self.required_fields if _is_non_empty_string(texts.get(field, '')))
         score += (required_filled / len(self.required_fields)) * 40
         
         # Textlängen (30 Punkte)
@@ -206,7 +211,14 @@ class TextInputProcessor:
             score += 10
         
         # Zusätzliche Felder (10 Punkte)
-        optional_filled = sum(1 for field in self.optional_fields if texts.get(field, '').strip())
+        def _optional_has_content(value: Any) -> bool:
+            if isinstance(value, list):
+                return len(value) > 0
+            if isinstance(value, str):
+                return bool(value.strip())
+            return bool(value)
+
+        optional_filled = sum(1 for field in self.optional_fields if _optional_has_content(texts.get(field, '')))
         score += (optional_filled / len(self.optional_fields)) * 10
         
         return round(score, 1)

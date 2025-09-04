@@ -29,7 +29,7 @@ def test_semantic_layout_description():
     print(f"🎨 Canvas: {layout_data.get('canvas', {}).get('width')}x{layout_data.get('canvas', {}).get('height')}")
     
     # Semantische Beschreibung generieren
-    from main import generate_semantic_layout_description
+    from semantic import generate_semantic_layout_description
     
     semantic_layout = generate_semantic_layout_description(layout_data)
     

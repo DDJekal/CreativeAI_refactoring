@@ -1,0 +1,87 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Portfolio-Style mit Showcase-Bereichen
+layout_id: skizze13_portfolio_layout
+layout_type: portfolio_layout
+meta:
+  description: Portfolio-Style mit Showcase-Bereichen
+  image_zones: 1
+  layout_type: portfolio_layout
+  name: Portfolio Layout
+  text_zones: 5
+  zones_count: 6
+name: Portfolio Layout
+zones:
+  benefits_block:
+    benefits_input: Vorteile
+    content_type: text_elements
+    description: Erster Showcase-Bereich mit Vorteilen
+    height: 300
+    text_field: benefits
+    width: 300
+    x: 50
+    y: 220
+  cta_block:
+    content_type: text_elements
+    cta_input: Call-to-Action
+    description: Dritter Showcase-Bereich mit Call-to-Action
+    height: 300
+    text_field: cta
+    width: 300
+    x: 730
+    y: 220
+  headline_block:
+    content_type: text_elements
+    description: Hauptüberschrift im Portfolio-Style
+    headline_input: Hauptüberschrift
+    height: 60
+    text_field: headline
+    width: 680
+    x: 300
+    y: 60
+  logo:
+    content_type: text_elements
+    description: Logo oben links
+    height: 80
+    logo_input: Logo
+    text_field: logo
+    width: 200
+    x: 50
+    y: 50
+  motiv_area:
+    content_type: image_motiv
+    description: Motiv-Bereich als Hintergrund
+    height: 480
+    width: 980
+    x: 50
+    y: 550
+  standort_block:
+    content_type: text_elements
+    description: Standort-Block oben
+    height: 30
+    location_input: Standort
+    text_field: location
+    width: 680
+    x: 300
+    y: 20
+  stellentitel_block:
+    content_type: text_elements
+    description: Zweiter Showcase-Bereich mit Stellenbeschreibung
+    height: 300
+    stellentitel_input: Stellentitel
+    text_field: stellentitel
+    width: 300
+    x: 390
+    y: 220
+  subline_block:
+    content_type: text_elements
+    description: Untertitel/Portfolio-Intro
+    height: 40
+    subline_input: Untertitel
+    text_field: subline
+    width: 680
+    x: 300
+    y: 140

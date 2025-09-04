@@ -1,0 +1,258 @@
+{
+  "canvas": {
+    "aspect_ratio": "1:1",
+    "background_color": "#FFFFFF",
+    "height": 1080,
+    "width": 1080
+  },
+  "description": "Klassisches vertikales Split-Layout mit dynamischer Anpassung basierend auf image_text_ratio Slider. Text links, Motiv rechts mit flexibler Breitenanpassung.",
+  "layout_id": "skizze1_vertical_split",
+  "layout_type": "vertical_split",
+  "meta": {
+    "description": "Klassisches vertikales Split-Layout mit dynamischer Anpassung basierend auf image_text_ratio Slider. Text links, Motiv rechts mit flexibler Breitenanpassung.",
+    "image_zones": 1,
+    "layout_type": "vertical_split",
+    "name": "Vertikales Split Layout",
+    "prompt_instructions": {
+      "background_treatment": "Weißer Hintergrund im Text-Bereich, Motiv als Vollbild im rechten Bereich",
+      "composition_notes": "Text links, Motiv rechts. Verhältnis wird durch image_text_ratio Slider (30-70%) dynamisch angepasst. 30% = mehr Text (70% Text, 30% Bild), 70% = mehr Bild (30% Text, 70% Bild). Saubere vertikale Trennlinie zwischen den Bereichen.",
+      "layout_style": "Klassisches vertikales Split-Layout mit dynamischer Anpassung basierend auf image_text_ratio Slider",
+      "slider_integration": {
+        "container_transparency": "Bestimmt die Transparenz der Text-Container (0-100%)",
+        "image_text_ratio": "Bestimmt das Verhältnis zwischen Text- und Bildbereich (30-70%)"
+      },
+      "text_rendering": "separate_layers",
+      "visual_style_keywords": [
+        "vertikal",
+        "split",
+        "strukturiert",
+        "klassisch",
+        "ausgewogen",
+        "dynamisch"
+      ]
+    },
+    "text_zones": 6,
+    "zones_count": 7
+  },
+  "name": "Vertikales Split Layout",
+  "zones": {
+    "benefits_block": {
+      "benefits_input": "Vorteile",
+      "content_type": "text_elements",
+      "description": "Strukturierte Benefits-Liste mit Bullet-Points für bessere Lesbarkeit",
+      "height": 200,
+      "text_field": "benefits",
+      "width": 400,
+      "x": 40,
+      "y": 340,
+      "z": 1,
+      "transparency": 0.6,
+      "container_style": {
+        "shape": "abgerundet",
+        "background": {
+          "color": "#FFFFFF",
+          "opacity": 0.6
+        },
+        "border_radius": 16,
+        "text_color": "#005EA5",
+        "border": null,
+        "shadow": {
+          "blur": 16,
+          "opacity": 0.12,
+          "dx": 0,
+          "dy": 4
+        },
+        "texture": {
+          "type": "farbverlauf",
+          "intensity": "medium"
+        },
+        "accent": null
+      }
+    },
+    "cta_block": {
+      "content_type": "text_elements",
+      "cta_input": "Call-to-Action",
+      "description": "Call-to-Action Button, zentriert und prominent für maximale Conversion",
+      "height": 80,
+      "text_field": "cta",
+      "width": 300,
+      "x": 140,
+      "y": 680,
+      "z": 1,
+      "transparency": 0.6,
+      "container_style": {
+        "shape": "abgerundet",
+        "background": {
+          "color": "#FFFFFF",
+          "opacity": 0.6
+        },
+        "border_radius": 16,
+        "text_color": "#005EA5",
+        "border": null,
+        "shadow": {
+          "blur": 16,
+          "opacity": 0.12,
+          "dx": 0,
+          "dy": 4
+        },
+        "texture": {
+          "type": "farbverlauf",
+          "intensity": "medium"
+        },
+        "accent": {
+          "apply_to": "border",
+          "color": "#FFC20E",
+          "width": 2
+        }
+      }
+    },
+    "headline_block": {
+      "content_type": "text_elements",
+      "description": "Hauptüberschrift, fett und prominent für maximale Aufmerksamkeit",
+      "headline_input": "Hauptüberschrift",
+      "height": 100,
+      "text_field": "headline",
+      "width": 400,
+      "x": 40,
+      "y": 120,
+      "z": 1,
+      "transparency": 0.6,
+      "container_style": {
+        "shape": "abgerundet",
+        "background": {
+          "color": "#FFFFFF",
+          "opacity": 0.6
+        },
+        "border_radius": 16,
+        "text_color": "#005EA5",
+        "border": null,
+        "shadow": {
+          "blur": 16,
+          "opacity": 0.12,
+          "dx": 0,
+          "dy": 4
+        },
+        "texture": {
+          "type": "farbverlauf",
+          "intensity": "medium"
+        },
+        "accent": null
+      }
+    },
+    "motiv_area": {
+      "content_type": "image_motiv",
+      "description": "Hauptmotiv-Bereich für authentische Fotografie, Breite wird durch image_text_ratio Slider dynamisch angepasst",
+      "height": 1080,
+      "width": 580,
+      "x": 500,
+      "y": 0,
+      "z": 0
+    },
+    "standort_block": {
+      "content_type": "text_elements",
+      "description": "Standort-Information mit Icon, kompakt und prominent platziert",
+      "height": 60,
+      "location_input": "Standort",
+      "text_field": "location",
+      "width": 300,
+      "x": 40,
+      "y": 40,
+      "z": 1,
+      "transparency": 0.6,
+      "container_style": {
+        "shape": "abgerundet",
+        "background": {
+          "color": "#FFFFFF",
+          "opacity": 0.6
+        },
+        "border_radius": 16,
+        "text_color": "#005EA5",
+        "border": null,
+        "shadow": {
+          "blur": 16,
+          "opacity": 0.12,
+          "dx": 0,
+          "dy": 4
+        },
+        "texture": {
+          "type": "farbverlauf",
+          "intensity": "medium"
+        },
+        "accent": null
+      }
+    },
+    "stellentitel_block": {
+      "content_type": "text_elements",
+      "description": "Stellentitel als zusätzliche Information, prominent aber nicht dominierend",
+      "height": 100,
+      "stellentitel_input": "Stellentitel",
+      "text_field": "stellentitel",
+      "width": 400,
+      "x": 40,
+      "y": 560,
+      "z": 1,
+      "container_style": {
+        "shape": "abgerundet",
+        "background": {
+          "color": "#FFFFFF",
+          "opacity": 0.6
+        },
+        "border_radius": 16,
+        "text_color": "#005EA5",
+        "border": null,
+        "shadow": {
+          "blur": 16,
+          "opacity": 0.12,
+          "dx": 0,
+          "dy": 4
+        },
+        "texture": {
+          "type": "farbverlauf",
+          "intensity": "medium"
+        },
+        "accent": null
+      }
+    },
+    "subline_block": {
+      "content_type": "text_elements",
+      "description": "Unterstützende Subline zur Headline, informativ und prägnant",
+      "height": 80,
+      "subline_input": "Untertitel",
+      "text_field": "subline",
+      "width": 400,
+      "x": 40,
+      "y": 240,
+      "z": 1,
+      "transparency": 0.6,
+      "container_style": {
+        "shape": "abgerundet",
+        "background": {
+          "color": "#FFFFFF",
+          "opacity": 0.6
+        },
+        "border_radius": 16,
+        "text_color": "#005EA5",
+        "border": null,
+        "shadow": {
+          "blur": 16,
+          "opacity": 0.12,
+          "dx": 0,
+          "dy": 4
+        },
+        "texture": {
+          "type": "farbverlauf",
+          "intensity": "medium"
+        },
+        "accent": null
+      }
+    }
+  },
+  "calculated_values": {
+    "text_width": 480,
+    "image_width": 540,
+    "container_transparency": 0.6,
+    "image_text_ratio": 50
+  },
+  "__validated__": true,
+  "validation_status": "valid"
+}

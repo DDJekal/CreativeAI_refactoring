@@ -51,8 +51,8 @@ def test_layout_loading():
     try:
         from creative_core.layout.loader import load_layout
         
-        # Teste verschiedene Layouts
-        test_layouts = ['skizze1_vertical_split', 'skizze7_minimalist_layout', 'skizze8_hero_layout']
+        # Teste verschiedene Layouts (nur vorhandene IDs)
+        test_layouts = ['skizze1_vertical_split', 'skizze7_split_layout', 'skizze8_hero_layout']
         
         for layout_id in test_layouts:
             layout = load_layout(layout_id)
@@ -160,4 +160,9 @@ def test_design_processing():
 
 def test_element_linking():
     """Testet die Verknüpfung aller Elemente"""
-    print("\n🔗
+    print("\n🔗 Teste Verknüpfungen...")
+    assert test_imports()
+    assert test_layout_loading()
+    assert test_text_processing()
+    assert test_motif_processing()
+    assert test_design_processing()

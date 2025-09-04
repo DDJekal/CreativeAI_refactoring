@@ -1,0 +1,89 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Zentrierte Textblöcke mit umgebendem Motiv
+layout_id: skizze3_centered_layout
+layout_type: centered_layout
+meta:
+  description: Zentrierte Textblöcke mit umgebendem Motiv
+  image_zones: 1
+  layout_type: centered_layout
+  name: Zentriertes Layout
+  text_zones: 4
+  zones_count: 5
+name: Zentriertes Layout
+prompt_instructions:
+  background_motiv_handling: Full canvas background image with visible white text
+    containers as overlays
+  container_behavior: Container group size scales with layout composition slider -
+    larger containers = less background visible
+  image_positioning: Background image covers full canvas (0,0 to 1080,1080), no cropping
+    or borders
+  layout_behavior: Text containers are grouped and centered, container group size
+    varies with slider, background image always visible
+  negative_prompts: text rendering, readable text, visible text, text overlay, text
+    on image
+  scene_description: Professional recruitment creative with centered text containers
+    overlaid on background image
+  separate_layers: true
+  style_guidelines: Modern, clean design with professional typography, visible white
+    containers with shadows, corporate color scheme
+  text_positioning: All text elements in visible white containers with rounded corners,
+    subtle shadows, and consistent spacing
+  visual_structure: Background image fills entire canvas, centered group of visible
+    text containers with white backgrounds
+zones:
+  benefits_block:
+    benefits_input: Vorteile
+    content_type: text_elements
+    description: Benefits Block zentriert
+    height: 200
+    text_field: benefits
+    width: 400
+    x: 340
+    y: 420
+  cta_block:
+    content_type: text_elements
+    cta_input: Call-to-Action
+    description: Call-to-Action Button zentriert
+    height: 100
+    text_field: cta
+    width: 300
+    x: 390
+    y: 640
+  headline_block:
+    content_type: text_elements
+    description: Hauptheadline zentriert
+    headline_input: Hauptüberschrift
+    height: 120
+    text_field: headline
+    width: 600
+    x: 240
+    y: 120
+  motiv_area:
+    content_type: image_motiv
+    description: Motiv als Hintergrund
+    height: 1080
+    width: 1080
+    x: 0
+    y: 0
+  standort_block:
+    content_type: text_elements
+    description: Standort-Block zentriert oben
+    height: 60
+    location_input: Standort
+    text_field: location
+    width: 600
+    x: 240
+    y: 40
+  subline_block:
+    content_type: text_elements
+    description: Subline zentriert
+    height: 80
+    subline_input: Untertitel
+    text_field: subline
+    width: 500
+    x: 290
+    y: 320

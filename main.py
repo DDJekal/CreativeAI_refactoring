@@ -19,6 +19,7 @@ import time
 from typing import Dict, List, Any
 import streamlit as st
 from creative_core.layout import load_layout
+from pipeline import run_pipeline, PipelineSettings
 
 # Layout-Engine Integration
 def load_layout_with_sliders(layout_id, layout_composition, container_transparency):
@@ -41,11 +42,14 @@ def load_layout_with_sliders(layout_id, layout_composition, container_transparen
         # container_transparency: 0.1-0.9 -> 0-100%
         transparency_percent = int(container_transparency * 100)  # 0.1->10, 0.9->90
         
-        # Lade Layout über Layout-Engine
-        layout_data = load_layout(
-            layout_id,
+        # Lade Layout über neue Pipeline
+        settings = PipelineSettings(
             image_text_ratio=image_text_ratio,
-            container_transparency=transparency_percent
+            container_transparency=transparency_percent,
+        )
+        layout_data = run_pipeline(
+            layout_id,
+            settings=settings,
         )
         
         return layout_data
@@ -635,353 +639,211 @@ def calculate_storytelling_ratio(layout_data):
     
     return 0.5  # Standardwert
 
-def generate_semantic_layout_description(layout_data):
+from semantic import generate_semantic_layout_description  # BC shim
+
+def get_clean_design_option(option_tuple):
+    """Extrahiert saubere Design-Option ohne Emojis"""
+    if isinstance(option_tuple, tuple) and len(option_tuple) >= 2:
+        # Verwende den zweiten Eintrag (Display-Text) und entferne Emojis
+        display_text = option_tuple[1]
+        return clean_emoji_from_text(display_text)
+    elif isinstance(option_tuple, str):
+        return clean_emoji_from_text(option_tuple)
+    else:
+        return str(option_tuple)
+# Bereinigte Design-Optionen ohne Emojis (Referenz)
+CLEAN_DESIGN_OPTIONS = {
+    'layout_style': {
+        'rounded_modern': 'Abgerundet & Modern',
+        'sharp_contemporary': 'Scharf & Zeitgemäß',
+        'organic_flow': 'Organisch & Fließend',
+        'geometric_precision': 'Geometrisch & Präzise'
+    },
+    'container_shape': {
+        'rounded_rectangle': 'Abgerundet',
+        'sharp_rectangle': 'Scharf',
+        'organic_blob': 'Organisch',
+        'geometric_polygon': 'Geometrisch'
+    },
+    'border_style': {
+        'soft_shadow': 'Weicher Schatten',
+        'hard_edges': 'Harte Konturen',
+        'no_borders': 'Keine Grenzen',
+        'gradient_border': 'Gradient-Rand'
+    },
+    'texture_style': {
+        'gradient': 'Farbverlauf',
+        'glass_effect': 'GlasEffekt',
+        'matte_surface': 'Matte Oberfläche',
+        'textured': 'Strukturiert'
+    },
+    'background_treatment': {
+        'subtle_pattern': 'Subtiles Muster',
+        'transparent': 'Transparent',
+        'full_coverage': 'Vollflächig',
+        'gradient': 'Gradient'
+    },
+    'corner_radius': {
+        'small': 'Klein 8px',
+        'medium': 'Mittel 16px',
+        'large': 'Groß 24px',
+        'extra_large': 'Sehr Groß 32px'
+    },
+    'accent_elements': {
+        'modern_minimal': 'Modern Minimal',
+        'soft_organic': 'Sanft Organisch',
+        'geometric_precise': 'Geometrisch Präzise',
+        'creative_playful': 'Kreativ Verspielt'
+    }
+}
+
+def generate_structured_prompt(
+    layout_data: Dict[str, Any],
+    design_options: Dict[str, Any],
+    text_inputs: Dict[str, Any],
+    ci_colors: Dict[str, Any],
+    engine_type: str = "dalle3"
+) -> str:
     """
-    Generiert semantische Layout-Beschreibungen aus technischen Koordinaten.
+    Generiert strukturierten Prompt für KI-Bildgenerierung
     
     Args:
-        layout_data: Layout-Daten mit zones und Koordinaten
+        layout_data: Layout-Konfiguration
+        design_options: Design-Optionen
+        text_inputs: Text-Eingaben
+        ci_colors: CI-Farben
+        engine_type: Engine-Typ (dalle3, midjourney, etc.)
     
     Returns:
-        dict: Semantische Beschreibungen für KI-Generatoren
+        Strukturierter Prompt als String
     """
-    zones = layout_data.get('zones', {})
-    canvas = layout_data.get('canvas', {})
-    canvas_width = canvas.get('width', 1080)
-    canvas_height = canvas.get('height', 1080)
+    # Layout-Daten anpassen
+    adjusted_layout_data = adjust_layout_for_composition(layout_data, design_options)
     
-    # Layout-Typ bestimmen
-    layout_type = layout_data.get('layout_type', 'unknown')
+    # Text-Verarbeitungsregeln laden
+    text_rules = get_text_processing_rules(engine_type)
     
+    # Motiv-Qualität und Style Beschreibungen
+    motiv_quality_descriptions = {
+        "authentic_warm": "Authentische, warme Atmosphäre mit natürlichen Emotionen",
+        "professional_trustworthy": "Professionelle, vertrauensvolle Ausstrahlung",
+        "empathetic_human": "Einfühlsame, menschliche Qualität mit Empathie",
+        "dynamic_energetic": "Dynamische, energetische Stimmung",
+        "calm_reassuring": "Ruhige, beruhigende Atmosphäre"
+    }
+
+    motiv_style_descriptions = {
+        "natural_candid": "Natürliche, ungestellte Fotografie mit authentischem Licht",
+        "documentary_style": "Documentary-Stil mit journalistischem Ansatz",
+        "studio_professional": "Studio-Fotografie mit kontrollierter Beleuchtung",
+        "cinematic_dramatic": "Cinematischer Stil mit dramatischer Beleuchtung",
+        "artistic_creative": "Künstlerischer, kreativer Ansatz mit ungewöhnlichen Perspektiven"
+    }
+    
+    # Motiv-Qualität und Style aus Session State holen
+    motiv_quality = st.session_state.get('motiv_quality', ('authentic_warm', 'Authentisch & Warm ❤️'))
+    motiv_style = st.session_state.get('motiv_style', ('natural_candid', '📸 Natürlich & Candid'))
+    
+    # Motiv-Beschreibungen extrahieren
+    motiv_quality_desc = motiv_quality_descriptions.get(motiv_quality[0], "Authentische, warme Atmosphäre")
+    motiv_style_desc = motiv_style_descriptions.get(motiv_style[0], "Natürliche, ungestellte Fotografie")
+    
+    # Layout-spezifische Kompositions-Beschreibung
+    layout_type = adjusted_layout_data.get('layout_type', 'standard')
+    composition_desc = get_composition_description(layout_composition, layout_type)
+    
+    # Foundation Section (kompakt)
+    foundation = f"""# FOUNDATION
+creative_type: "Professional Recruiting Creative"
+quality_standard: "Ultra-High Quality, 8K Resolution"
+canvas: {adjusted_layout_data['canvas']['width']}x{adjusted_layout_data['canvas']['height']} ({adjusted_layout_data['canvas'].get('aspect_ratio', '1:1')})
+background: {adjusted_layout_data['canvas'].get('background_color', '#FFFFFF')}
+
+motiv_quality: "{motiv_quality_desc}"
+motiv_style: "{motiv_style_desc}"
+
+composition:
+  motiv_size: {int(layout_composition*100)}% ({composition_desc})
+  container_transparency: {calculate_slider_percentage(design_options['container_transparency'])}% ({get_transparency_description(design_options['container_transparency'])})
+  element_spacing: {design_options['element_spacing']}px
+  container_padding: {design_options['container_padding']}px
+  shadow_intensity: {calculate_slider_percentage(design_options['shadow_intensity'])}%"""
+
+    # Design Section (sauber ohne Emojis)
+    design = f"""# DESIGN & CI-COLORS
+design:
+  layout_style: {get_clean_design_option(design_options['layout_style'])}
+  container_shape: {get_clean_design_option(design_options['container_shape'])}
+  border_style: {get_clean_design_option(design_options['border_style'])}
+  texture_style: {get_clean_design_option(design_options['texture_style'])}
+  background_treatment: {get_clean_design_option(design_options['background_treatment'])}
+  corner_radius: {get_clean_design_option(design_options['corner_radius'])}
+  accent_elements: {get_clean_design_option(design_options['accent_elements'])}
+
+ci_colors:
+  primary: {ci_colors['primary']}
+  secondary: {ci_colors['secondary']}
+  accent: {ci_colors['accent']}
+  background: {ci_colors.get('background', '#FFFFFF')}
+
+color_harmony: "Primary, secondary, accent and background colors harmoniously balanced, NO deviations allowed\""""
+
+    # Semantic Layout Section (kompakt) - mit angepassten Layout-Daten
+    semantic_layout = generate_semantic_layout_description(adjusted_layout_data)
+    semantic = f"""# SEMANTIC LAYOUT
+layout_overview: {semantic_layout['layout_overview']}
+
+text_positioning:"""
+    
+    for text_area in semantic_layout['text_areas']:
+        zone_name = text_area['zone_name']
+        real_text = text_inputs.get(zone_name, 'Text eingeben')
+        # Text normalisieren basierend auf Engine-Regeln
+        normalized_text = normalize_german_text(real_text, text_rules['preserve_umlauts'])
+        
+        semantic += f"""
+  {zone_name}: "{normalized_text}"
+    position: {text_area['relative_position']}
+    size: {text_area['size']}
+    adaptive_typography: "Font size adapts to container width, ensures text fits perfectly within boundaries\""""
+
+    semantic += "\nimage_positioning:"
+    for image_area in semantic_layout['image_areas']:
+        semantic += f"""
+  {image_area['zone_name']}: {image_area['description']}
+    position: {image_area['relative_position']}
+    size: {image_area['size']}"""
+
+    # Technical Rules Section (Engine-spezifisch)
+    technical = f"""# TECHNICAL RULES
+render_quality: "ULTRA HIGH DETAIL, 8K, professional photography, studio lighting"
+text_rules: "ALL TEXTS complete and readable, EXACT at semantic positions"
+text_limits: "Headline max {text_rules['max_headline_length']}, Subline max {text_rules['max_subline_length']}, others max {text_rules['max_other_length']} characters"
+layout_accuracy: "Image background only, text in separate layers per semantic positioning"
+composition_balance: "30% CI-colors, 70% motif, harmonious balancing"
+
+# Engine-specific rules for {engine_type.upper()}
+text_processing: "{'Preserve German umlauts' if text_rules['preserve_umlauts'] else 'Replace umlauts with base letters (ä→a, ö→o, ü→u, ß→ss)'}"
+text_rendering: "{text_rules['text_rendering']}" """
+
+    # Image generation command at the very end
+    image_command = f"""
+
+# GENERATE IMAGE
+Generate this image now with all specified parameters and layout requirements."""
+    
+    return f"{foundation}\n\n{design}\n\n{semantic}\n\n{technical}{image_command}"
+
+
+def create_semantic_layout_description(layout_data, layout_type, canvas_width=1920, canvas_height=1080):
+    """Erstellt semantische Beschreibung für Layout-Typen"""
     semantic_description = {
         'layout_overview': '',
         'text_areas': [],
-        'image_areas': [],
-        'positioning_logic': []
+        'image_areas': []
     }
     
-    # Text- und Bild-Zonen trennen
-    text_zones = {name: data for name, data in zones.items() 
-                 if data.get('content_type') == 'text_elements'}
-    image_zones = {name: data for name, data in zones.items() 
-                  if data.get('content_type') == 'image_motiv'}
-    
-    # Semantische Beschreibung generieren
-    if layout_type == 'vertical_split':
-        semantic_description['layout_overview'] = (
-            "VERTICAL SPLIT LAYOUT: Left column contains text stack, "
-            "right column contains full-height image"
-        )
-    elif layout_type == 'vertical_split_left':
-        semantic_description['layout_overview'] = (
-            "VERTICAL SPLIT LEFT LAYOUT: Left column contains full-height image covering entire left side, "
-            "right column contains text stack with transparent containers"
-        )
-        
-        # Text-Zonen semantisch beschreiben
-        for zone_name, zone_data in text_zones.items():
-            x, y, w, h = zone_data['x'], zone_data['y'], zone_data['width'], zone_data['height']
-            
-            # Position relativ zum Canvas beschreiben
-            if layout_type == 'vertical_split':
-                if x < canvas_width * 0.5:
-                    column = "left column"
-                else:
-                    column = "right column"
-            elif layout_type == 'vertical_split_left':
-                if x < canvas_width * 0.5:
-                    column = "left column (image area)"
-                else:
-                    column = "right column (text area)"
-            
-            # Vertikale Position beschreiben
-            if y < canvas_height * 0.25:
-                vertical_pos = "top"
-            elif y < canvas_height * 0.5:
-                vertical_pos = "upper middle"
-            elif y < canvas_height * 0.75:
-                vertical_pos = "lower middle"
-            else:
-                vertical_pos = "bottom"
-            
-            semantic_description['text_areas'].append({
-                'zone_name': zone_name,
-                'description': f"{zone_name.replace('_', ' ').title()} positioned in {column}, {vertical_pos} section",
-                'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px"
-            })
-        
-        # Bild-Zonen semantisch beschreiben
-        for zone_name, zone_data in image_zones.items():
-            x, y, w, h = zone_data['x'], zone_data['y'], zone_data['width'], zone_data['height']
-            
-            if layout_type == 'vertical_split':
-                column_desc = "right column, full height"
-            elif layout_type == 'vertical_split_left':
-                column_desc = "left column, full height, complete width coverage"
-            else:
-                column_desc = "full height"
-            
-            semantic_description['image_areas'].append({
-                'zone_name': zone_name,
-                'description': f"{zone_name.replace('_', ' ').title()} positioned in {column_desc}",
-                'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px"
-            })
-    
-    elif layout_type == 'centered_layout':
-        # Prüfe ob sichtbare Container verwendet werden
-        calculated_values = layout_data.get('calculated_values', {})
-        container_style = calculated_values.get('container_style', 'transparent_overlays')
-        
-        if container_style == 'visible_containers':
-            container_group_width = calculated_values.get('container_group_width', 500)
-            container_group_height = calculated_values.get('container_group_height', 800)
-            
-            semantic_description['layout_overview'] = (
-                f"CENTERED LAYOUT: Central composition with visible white text containers "
-                f"({container_group_width}x{container_group_height}px container group) "
-                f"overlaid on full background image"
-            )
-        else:
-            semantic_description['layout_overview'] = (
-                "CENTERED LAYOUT: Central composition with text overlay on background image, "
-                "balanced text positioning around center"
-            )
-        
-        # Text-Zonen semantisch beschreiben
-        for zone_name, zone_data in text_zones.items():
-            x, y, w, h = zone_data['x'], zone_data['y'], zone_data['width'], zone_data['height']
-            
-            # Container-Styling-Informationen
-            container_style_info = zone_data.get('container_style', {})
-            if container_style_info:
-                container_desc = "visible white container with rounded corners and subtle shadow"
-            else:
-                container_desc = "transparent text overlay"
-            
-            # Position relativ zum Canvas beschreiben
-            if x < canvas_width * 0.3:
-                horizontal_pos = "left side"
-            elif x < canvas_width * 0.7:
-                horizontal_pos = "center"
-            else:
-                horizontal_pos = "right side"
-            
-            # Vertikale Position beschreiben
-            if y < canvas_height * 0.25:
-                vertical_pos = "top"
-            elif y < canvas_height * 0.5:
-                vertical_pos = "upper middle"
-            elif y < canvas_height * 0.75:
-                vertical_pos = "lower middle"
-            else:
-                vertical_pos = "bottom"
-            
-            semantic_description['text_areas'].append({
-                'zone_name': zone_name,
-                'description': f"{zone_name.replace('_', ' ').title()} in {container_desc}, {horizontal_pos}, {vertical_pos} section",
-                'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px"
-            })
-        
-        # Bild-Zonen semantisch beschreiben
-        for zone_name, zone_data in image_zones.items():
-            x, y, w, h = zone_data['x'], zone_data['y'], zone_data['width'], zone_data['height']
-            
-            semantic_description['image_areas'].append({
-                'zone_name': zone_name,
-                'description': f"{zone_name.replace('_', ' ').title()} as full background image covering entire canvas",
-                'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px"
-            })
-    
-    elif layout_type == 'diagonal_layout':
-        # Prüfe ob sichtbare Container verwendet werden
-        calculated_values = layout_data.get('calculated_values', {})
-        container_style = calculated_values.get('container_style', 'transparent_overlays')
-        layout_style = calculated_values.get('layout_style', 'standard')
-        
-        if container_style == 'visible_containers' and layout_style == 'diagonal_arrangement':
-            container_group_width = calculated_values.get('container_group_width', 450)
-            container_group_height = calculated_values.get('container_group_height', 800)
-            
-            semantic_description['layout_overview'] = (
-                f"DIAGONAL LAYOUT: Dynamic diagonal arrangement with visible white text containers "
-                f"({container_group_width}x{container_group_height}px container group) "
-                f"positioned with standort in top-right, text elements in lower-right with extended spacing, and CTA in lower-left with more spacing overlaid on full background image"
-            )
-        else:
-            semantic_description['layout_overview'] = (
-                "DIAGONAL LAYOUT: Dynamic diagonal arrangement with text elements flowing diagonally "
-                "across the canvas, creating visual movement and energy"
-            )
-        
-        # Text-Zonen semantisch beschreiben
-        for zone_name, zone_data in text_zones.items():
-            x, y, w, h = zone_data['x'], zone_data['y'], zone_data['width'], zone_data['height']
-            
-            # Container-Styling-Informationen
-            container_style_info = zone_data.get('container_style', {})
-            if container_style_info:
-                container_desc = "visible white container with rounded corners and diagonal shadow"
-            else:
-                container_desc = "transparent text overlay"
-            
-            # Diagonale Position beschreiben
-            if x < canvas_width * 0.3:
-                horizontal_pos = "left side"
-            elif x < canvas_width * 0.7:
-                horizontal_pos = "center"
-            else:
-                horizontal_pos = "right side"
-            
-            # Vertikale Position beschreiben
-            if y < canvas_height * 0.25:
-                vertical_pos = "top"
-            elif y < canvas_height * 0.5:
-                vertical_pos = "upper middle"
-            elif y < canvas_height * 0.75:
-                vertical_pos = "lower middle"
-            else:
-                vertical_pos = "bottom"
-            
-            # Diagonale Fluss-Beschreibung (erweiterte Anordnung)
-            if zone_name == 'standort_block':
-                diagonal_flow = "positioned in top-right corner"
-            elif zone_name in ['headline_block', 'subline_block', 'benefits_block']:
-                diagonal_flow = "positioned in lower-right area with more spacing from top"
-            elif zone_name == 'cta_block':
-                diagonal_flow = "positioned in lower-left area with more spacing from right"
-            else:
-                diagonal_flow = "diagonally arranged with extended spacing"
-            
-            semantic_description['text_areas'].append({
-                'zone_name': zone_name,
-                'description': f"{zone_name.replace('_', ' ').title()} in {container_desc}, {horizontal_pos}, {vertical_pos} section, {diagonal_flow}",
-                'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px"
-            })
-        
-        # Bild-Zonen semantisch beschreiben
-        for zone_name, zone_data in image_zones.items():
-            x, y, w, h = zone_data['x'], zone_data['y'], zone_data['width'], zone_data['height']
-            
-            semantic_description['image_areas'].append({
-                'zone_name': zone_name,
-                'description': f"{zone_name.replace('_', ' ').title()} as full background image covering entire canvas",
-                'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px"
-            })
-    
-    elif layout_type == 'asymmetric_layout':
-        # Prüfe ob sichtbare Container verwendet werden
-        calculated_values = layout_data.get('calculated_values', {})
-        container_style = calculated_values.get('container_style', 'transparent_overlays')
-        layout_style = calculated_values.get('layout_style', 'standard')
-        inverse_logic = calculated_values.get('inverse_logic', False)
-        
-        if container_style == 'visible_containers' and layout_style == 'asymmetric_arrangement':
-            container_scale = calculated_values.get('container_scale', 1.0)
-            
-            if inverse_logic:
-                logic_desc = "with inverse scaling (smaller containers = more background visible)"
-            else:
-                logic_desc = "with standard scaling"
-            
-            semantic_description['layout_overview'] = (
-                f"ASYMMETRIC LAYOUT: Asymmetric arrangement with visible white text containers "
-                f"(scale: {container_scale:.1f}x) "
-                f"positioned with standort in top-right, headline/subline centered, stellentitel/CTA in bottom-right {logic_desc} overlaid on full background image"
-            )
-        else:
-            semantic_description['layout_overview'] = (
-                "ASYMMETRIC LAYOUT: Asymmetric arrangement with text elements positioned "
-                "asymmetrically across the canvas, creating dynamic composition"
-            )
-    
-    elif layout_type == 'grid_layout':
-        # Prüfe ob sichtbare Container verwendet werden
-        calculated_values = layout_data.get('calculated_values', {})
-        container_style = calculated_values.get('container_style', 'transparent_overlays')
-        layout_style = calculated_values.get('layout_style', 'standard')
-        no_headline = calculated_values.get('no_headline', False)
-        
-        if container_style == 'visible_containers' and layout_style == 'grid_arrangement':
-            container_group_width = calculated_values.get('container_group_width', 500)
-            container_group_height = calculated_values.get('container_group_height', 800)
-            
-            if no_headline:
-                headline_desc = "NO headline element"
-            else:
-                headline_desc = "with headline"
-            
-            semantic_description['layout_overview'] = (
-                f"GRID LAYOUT: Grid-based arrangement with visible white text containers "
-                f"(group size: {container_group_width}x{container_group_height}px) "
-                f"positioned in structured grid pattern {headline_desc} overlaid on full background image"
-            )
-        else:
-            semantic_description['layout_overview'] = (
-                "GRID LAYOUT: Grid-based arrangement with text elements positioned "
-                "in structured grid pattern across the canvas"
-            )
-    
-    elif layout_type == 'split_layout':
-        # Split Layout: Obere Hälfte Layout, untere Hälfte Motiv mit dynamischer Y-Koordinate
-        calculated_values = layout_data.get('calculated_values', {})
-        dynamic_motiv_y = calculated_values.get('dynamic_motiv_y', 540)
-        motiv_y_percent = calculated_values.get('motiv_y_percent', 50.0)
-        split_logic = calculated_values.get('split_logic', 'higher_slider_smaller_y')
-        
-        semantic_description['layout_overview'] = (
-            f"SPLIT LAYOUT: Split composition with text elements in upper half, "
-            f"background image in lower half with dynamic Y-coordinate at {motiv_y_percent}% from top "
-            f"(Y={dynamic_motiv_y}px) controlled by slider ({split_logic}), "
-            f"stellentitel and CTA positioned bottom-left IN FRONT OF the background image, "
-            f"background image fills complete lower half without frames"
-        )
-        
-        # Text-Zonen semantisch beschreiben für Split Layout
-        for zone_name, zone in layout_data.get('zones', {}).items():
-            if zone.get('content_type') == 'text_elements':
-                x, y, w, h = zone['x'], zone['y'], zone['width'], zone['height']
-                
-                # Split-spezifische Positionen (größerer Abstand, unten links)
-                if 'standort' in zone_name:
-                    position_desc = "upper left in own container"
-                elif 'headline' in zone_name:
-                    position_desc = "under standort in own container"
-                elif 'benefits' in zone_name:
-                    position_desc = "directly under headline in own container"
-                elif 'stellentitel' in zone_name:
-                    position_desc = "bottom left area OVER the background image in own container"
-                elif 'cta' in zone_name:
-                    position_desc = "bottom left OVER the background image in own container"
-                else:
-                    position_desc = "split position in own container"
-                
-                semantic_description['text_areas'].append({
-                    'zone_name': zone_name,
-                    'description': f"{zone_name.replace('_', ' ').title()} positioned in {position_desc}",
-                    'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                    'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px",
-                    'adaptive_typography': "Font size adapts to container width, ensures text fits perfectly within boundaries"
-                })
-        
-        # Bild-Zonen semantisch beschreiben für Split Layout
-        for zone_name, zone in layout_data.get('zones', {}).items():
-            if zone.get('content_type') == 'image_motiv':
-                x, y, w, h = zone['x'], zone['y'], zone['width'], zone['height']
-                
-                semantic_description['image_areas'].append({
-                    'zone_name': zone_name,
-                    'description': f"Motiv Area as split background image in lower half with dynamic Y-coordinate",
-                    'relative_position': f"x: {x/canvas_width:.1%} from left, y: {y/canvas_height:.1%} from top",
-                    'size': f"width: {w}px ({w/canvas_width:.1%} of canvas), height: {h}px ({h/canvas_height:.1%} of canvas)"
-                })
-    
-    elif layout_type == 'grid_layout':
+    if layout_type == 'grid_layout':
         # Grid Layout: Strukturiertes Grid ohne Headline
         calculated_values = layout_data.get('calculated_values', {})
         container_style = calculated_values.get('container_style', 'transparent_overlays')

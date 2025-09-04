@@ -1,0 +1,126 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Hero-Style mit Motiv nur in oberer Hälfte, Stellentitel unten, CTA rechts
+  oben
+layout_id: skizze8_hero_layout
+layout_type: hero_layout
+meta:
+  description: Hero-Style mit Motiv nur in oberer Hälfte, Stellentitel unten, CTA
+    rechts oben
+  image_zones: 1
+  layout_type: hero_layout
+  name: Hero Layout
+  text_zones: 6
+  zones_count: 7
+name: Hero Layout
+prompt_instructions:
+  background_motiv_handling: Hero layout with background image with dynamic Y-coordinate
+    based on slider, image fills area without frames
+  container_behavior: Text containers in lower half, image area in upper half with
+    slider-controlled positioning
+  hero_structure: Background image with dynamic Y-coordinate, text elements positioned
+    (standort, logo, headline, benefits, stellentitel, CTA)
+  image_positioning: Image motif STRICTLY LIMITED to upper area ONLY from Y=0 to dynamic
+    Y-coordinate (height=dynamic_motiv_y), full width coverage, NO background image,
+    NO image in lower area, image fills ONLY upper section, lower area is PURE WHITE
+    BACKGROUND, NO image behind text, NO background image, NO image in lower half
+  layout_behavior: Hero layout with image motif STRICTLY LIMITED to upper area ONLY
+    (Y=0 to dynamic Y-coordinate) based on slider (higher slider = larger Y-coordinate
+    = more image area), LOWER area (Y > dynamic Y-coordinate) is PURE WHITE BACKGROUND
+    with NO image, NO background image, NO image behind text, standort bottom-left,
+    logo bottom-right, headline left smaller, benefits under headline, stellentitel
+    bottom-left, CTA center-right
+  negative_prompts: text rendering, readable text, visible text, text overlay, text
+    on image, rounded image frames, image containers, duplicate text, multiple job
+    titles, CTA bottom-left, image in lower area, background image, image behind text,
+    duplicate CTA, multiple CTA buttons, CTA duplication, full background image, image
+    covering entire canvas, image behind all text, background image covering whole
+    design, image in lower half, background image in lower area, image behind text
+    containers, image covering whole design, background image behind all elements
+  scene_description: Professional recruitment creative with hero layout - upper half
+    for background image, lower half for text elements
+  separate_layers: true
+  style_guidelines: Modern, clean design with professional typography, visible white
+    containers with shadows, no borders or outlines, corporate color scheme, hero
+    layout
+  text_positioning: Text elements MUST be in visible white containers with rounded
+    corners, subtle shadows, no borders - standort top-left, logo top-right, headline
+    left smaller, benefits under headline, stellentitel bottom-left, CTA center-right
+    (SINGLE instance, NOT bottom-left, NOT bottom-right)
+  visual_structure: Hero composition with background image with dynamic Y-coordinate,
+    text elements positioned with standort top-left, logo top-right, headline left,
+    benefits under headline, stellentitel bottom-left, CTA top-right smaller
+zones:
+  benefits_block:
+    benefits_input: Benefits
+    content_type: text_elements
+    description: Benefits unter Headline
+    height: 120
+    text_field: benefits
+    width: 400
+    x: 54
+    y: 260
+  cta_block:
+    content_type: text_elements
+    cta_input: Call-to-Action
+    description: CTA rechts oben, kleiner
+    height: 80
+    text_field: cta
+    width: 300
+    x: 626
+    y: 120
+  headline_block:
+    content_type: text_elements
+    description: Headline links, kleiner
+    headline_input: Hauptüberschrift
+    height: 120
+    text_field: headline
+    width: 400
+    x: 54
+    y: 120
+  logo_block:
+    content_type: text_elements
+    description: Logo-Block oben rechts
+    height: 60
+    logo_input: Logo
+    text_field: logo
+    width: 400
+    x: 626
+    y: 40
+  motiv_area:
+    content_type: image_motiv
+    description: Motiv mit dynamischer Y-Koordinate
+    height: 540
+    width: 1080
+    x: 0
+    y: 540
+  standort_block:
+    content_type: text_elements
+    description: Standort-Block oben links
+    height: 60
+    location_input: Standort
+    text_field: location
+    width: 400
+    x: 54
+    y: 40
+  stellentitel_block:
+    content_type: text_elements
+    description: Stellentitel unten links (wo CTA war)
+    height: 100
+    stellentitel_input: Stellentitel
+    text_field: stellentitel
+    width: 400
+    x: 54
+    y: 440
+  subline_block:
+    content_type: text_elements
+    description: Subline unter Headline
+    height: 60
+    subline_input: Unterüberschrift
+    text_field: subline
+    width: 400
+    x: 54
+    y: 190

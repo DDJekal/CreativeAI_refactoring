@@ -1,99 +1,74 @@
 layout_id: skizze8_hero_layout
-name: Hero Layout
-description: Hero-Style mit Motiv nur in oberer Hälfte, Stellentitel unten, CTA rechts oben
+name: "Skizze 8 – Hero Layout"
 layout_type: hero_layout
+description: "Motiv im oberen Bereich (Hero), Textcontainer darunter; klare Hierarchie."
+
 canvas:
   width: 1080
   height: 1080
-  background_color: '#FFFFFF'
-  aspect_ratio: '1:1'
+  aspect_ratio: "1:1"
+
 zones:
   standort_block:
-    x: 54
-    y: 40
+    x: 60
+    y: 600
     width: 400
-    height: 60
+    height: 70
+    z: 1
     content_type: text_elements
-    description: Standort-Block oben links
-    text_field: location
-    location_input: "Standort"
+
   logo_block:
-    x: 626
-    y: 40
+    x: 620
+    y: 600
     width: 400
-    height: 60
+    height: 70
+    z: 1
     content_type: text_elements
-    description: Logo-Block oben rechts
-    text_field: logo
-    logo_input: "Logo"
+
   headline_block:
-    x: 54
-    y: 120
-    width: 400
-    height: 120
-    content_type: text_elements
-    description: Headline links, kleiner
-    text_field: headline
-    headline_input: "Hauptüberschrift"
-  subline_block:
-    x: 54
-    y: 190
-    width: 400
-    height: 60
-    content_type: text_elements
-    description: Subline unter Headline
-    text_field: subline
-    subline_input: "Unterüberschrift"
-  benefits_block:
-    x: 54
-    y: 260
-    width: 400
-    height: 120
-    content_type: text_elements
-    description: Benefits unter Headline
-    text_field: benefits
-    benefits_input: "Benefits"
-  stellentitel_block:
-    x: 54
-    y: 440
-    width: 400
-    height: 100
-    content_type: text_elements
-    description: Stellentitel unten links (wo CTA war)
-    text_field: stellentitel
-    stellentitel_input: "Stellentitel"
-  cta_block:
-    x: 626
-    y: 120
+    x: 60
+    y: 670
     width: 300
-    height: 80
+    height: 70
+    z: 1
     content_type: text_elements
-    description: CTA rechts oben, kleiner
-    text_field: cta
-    cta_input: "Call-to-Action"
+
+  subline_block:
+    x: 60
+    y: 740
+    width: 400
+    height: 70
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 60
+    y: 810
+    width: 400
+    height: 120
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 60
+    y: 940
+    width: 400
+    height: 90
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 760
+    y: 700
+    width: 220
+    height: 90
+    z: 1
+    content_type: text_elements
+
   motiv_area:
     x: 0
-    y: 540
+    y: 0
     width: 1080
     height: 540
+    z: 0
     content_type: image_motiv
-    description: Motiv mit dynamischer Y-Koordinate
-prompt_instructions:
-  scene_description: "Professional recruitment creative with hero layout - upper half for background image, lower half for text elements"
-  visual_structure: "Hero composition with background image with dynamic Y-coordinate, text elements positioned with standort top-left, logo top-right, headline left, benefits under headline, stellentitel bottom-left, CTA top-right smaller"
-  layout_behavior: "Hero layout with image motif STRICTLY LIMITED to upper area ONLY (Y=0 to dynamic Y-coordinate) based on slider (higher slider = larger Y-coordinate = more image area), LOWER area (Y > dynamic Y-coordinate) is PURE WHITE BACKGROUND with NO image, NO background image, NO image behind text, standort bottom-left, logo bottom-right, headline left smaller, benefits under headline, stellentitel bottom-left, CTA center-right"
-  text_positioning: "Text elements MUST be in visible white containers with rounded corners, subtle shadows, no borders - standort top-left, logo top-right, headline left smaller, benefits under headline, stellentitel bottom-left, CTA center-right (SINGLE instance, NOT bottom-left, NOT bottom-right)"
-  image_positioning: "Image motif STRICTLY LIMITED to upper area ONLY from Y=0 to dynamic Y-coordinate (height=dynamic_motiv_y), full width coverage, NO background image, NO image in lower area, image fills ONLY upper section, lower area is PURE WHITE BACKGROUND, NO image behind text, NO background image, NO image in lower half"
-  style_guidelines: "Modern, clean design with professional typography, visible white containers with shadows, no borders or outlines, corporate color scheme, hero layout"
-  negative_prompts: "text rendering, readable text, visible text, text overlay, text on image, rounded image frames, image containers, duplicate text, multiple job titles, CTA bottom-left, image in lower area, background image, image behind text, duplicate CTA, multiple CTA buttons, CTA duplication, full background image, image covering entire canvas, image behind all text, background image covering whole design, image in lower half, background image in lower area, image behind text containers, image covering whole design, background image behind all elements"
-  separate_layers: true
-  background_motiv_handling: "Hero layout with background image with dynamic Y-coordinate based on slider, image fills area without frames"
-  container_behavior: "Text containers in lower half, image area in upper half with slider-controlled positioning"
-  hero_structure: "Background image with dynamic Y-coordinate, text elements positioned (standort, logo, headline, benefits, stellentitel, CTA)"
-meta:
-  name: Hero Layout
-  description: Hero-Style mit Motiv nur in oberer Hälfte, Stellentitel unten, CTA rechts oben
-  layout_type: hero_layout
-  zones_count: 7
-  text_zones: 6
-  image_zones: 1

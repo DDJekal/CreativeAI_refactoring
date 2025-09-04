@@ -229,7 +229,7 @@ class LayoutEngine:
         zones = result.get('zones', {})
         
         # Aktualisiere nur die Breiten der Text-Zonen, behalte ursprüngliche Positionen
-        text_zones = ['standort_block', 'headline_block', 'subline_block', 'benefits_block', 'company_block', 'cta_block']
+        text_zones = ['standort_block', 'headline_block', 'subline_block', 'benefits_block', 'company_block', 'cta_block', 'stellentitel_block']
         
         # Verwende Hilfsfunktion für adaptive Typografie
         self._update_text_zones_adaptive(zones, text_zones, text_width, 80, transparency)
@@ -495,23 +495,14 @@ class LayoutEngine:
                 width = int(pos['width'] * self.canvas_width)
                 height = int(pos['height'] * self.canvas_height)
                 
-                # Container-Style für sichtbare Container
-                container_style = {
-                    'background_color': '#FFFFFF',
-                    'opacity': transparency / 100,
-                    'border_radius': 16,
-                    'shadow': '0 4px 8px rgba(0,0,0,0.1)',
-                    'border': 'none',
-                    'outline': 'none'
-                }
-                
+                # Nur Geometrie + Transparenz, Styling erfolgt im Resolver-Post-Step
                 zones[zone_name] = {
                     **original_zone,
                     'x': x,
                     'y': y,
                     'width': width,
                     'height': height,
-                    'container_style': container_style
+                    'transparency': transparency / 100
                 }
         
         # Berechne dynamische Y-Koordinate für Motivzone basierend auf Slider
@@ -829,25 +820,13 @@ class LayoutEngine:
                 # Aktualisiere Position-String für adaptive Typografie
                 self._update_zone_position_for_adaptive_typography(original_zone, new_width)
                 
-                # Container-Styling für sichtbare Container
+                # Nur Geometrie + Transparenz, Styling erfolgt im Resolver-Post-Step
                 zones[zone_name].update({
                     'x': new_x,
                     'y': new_y,
                     'width': new_width,
                     'height': new_height,
-                    'transparency': transparency / 100,
-                    'container_style': {
-                        'background_color': '#FFFFFF',
-                        'background_opacity': transparency / 100,
-                        'border_radius': 12,
-                        'border_color': '#E0E0E0',
-                        'border_width': 1,
-                        'shadow_color': '#000000',
-                        'shadow_opacity': 0.1,
-                        'shadow_blur': 8,
-                        'shadow_offset_x': 0,
-                        'shadow_offset_y': 2
-                    }
+                    'transparency': transparency / 100
                 })
         
         # Hintergrund-Motiv bleibt unverändert (ganzer Canvas)
@@ -862,8 +841,8 @@ class LayoutEngine:
         
         # Aktualisiere das Layout
         result['zones'] = zones
-        
-        # Füge berechnete Werte hinzu
+
+        # Füge berechnete Werte hinzu (ohne Style-Kennzeichnung)
         result['calculated_values'] = {
             'container_group_width': dynamic_container_width,
             'container_group_height': dynamic_container_height,
@@ -872,8 +851,7 @@ class LayoutEngine:
             'image_width': self.canvas_width,  # Motiv ist der gesamte Hintergrund
             'container_transparency': transparency / 100,
             'image_text_ratio': image_text_ratio,
-            'background_motiv_visible': 1.0,  # Hintergrund-Motiv ist immer sichtbar
-            'container_style': 'visible_containers'  # Kennzeichnung für sichtbare Container
+            'background_motiv_visible': 1.0
         }
         
         return result
@@ -952,25 +930,13 @@ class LayoutEngine:
                 # Aktualisiere Position-String für adaptive Typografie
                 self._update_zone_position_for_adaptive_typography(original_zone, new_width)
                 
-                # Container-Styling für sichtbare Container
+                # Nur Geometrie + Transparenz, Styling erfolgt im Resolver-Post-Step
                 zones[zone_name].update({
                     'x': new_x,
                     'y': new_y,
                     'width': new_width,
                     'height': new_height,
-                    'transparency': transparency / 100,
-                    'container_style': {
-                        'background_color': '#FFFFFF',
-                        'background_opacity': transparency / 100,
-                        'border_radius': 12,
-                        'border_color': '#E0E0E0',
-                        'border_width': 1,
-                        'shadow_color': '#000000',
-                        'shadow_opacity': 0.1,
-                        'shadow_blur': 8,
-                        'shadow_offset_x': 2,  # Diagonale Schatten für dynamischen Effekt
-                        'shadow_offset_y': 2
-                    }
+                    'transparency': transparency / 100
                 })
         
         # Hintergrund-Motiv bleibt unverändert (ganzer Canvas)
@@ -986,7 +952,7 @@ class LayoutEngine:
         # Aktualisiere das Layout
         result['zones'] = zones
         
-        # Füge berechnete Werte hinzu
+        # Füge berechnete Werte hinzu (ohne Style-Kennzeichnung)
         result['calculated_values'] = {
             'container_group_width': dynamic_container_width,
             'container_group_height': dynamic_container_height,
@@ -994,7 +960,6 @@ class LayoutEngine:
             'container_transparency': transparency / 100,
             'image_text_ratio': image_text_ratio,
             'background_motiv_visible': 1.0,  # Hintergrund-Motiv ist immer sichtbar
-            'container_style': 'visible_containers',  # Kennzeichnung für sichtbare Container
             'layout_style': 'diagonal_arrangement'  # Kennzeichnung für diagonale Anordnung
         }
         
@@ -1072,25 +1037,13 @@ class LayoutEngine:
                 # Aktualisiere Position-String für adaptive Typografie
                 self._update_zone_position_for_adaptive_typography(original_zone, new_width)
                 
-                # Container-Styling für sichtbare Container
+                # Nur Geometrie + Transparenz, Styling erfolgt im Resolver-Post-Step
                 zones[zone_name].update({
                     'x': new_x,
                     'y': new_y,
                     'width': new_width,
                     'height': new_height,
-                    'transparency': transparency / 100,
-                    'container_style': {
-                        'background_color': '#FFFFFF',
-                        'background_opacity': transparency / 100,
-                        'border_radius': 12,
-                        'border_color': '#E0E0E0',
-                        'border_width': 1,
-                        'shadow_color': '#000000',
-                        'shadow_opacity': 0.1,
-                        'shadow_blur': 8,
-                        'shadow_offset_x': 0,
-                        'shadow_offset_y': 2
-                    }
+                    'transparency': transparency / 100
                 })
         
         # Hintergrund-Motiv bleibt unverändert (ganzer Canvas)
@@ -1106,14 +1059,13 @@ class LayoutEngine:
         # Aktualisiere das Layout
         result['zones'] = zones
         
-        # Füge berechnete Werte hinzu
+        # Füge berechnete Werte hinzu (ohne Style-Kennzeichnung)
         result['calculated_values'] = {
             'container_scale': inverse_scale,
             'image_width': self.canvas_width,  # Motiv ist der gesamte Hintergrund
             'container_transparency': transparency / 100,
             'image_text_ratio': image_text_ratio,
             'background_motiv_visible': 1.0,  # Hintergrund-Motiv ist immer sichtbar
-            'container_style': 'visible_containers',  # Kennzeichnung für sichtbare Container
             'layout_style': 'asymmetric_arrangement',  # Kennzeichnung für asymmetrische Anordnung
             'inverse_logic': True  # Kennzeichnung für inverse Slider-Logik
         }
@@ -1234,9 +1186,8 @@ class LayoutEngine:
             'image_width': self.canvas_width,  # Motiv ist der gesamte Hintergrund
             'container_transparency': transparency / 100,
             'image_text_ratio': image_text_ratio,
-            'background_motiv_visible': 1.0,  # Hintergrund-Motiv ist immer sichtbar
-            'container_style': 'visible_containers',  # Kennzeichnung für sichtbare Container
-            'layout_style': 'grid_arrangement',  # Kennzeichnung für Grid-Anordnung
+            'background_motiv_visible': 1.0,
+            'layout_style': 'grid_arrangement',
             'no_headline': True  # Kennzeichnung dass keine Headline vorhanden ist
         }
         
@@ -1260,14 +1211,24 @@ class LayoutEngine:
                 transparency = zone_data.get('transparency', fallback_opacity)
                 if isinstance(transparency, (int, float)) and transparency > 1:
                     transparency = transparency / 100
-                
+
                 # Validiere Transparenz
                 transparency = max(0.1, min(1.0, transparency))
                 zones[zone_name]['transparency'] = transparency
-                
-                # Füge CSS-kompatible Transparenz hinzu
-                zones[zone_name]['opacity'] = transparency
-                zones[zone_name]['alpha'] = transparency
+
+                # Wenn bereits container_style Hintergrund-Opacity vorhanden ist,
+                # keine zusaetzlichen Felder (opacity/alpha) mehr setzen.
+                cs = zone_data.get('container_style', {}) if isinstance(zone_data, dict) else {}
+                has_bg_opacity = False
+                if isinstance(cs, dict):
+                    if 'background_opacity' in cs:
+                        has_bg_opacity = True
+                    elif 'background' in cs and isinstance(cs.get('background'), dict) and 'opacity' in cs['background']:
+                        has_bg_opacity = True
+                if not has_bg_opacity:
+                    # Legacy-Kompatibilitaet: Nur falls kein Resolver aktiv war
+                    zones[zone_name]['opacity'] = transparency
+                    zones[zone_name]['alpha'] = transparency
         
         result['zones'] = zones
         return result
@@ -1357,23 +1318,14 @@ class LayoutEngine:
                 width = int(pos['width'] * self.canvas_width)
                 height = int(pos['height'] * self.canvas_height)
                 
-                # Container-Style für sichtbare Container (ohne Umrandung)
-                container_style = {
-                    'background_color': '#FFFFFF',
-                    'opacity': container_transparency / 100,
-                    'border_radius': 16,
-                    'shadow': '0 4px 8px rgba(0,0,0,0.1)',
-                    'border': 'none',
-                    'outline': 'none'
-                }
-                
+                # Nur Geometrie, Styling erfolgt im Resolver-Post-Step
                 zones[zone_name] = {
                     **original_zone,
                     'x': x,
                     'y': y,
                     'width': width,
                     'height': height,
-                    'container_style': container_style
+                    'transparency': container_transparency / 100
                 }
         
         # Aktualisiere Motiv-Zone mit dynamischer Y-Koordinate

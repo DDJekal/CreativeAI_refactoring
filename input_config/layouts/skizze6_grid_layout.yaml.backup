@@ -1,0 +1,76 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Grid-basierte Textblöcke ohne Headline mit vollständigem Hintergrund-Motiv
+layout_id: skizze6_grid_layout
+layout_type: grid_layout
+meta:
+  description: Grid-basierte Textblöcke ohne Headline mit vollständigem Hintergrund-Motiv
+  image_zones: 1
+  layout_type: grid_layout
+  name: Grid Layout
+  text_zones: 3
+  zones_count: 4
+name: Grid Layout
+prompt_instructions:
+  background_motiv_handling: Full canvas background image with visible white text
+    containers arranged in grid pattern
+  container_behavior: Container size scales with layout composition slider - larger
+    containers = more text area visible
+  grid_structure: Grid-based layout with standort at top left, subline and stellentitel
+    at bottom left, creating left-aligned composition with full background image
+  image_positioning: Background image covers full canvas (0,0 to 1080,1080), no cropping
+    or borders
+  layout_behavior: Text containers arranged in grid pattern with standort at top left,
+    subline and stellentitel at bottom left, container size varies with slider, background
+    image always visible, NO headline element, NO CTA element, NO benefits element
+  negative_prompts: text rendering, readable text, visible text, text overlay, text
+    on image, headline, main title
+  scene_description: Professional recruitment creative with grid-based text containers
+    overlaid on background image
+  separate_layers: true
+  style_guidelines: Modern, clean design with professional typography, visible white
+    containers with shadows, corporate color scheme, grid-based layout
+  text_positioning: All text elements in visible white containers with rounded corners,
+    subtle shadows, and grid-based positioning creating structured composition. NO
+    headline should be rendered, NO CTA should be rendered, NO benefits should be
+    rendered
+  visual_structure: Background image fills entire canvas, grid-based arrangement of
+    visible white text containers
+zones:
+  motiv_area:
+    content_type: image_motiv
+    description: Motiv als vollständiger Hintergrund
+    height: 1080
+    width: 1080
+    x: 0
+    y: 0
+  standort_block:
+    content_type: text_elements
+    description: Standort-Block zentriert oben
+    height: 60
+    location_input: Standort
+    text_field: location
+    width: 680
+    x: 200
+    y: 40
+  stellentitel_block:
+    content_type: text_elements
+    description: Stellentitel im Grid
+    height: 80
+    stellentitel_input: Stellentitel
+    text_field: stellentitel
+    width: 400
+    x: 200
+    y: 320
+  subline_block:
+    content_type: text_elements
+    description: Subline im Grid
+    height: 80
+    subline_input: Untertitel
+    text_field: subline
+    width: 400
+    x: 200
+    y: 200

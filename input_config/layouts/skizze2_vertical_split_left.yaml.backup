@@ -1,0 +1,99 @@
+canvas:
+  aspect_ratio: '1:1'
+  background_color: '#FFFFFF'
+  height: 1080
+  width: 1080
+description: Klassisches vertikales Split-Layout mit Motiv links und Text rechts.
+  Perfekt für starke visuelle Präsenz mit strukturierter Informationsvermittlung.
+layout_id: skizze2_vertical_split_left
+layout_type: vertical_split_left
+meta:
+  description: Klassisches vertikales Split-Layout mit Motiv links und Text rechts.
+    Perfekt für starke visuelle Präsenz mit strukturierter Informationsvermittlung.
+  image_zones: 1
+  layout_type: vertical_split_left
+  name: Vertikaler Split Layout (Motiv Links)
+  prompt_instructions:
+    background_treatment: Weißer Hintergrund im Text-Bereich, Motiv als Vollbild im
+      linken Bereich
+    composition_notes: Motiv links, Text rechts. Verhältnis wird durch image_text_ratio
+      Slider (30-70%) dynamisch angepasst. 30% = mehr Text (30% Motiv, 70% Text),
+      70% = mehr Bild (70% Motiv, 30% Text).
+    layout_style: Klassisches vertikales Split-Layout mit Motiv links und Text rechts
+    slider_integration:
+      container_transparency: Bestimmt die Transparenz der Text-Container (0-100%)
+      image_text_ratio: Bestimmt das Verhältnis zwischen Motiv- und Text-Bereich (30-70%)
+    text_rendering: separate_layers
+    visual_style_keywords:
+    - vertikal
+    - split
+    - strukturiert
+    - klassisch
+    - ausgewogen
+    - dynamisch
+  text_zones: 6
+  zones_count: 7
+name: Vertikaler Split Layout (Motiv Links)
+zones:
+  benefits_block:
+    benefits_input: Vorteile
+    content_type: text_elements
+    description: Strukturierte Benefits-Liste mit Bullet-Points für bessere Lesbarkeit
+    height: 200
+    text_field: benefits
+    width: 400
+    x: 580
+    y: 340
+  cta_block:
+    content_type: text_elements
+    cta_input: Call-to-Action
+    description: Call-to-Action Button, zentriert und prominent für maximale Conversion
+    height: 80
+    text_field: cta
+    width: 300
+    x: 680
+    y: 680
+  headline_block:
+    content_type: text_elements
+    description: Hauptüberschrift, fett und prominent für maximale Aufmerksamkeit
+    headline_input: Hauptüberschrift
+    height: 100
+    text_field: headline
+    width: 400
+    x: 580
+    y: 120
+  motiv_area:
+    content_type: image_motiv
+    description: Hauptmotiv-Bereich links, Breite wird durch image_text_ratio Slider
+      dynamisch angepasst
+    height: 1080
+    width: 540
+    x: 0
+    y: 0
+  standort_block:
+    content_type: text_elements
+    description: Standort-Information mit Icon, kompakt und prominent platziert
+    height: 60
+    location_input: Standort
+    text_field: location
+    width: 400
+    x: 580
+    y: 40
+  stellentitel_block:
+    content_type: text_elements
+    description: Stellentitel als zusätzliche Information, prominent aber nicht dominierend
+    height: 100
+    stellentitel_input: Stellentitel
+    text_field: stellentitel
+    width: 400
+    x: 580
+    y: 560
+  subline_block:
+    content_type: text_elements
+    description: Unterstützende Subline zur Headline, informativ und prägnant
+    height: 80
+    subline_input: Untertitel
+    text_field: subline
+    width: 400
+    x: 580
+    y: 240
