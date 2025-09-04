@@ -8,6 +8,16 @@ RADIUS_MAP: Dict[str, int] = {
     "Gross 24px": 24,
     "Sehr Gross 32px": 32,
     "Auto-Radius": 16,  # Wird dynamisch berechnet
+    "Minimal 4px": 4,
+    "Extra Gross 40px": 40,
+    "Asymmetrisch": 12,  # Wird asymmetrisch angewendet
+    "Variable": 20,  # Wird basierend auf Container-Größe berechnet
+    "Organic": 25,  # Organische, unregelmäßige Formen
+    "Sharp Corners": 0,
+    "Mixed Radius": 15,  # Verschiedene Radien pro Ecke
+    "Dynamic": 18,  # Wird dynamisch berechnet
+    "Geometric": 6,
+    "Soft Edges": 28,
 }
 
 # Erweiterte Design-Kategorien
@@ -32,6 +42,19 @@ CONTAINER_SHAPES = {
     "capsule": {"name": "Capsule", "radius": 50},
     "ribbon": {"name": "Ribbon", "radius": 4},
     "tag": {"name": "Tag", "radius": 12},
+    "asymmetrisch": {"name": "Asymmetrisch", "radius": "asymmetric"},
+    "hexagon": {"name": "Hexagon", "radius": "polygon"},
+    "diamond": {"name": "Diamond", "radius": "polygon"},
+    "pill": {"name": "Pill", "radius": 30},
+    "rounded_square": {"name": "Rounded Square", "radius": 20},
+    "soft_rectangle": {"name": "Soft Rectangle", "radius": 24},
+    "wave": {"name": "Wave", "radius": "organic"},
+    "cloud": {"name": "Cloud", "radius": "organic"},
+    "bubble": {"name": "Bubble", "radius": "organic"},
+    "cut_corner": {"name": "Cut Corner", "radius": "cut"},
+    "notched": {"name": "Notched", "radius": "notched"},
+    "floating": {"name": "Floating", "radius": 18},
+    "card_stack": {"name": "Card Stack", "radius": 14},
 }
 
 BORDER_STYLES = {
@@ -158,6 +181,23 @@ def resolve_style(
         radius = shape_config.get("radius", 16)
         if radius == "variable":
             radius = 20  # Fallback für organische Formen
+    elif corner_radius in ["Asymmetrisch", "Mixed Radius"]:
+        # Spezielle Behandlung für asymmetrische Radien
+        radius = "asymmetric"
+    elif corner_radius in ["Variable", "Dynamic"]:
+        # Dynamische Berechnung basierend auf Container-Größe
+        radius = shape_config.get("radius", 16)
+        if radius == "variable":
+            radius = 20
+    elif corner_radius in ["Organic", "Wave", "Cloud", "Bubble"]:
+        # Organische Formen mit unregelmäßigen Radien
+        radius = "organic"
+    elif corner_radius in ["Hexagon", "Diamond"]:
+        # Polygon-Formen
+        radius = "polygon"
+    elif corner_radius in ["Cut Corner", "Notched"]:
+        # Spezielle Schnitt-Formen
+        radius = "cut"
     else:
         radius = RADIUS_MAP.get(corner_radius, 16)
     

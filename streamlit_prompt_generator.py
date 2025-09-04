@@ -39,7 +39,9 @@ LAYOUT_STYLE = [
     "Neon Tech", "Editorial Clean", "Soft Neumorph", "Glassmorph Minimal", "Clay UI", "Warm Documentary"
 ]
 CONTAINER_SHAPE = [
-    "Abgerundet", "Scharf", "Organisch", "Geometrisch", "Capsule", "Ribbon", "Tag"
+    "Abgerundet", "Scharf", "Organisch", "Geometrisch", "Capsule", "Ribbon", "Tag",
+    "Asymmetrisch", "Hexagon", "Diamond", "Pill", "Rounded Square", "Soft Rectangle",
+    "Wave", "Cloud", "Bubble", "Cut Corner", "Notched", "Floating", "Card Stack"
 ]
 BORDER_STYLE = [
     "Keine", "Weicher Schatten", "Harte Konturen", "Gradient-Rand", "Doppelstrich", 
@@ -54,7 +56,9 @@ BACKGROUND_TREATMENT = [
     "Vignette Soft", "Depth Layers"
 ]
 CORNER_RADIUS = [
-    "Klein 8px", "Mittel 16px", "Gross 24px", "Sehr Gross 32px", "Auto-Radius"
+    "Klein 8px", "Mittel 16px", "Gross 24px", "Sehr Gross 32px", "Auto-Radius",
+    "Minimal 4px", "Extra Gross 40px", "Asymmetrisch", "Variable", "Organic",
+    "Sharp Corners", "Mixed Radius", "Dynamic", "Geometric", "Soft Edges"
 ]
 ACCENT_ELEMENTS = [
     "Modern Minimal", "Sanft Organisch", "Geometrisch Praezise", "Kreativ Verspielt",
