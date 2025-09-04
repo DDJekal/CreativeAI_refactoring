@@ -22,10 +22,8 @@ class DesignValidationError(Exception):
 def apply_rules(
     *,
     layout: dict,                 # validiertes layout_dict mit canvas, zones, meta, __validated__=True
-    ci: dict,                     # {'primary':'#RRGGBB','secondary':'#RRGGBB','accent':'#RRGGBB'}
-    options: dict                 # {'typography_scale': 'md', 'container_shape':'rounded_rectangle',
-                                  #  'border_style':'soft_shadow','corner_radius_px':16,
-                                  #  'transparency_pct':0..100,'accent_elements':['badge','divider',...]}
+    ci: dict,                     # {'primary':'#RRGGBB','secondary':'#RRGGBB','accent':'#RRGGBB','background':'#RRGGBB'}
+    options: dict                 # Erweiterte Design-Optionen mit neuen Kategorien
 ) -> dict:
 
 
@@ -106,13 +104,33 @@ def _validate_inputs(layout: dict, ci: dict, options: dict):
                 "msg": f"Invalid hex color format for {color}"
             })
     
-    # Options Validierung
+    # Erweiterte Options Validierung
     required_options = {
-        "typography_scale": ["sm", "md", "lg"],
-        "container_shape": ["rounded_rectangle", "rectangle", "pill", "circle"],
-        "border_style": ["none", "soft_shadow", "hard_shadow", "outline"],
-        "corner_radius_px": lambda x: isinstance(x, int) and x >= 0,
-        "transparency_pct": lambda x: isinstance(x, int) and 0 <= x <= 100
+        "layout_style": ["abgerundet_modern", "scharf_zeitgemaess", "organisch_fliessend", "geometrisch_praezise", 
+                        "neon_tech", "editorial_clean", "soft_neumorph", "glassmorph_minimal", "clay_ui", "warm_documentary"],
+        "container_shape": ["abgerundet", "scharf", "organisch", "geometrisch", "capsule", "ribbon", "tag"],
+        "border_style": ["keine", "weicher_schatten", "harte_konturen", "gradient_rand", "doppelstrich", 
+                        "innenlinie", "emboss", "outline_glow"],
+        "texture_style": ["farbverlauf", "glaseffekt", "matte_oberflaeche", "strukturiert", "paper_grain",
+                         "film_grain", "noise_gradient", "subtle_pattern", "soft_neumorph", "emboss_deboss"],
+        "background_treatment": ["transparent", "vollflaechig", "gradient", "subtiles_muster", "duotone_motivtint",
+                                "vignette_soft", "depth_layers"],
+        "corner_radius": ["small", "medium", "large", "xl", "auto"],
+        "accent_elements": ["modern_minimal", "sanft_organisch", "geometrisch_praezise", "kreativ_verspielt",
+                           "micro_badges", "divider_dots", "icon_chips"],
+        "typography_style": ["humanist_sans", "grotesk_bold", "serif_editorial", "mono_detail", "rounded_sans"],
+        "photo_treatment": ["natural_daylight", "cinematic_warm", "clean_clinic", "documentary_soft_grain",
+                           "duotone_subtle", "bokeh_light"],
+        "depth_style": ["soft_shadow_stack", "drop_inner_shadow", "card_elevation_1", "card_elevation_2", "card_elevation_3"],
+        "image_text_ratio": lambda x: isinstance(x, int) and 55 <= x <= 85,
+        "container_transparency": lambda x: isinstance(x, int) and 10 <= x <= 90,
+        "element_spacing": lambda x: isinstance(x, int) and 12 <= x <= 56,
+        "container_padding": lambda x: isinstance(x, int) and 16 <= x <= 40,
+        "shadow_intensity": lambda x: isinstance(x, int) and 0 <= x <= 70,
+        "grain_amount": lambda x: isinstance(x, int) and 0 <= x <= 25,
+        "tint_strength": lambda x: isinstance(x, int) and 0 <= x <= 20,
+        "glow_intensity": lambda x: isinstance(x, int) and 0 <= x <= 30,
+        "elevation_level": lambda x: isinstance(x, int) and 0 <= x <= 3
     }
     
     for option, validator in required_options.items():
@@ -317,11 +335,29 @@ def _calculate_container_styles(layout: dict, options: dict) -> dict:
     calculated_values = layout.get("calculated_values", {})
     text_width = calculated_values.get("text_width", 400)
     
+    # Erweiterte Design-Optionen aus options extrahieren
+    layout_style = options.get("layout_style", "abgerundet_modern")
+    container_shape = options.get("container_shape", "abgerundet")
+    border_style = options.get("border_style", "weicher_schatten")
+    texture_style = options.get("texture_style", "farbverlauf")
+    background_treatment = options.get("background_treatment", "gradient")
+    corner_radius = options.get("corner_radius", "medium")
+    accent_elements = options.get("accent_elements", "modern_minimal")
+    typography_style = options.get("typography_style", "humanist_sans")
+    photo_treatment = options.get("photo_treatment", "natural_daylight")
+    depth_style = options.get("depth_style", "soft_shadow_stack")
+    
+    # Slider-Parameter
+    element_spacing = options.get("element_spacing", 24)
+    container_padding = options.get("container_padding", 24)
+    shadow_intensity = options.get("shadow_intensity", 30)
+    grain_amount = options.get("grain_amount", 5)
+    tint_strength = options.get("tint_strength", 8)
+    glow_intensity = options.get("glow_intensity", 10)
+    elevation_level = options.get("elevation_level", 1)
+    
     # ADAPTIVE KOMPLEXITÄTSREDUKTION: Reduziere visuelle Komplexität bei schmalen Containern
     # Wenn Text-Breite unter 400px, vereinfache Container-Design
-    container_shape = options.get("container_shape", ('rounded_rectangle', '📱 Abgerundet'))
-    border_style = options.get("border_style", ('soft_shadow', '🌫️ Weicher Schatten'))
-    texture_style = options.get("texture_style", ('gradient', '🌈 Farbverlauf'))
     
     if text_width < 400:
         # Vereinfache Container-Style für bessere Lesbarkeit
@@ -367,21 +403,34 @@ def _calculate_container_styles(layout: dict, options: dict) -> dict:
     
     return {
         "all": {
+            "layout_style": layout_style,
             "shape": container_shape,
             "border_style": border_style,
             "texture_style": texture_style,
-            "corner_radius_px": options["corner_radius_px"],
+            "background_treatment": background_treatment,
+            "corner_radius": corner_radius,
+            "accent_elements": accent_elements,
+            "typography_style": typography_style,
+            "photo_treatment": photo_treatment,
+            "depth_style": depth_style,
             "padding_px": padding_calculations,
-            "transparency_pct": options["transparency_pct"]
+            "element_spacing": element_spacing,
+            "container_padding": container_padding,
+            "shadow_intensity": shadow_intensity,
+            "grain_amount": grain_amount,
+            "tint_strength": tint_strength,
+            "glow_intensity": glow_intensity,
+            "elevation_level": elevation_level,
+            "transparency_pct": options.get("container_transparency", 80)
         },
         "zone_specific": padding_calculations,
         "adaptive_complexity_reduction": text_width < 400  # Flag für Debugging
     }
 
 
-def _calculate_accent_elements(layout: dict, accent_elements: List[str]) -> dict:
+def _calculate_accent_elements(layout: dict, accent_elements: str) -> dict:
     """
-    Berechnet Akzent-Elemente basierend auf Layout-Zonen
+    Berechnet Akzent-Elemente basierend auf Layout-Zonen (erweitert)
     """
     zones = layout.get("zones", {})
     
@@ -391,26 +440,64 @@ def _calculate_accent_elements(layout: dict, accent_elements: List[str]) -> dict
     # Akzent-Spezifikationen basierend auf Zone-Größen
     accent_specs = {}
     
-    for element in accent_elements:
-        if element == "divider":
-            # Divider-Dicke basierend auf verfügbaren Zonen
-            if "headline_block" in zones and "subline_block" in zones:
-                accent_specs["divider_px"] = 2
-                accent_specs["divider_style"] = "solid"
+    # Erweiterte Accent-Elemente
+    if accent_elements == "modern_minimal":
+        accent_specs["style"] = "minimal"
+        accent_specs["divider_style"] = "thin_line"
+        accent_specs["divider_opacity"] = 0.3
         
-        elif element == "badge":
-            # Badge-Radius basierend auf Zone-Größen
-            if "standort_block" in zones:
-                zone_data = zones["standort_block"]
-                position = zone_data.get("position", "")
-                if position and "," in position:
-                    parts = position.split(",")
-                    if len(parts) >= 4:
-                        zone_height = int(parts[3])
-                        badge_radius = max(8, min(zone_height // 4, 20))
-                        accent_specs["badge_radius_px"] = badge_radius
+    elif accent_elements == "sanft_organisch":
+        accent_specs["style"] = "organic"
+        accent_specs["divider_style"] = "wavy"
+        accent_specs["divider_opacity"] = 0.4
         
-        elif element == "pin":
+    elif accent_elements == "geometrisch_praezise":
+        accent_specs["style"] = "geometric"
+        accent_specs["divider_style"] = "geometric_pattern"
+        accent_specs["divider_opacity"] = 0.5
+        
+    elif accent_elements == "kreativ_verspielt":
+        accent_specs["style"] = "playful"
+        accent_specs["divider_style"] = "dots_pattern"
+        accent_specs["divider_opacity"] = 0.6
+        
+    elif accent_elements == "micro_badges":
+        accent_specs["style"] = "micro_badges"
+        accent_specs["badge_size"] = "small"
+        accent_specs["badge_radius"] = 8
+        
+    elif accent_elements == "divider_dots":
+        accent_specs["style"] = "divider_dots"
+        accent_specs["dot_size"] = 4
+        accent_specs["dot_spacing"] = 8
+        
+    elif accent_elements == "icon_chips":
+        accent_specs["style"] = "icon_chips"
+        accent_specs["chip_size"] = 24
+        accent_specs["chip_radius"] = 12
+    
+    # Legacy-Support für alte Accent-Elemente
+    if isinstance(accent_elements, list):
+        for element in accent_elements:
+            if element == "divider":
+                # Divider-Dicke basierend auf verfügbaren Zonen
+                if "headline_block" in zones and "subline_block" in zones:
+                    accent_specs["divider_px"] = 2
+                    accent_specs["divider_style"] = "solid"
+            
+            elif element == "badge":
+                # Badge-Radius basierend auf Zone-Größen
+                if "standort_block" in zones:
+                    zone_data = zones["standort_block"]
+                    position = zone_data.get("position", "")
+                    if position and "," in position:
+                        parts = position.split(",")
+                        if len(parts) >= 4:
+                            zone_height = int(parts[3])
+                            badge_radius = max(8, min(zone_height // 4, 20))
+                            accent_specs["badge_radius_px"] = badge_radius
+            
+            elif element == "pin":
             # Pin-Größe basierend auf CTA-Zone
             if "cta_block" in zones:
                 zone_data = zones["cta_block"]

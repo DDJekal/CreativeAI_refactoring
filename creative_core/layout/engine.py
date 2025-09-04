@@ -38,30 +38,51 @@ class LayoutEngine:
     def calculate_layout_coordinates(
         self, 
         layout_dict: Dict[str, Any],
-        image_text_ratio: int = 50,
+        image_text_ratio: int = 70,
         container_transparency: int = 80,
+        element_spacing: int = 24,
+        container_padding: int = 24,
+        shadow_intensity: int = 30,
+        grain_amount: int = 5,
+        tint_strength: int = 8,
+        glow_intensity: int = 10,
+        elevation_level: int = 1,
         strict_validation: bool = False
     ) -> Dict[str, Any]:
         """
-        Berechnet die tatsächlichen Koordinaten für ein Layout
+        Berechnet die tatsächlichen Koordinaten für ein Layout (erweitert)
         
         Args:
             layout_dict: Das geladene Layout-Dictionary
-            image_text_ratio: Slider-Wert 30-70 (30% = mehr Text, 70% = mehr Bild)
-            container_transparency: Slider-Wert 0-100 (0 = transparent, 100 = undurchsichtig)
+            image_text_ratio: Slider-Wert 55-85 (55% = mehr Text, 85% = mehr Bild)
+            container_transparency: Slider-Wert 10-90 (10 = sehr transparent, 90 = undurchsichtig)
+            element_spacing: Abstand zwischen Elementen in Pixeln (12-56)
+            container_padding: Innenabstand der Container in Pixeln (16-40)
+            shadow_intensity: Intensität der Schatten (0-70)
+            grain_amount: Menge des Film-/Paper-Grains (0-25)
+            tint_strength: Stärke der CI-Farbtönung (0-20)
+            glow_intensity: Intensität der Glow-Effekte (0-30)
+            elevation_level: Höhenstufe der Karten (0-3)
             strict_validation: Ob strikte Validierung verwendet werden soll
             
         Returns:
-            Layout-Dictionary mit berechneten Koordinaten
+            Layout-Dictionary mit berechneten Koordinaten und erweiterten Slider-Werten
         """
         # Lade Canvas-Dimensionen aus dem Layout
         canvas = layout_dict.get('canvas', {})
         self.canvas_width = canvas.get('width', 1080)
         self.canvas_height = canvas.get('height', 1080)
         
-        # Validiere Slider-Werte
+        # Validiere erweiterte Slider-Werte
         image_text_ratio = self._validate_ratio(image_text_ratio)
         container_transparency = self._validate_transparency(container_transparency)
+        element_spacing = self._validate_element_spacing(element_spacing)
+        container_padding = self._validate_container_padding(container_padding)
+        shadow_intensity = self._validate_shadow_intensity(shadow_intensity)
+        grain_amount = self._validate_grain_amount(grain_amount)
+        tint_strength = self._validate_tint_strength(tint_strength)
+        glow_intensity = self._validate_glow_intensity(glow_intensity)
+        elevation_level = self._validate_elevation_level(elevation_level)
         
         # Berechne tatsächliche Breiten basierend auf dem Ratio
         text_width, image_width = self._calculate_widths(image_text_ratio, self.canvas_width)
@@ -69,55 +90,60 @@ class LayoutEngine:
         # Bestimme Layout-Typ und führe entsprechende Berechnung durch
         layout_type = layout_dict.get('layout_type', 'vertical_split')
         
+        # Erweiterte Parameter für alle Layout-Funktionen
+        extended_params = (layout_dict, text_width, image_width, container_transparency, image_text_ratio,
+                          element_spacing, container_padding, shadow_intensity, grain_amount, 
+                          tint_strength, glow_intensity, elevation_level)
+        
         if layout_type == 'vertical_split':
-            result = self._calculate_vertical_split(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_vertical_split(*extended_params)
         elif layout_type == 'vertical_split_left':
-            result = self._calculate_vertical_split_left(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_vertical_split_left(*extended_params)
         elif layout_type == 'horizontal_split':
-            result = self._calculate_horizontal_split(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_horizontal_split(*extended_params)
         elif layout_type == 'modern_split':
-            result = self._calculate_modern_split(layout_dict, text_width, image_width, container_transparency,image_text_ratio)
+            result = self._calculate_modern_split(*extended_params)
         elif layout_type == 'minimalist':
-            result = self._calculate_minimalist_layout(layout_dict, text_width, image_width, container_transparency,image_text_ratio)
+            result = self._calculate_minimalist_layout(*extended_params)
         elif layout_type == 'hero_layout':
-            result = self._calculate_hero_layout(layout_dict, text_width, image_width, container_transparency,image_text_ratio)
+            result = self._calculate_hero_layout(*extended_params)
         elif layout_type == 'portfolio':
-            result = self._calculate_portfolio_layout(layout_dict, text_width, image_width, container_transparency,image_text_ratio)
+            result = self._calculate_portfolio_layout(*extended_params)
         elif layout_type == 'storytelling_layout':
-            result = self._calculate_storytelling_layout(layout_dict, text_width, image_width, container_transparency,image_text_ratio)
+            result = self._calculate_storytelling_layout(*extended_params)
         elif layout_type == 'infographic':
-            result = self._calculate_infographic_layout(layout_dict, text_width, image_width, container_transparency,image_text_ratio)
+            result = self._calculate_infographic_layout(*extended_params)
         elif layout_type == 'magazine':
-            result = self._calculate_magazine_layout(layout_dict, text_width, image_width, container_transparency,image_text_ratio)
+            result = self._calculate_magazine_layout(*extended_params)
         elif layout_type == 'centered_layout':
-            result = self._calculate_centered_layout(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_centered_layout(*extended_params)
         elif layout_type == 'diagonal_layout':
-            result = self._calculate_diagonal_layout(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_diagonal_layout(*extended_params)
         elif layout_type == 'asymmetric_layout':
-            result = self._calculate_asymmetric_layout(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_asymmetric_layout(*extended_params)
         elif layout_type == 'grid_layout':
-            result = self._calculate_grid_layout(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_grid_layout(*extended_params)
         elif layout_type == 'split_layout':
-            result = self._calculate_split_layout(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_split_layout(*extended_params)
         else:
             # Fallback: Verwende vertikales Split
-            result = self._calculate_vertical_split(layout_dict, text_width, image_width, container_transparency, image_text_ratio)
+            result = self._calculate_vertical_split(*extended_params)
         
         return result
     
     def _validate_ratio(self, ratio) -> int:
-        """Validiert den image_text_ratio Slider-Wert"""
+        """Validiert den image_text_ratio Slider-Wert (erweitert auf 55-85)"""
         # Konvertiere zu int falls String
         if isinstance(ratio, str):
             try:
                 ratio = int(ratio)
             except ValueError:
-                ratio = 50  # Standardwert
+                ratio = 70  # Standardwert (erhöht von 50)
         
-        if ratio < 30:
-            return 30
-        elif ratio > 70:
-            return 70
+        if ratio < 55:
+            return 55
+        elif ratio > 85:
+            return 85
         return ratio
     
     def _update_zone_position_for_adaptive_typography(self, zone_data: Dict[str, Any], new_width: int) -> None:
@@ -170,6 +196,7 @@ class LayoutEngine:
                 })
     
     def _validate_transparency(self, transparency) -> int:
+        """Validiert container_transparency (erweitert auf 10-90)"""
         # Konvertiere zu int falls String
         if isinstance(transparency, str):
             try:
@@ -177,10 +204,10 @@ class LayoutEngine:
             except ValueError:
                 transparency = 80  # Standardwert
         
-        if transparency < 0:
-            return 0
-        elif transparency > 100:
-            return 100
+        if transparency < 10:
+            return 10
+        elif transparency > 90:
+            return 90
         return transparency
     
     def _calculate_widths(self, ratio: int, canvas_width: int = 1080) -> Tuple[int, int]:
@@ -218,7 +245,14 @@ class LayoutEngine:
         text_width: int, 
         image_width: int, 
         transparency: int,
-        image_text_ratio: int = 50
+        image_text_ratio: int = 70,
+        element_spacing: int = 24,
+        container_padding: int = 24,
+        shadow_intensity: int = 30,
+        grain_amount: int = 5,
+        tint_strength: int = 8,
+        glow_intensity: int = 10,
+        elevation_level: int = 1
     ) -> Dict[str, Any]:
         """
         Berechnet Koordinaten für vertikale Aufteilung (Text links, Bild rechts)
@@ -245,12 +279,19 @@ class LayoutEngine:
         # Aktualisiere das Layout
         result['zones'] = zones
         
-        # Füge berechnete Werte hinzu
+        # Füge berechnete Werte hinzu (erweitert)
         result['calculated_values'] = {
             'text_width': text_width,
             'image_width': image_width,
             'container_transparency': transparency / 100,
-            'image_text_ratio': image_text_ratio  # Korrigierter Slider-Wert
+            'image_text_ratio': image_text_ratio,
+            'element_spacing': element_spacing,
+            'container_padding': container_padding,
+            'shadow_intensity': shadow_intensity,
+            'grain_amount': grain_amount,
+            'tint_strength': tint_strength,
+            'glow_intensity': glow_intensity,
+            'elevation_level': elevation_level
         }
         
         return result
@@ -1355,6 +1396,34 @@ class LayoutEngine:
             'calculated_values': calculated_values,
             'layout_type': 'split_layout'
         }
+
+    def _validate_element_spacing(self, value: int) -> int:
+        """Validiert element_spacing (12-56)"""
+        return max(12, min(56, value))
+    
+    def _validate_container_padding(self, value: int) -> int:
+        """Validiert container_padding (16-40)"""
+        return max(16, min(40, value))
+    
+    def _validate_shadow_intensity(self, value: int) -> int:
+        """Validiert shadow_intensity (0-70)"""
+        return max(0, min(70, value))
+    
+    def _validate_grain_amount(self, value: int) -> int:
+        """Validiert grain_amount (0-25)"""
+        return max(0, min(25, value))
+    
+    def _validate_tint_strength(self, value: int) -> int:
+        """Validiert tint_strength (0-20)"""
+        return max(0, min(20, value))
+    
+    def _validate_glow_intensity(self, value: int) -> int:
+        """Validiert glow_intensity (0-30)"""
+        return max(0, min(30, value))
+    
+    def _validate_elevation_level(self, value: int) -> int:
+        """Validiert elevation_level (0-3)"""
+        return max(0, min(3, value))
 
 
 # Globale Instanz des Layout-Engines

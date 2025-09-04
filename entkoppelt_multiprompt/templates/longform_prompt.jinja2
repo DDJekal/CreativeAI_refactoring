@@ -46,9 +46,9 @@ Komposition & Layout
 {% set ratio_str = (spec.params.sliders.image_text_ratio|string).strip() %}
 layout_id: {{ spec.params.layout_id }}.
 {% if spec.params.layout_id in full_bg_ids or ratio_str.startswith('100') %}
-Das Motiv füllt 100 % der Leinwand als Vollbild-Hintergrund; Textcontainer liegen als Overlays im Negativraum und folgen der definierten Hierarchie.
+Das Motiv füllt 100 % der Leinwand als Vollbild-Hintergrund; Textcontainer liegen als Overlays im Negativraum und folgen der definierten Hierarchie (Standort → Headline → Subline → Benefits → Stellentitel → CTA).
 {% else %}
-Klares Split-Layout gemäß Slider: ausgewogene Text-/Bildspalte, konsistente Abstände und sauberer Negativraum. Hierarchie: Headline → Subline → Benefits → Stellentitel → CTA → Standort.
+Klares Split-Layout gemäß Slider: ausgewogene Text-/Bildspalte, konsistente Abstände und sauberer Negativraum. Hierarchie: Standort → Headline → Subline → Benefits → Stellentitel → CTA.
 {% endif %}
 
 Form & Design

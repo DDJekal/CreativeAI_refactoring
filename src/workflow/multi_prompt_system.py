@@ -154,8 +154,22 @@ class InputProcessor:
             accent_elements = streamlit_input.get('accent_elements', ('modern_minimal', '⚪ Modern Minimal'))
             
             # Neue Layout-Proportionen
-            image_text_ratio = streamlit_input.get('image_text_ratio', 50)
-            container_transparency = streamlit_input.get('container_transparency', 0)
+            image_text_ratio = streamlit_input.get('image_text_ratio', 70)
+            container_transparency = streamlit_input.get('container_transparency', 80)
+            
+            # Erweiterte Design-Kategorien
+            typography_style = streamlit_input.get('typography_style', 'humanist_sans')
+            photo_treatment = streamlit_input.get('photo_treatment', 'natural_daylight')
+            depth_style = streamlit_input.get('depth_style', 'soft_shadow_stack')
+            
+            # Erweiterte Slider-Parameter
+            element_spacing = streamlit_input.get('element_spacing', 24)
+            container_padding = streamlit_input.get('container_padding', 24)
+            shadow_intensity = streamlit_input.get('shadow_intensity', 30)
+            grain_amount = streamlit_input.get('grain_amount', 5)
+            tint_strength = streamlit_input.get('tint_strength', 8)
+            glow_intensity = streamlit_input.get('glow_intensity', 10)
+            elevation_level = streamlit_input.get('elevation_level', 1)
             
             # CI-Farben
             primary_color = streamlit_input.get('primary_color', '#005EA5')

@@ -1034,59 +1034,97 @@ with col2:
     if st.button("🎲 Style randomisieren", type="secondary", use_container_width=True, key="randomize_style_button_header"):
         import random
         
-        # Alle verfügbaren Optionen definieren
+        # Alle verfügbaren Optionen definieren (erweitert)
         style_options = {
             'layout_style': [
-                ("sharp_geometric", "🎨 Scharf & Geometrisch"),
-                ("rounded_modern", "🔵 Abgerundet & Modern"),
-                ("organic_flowing", "🌊 Organisch & Fließend"),
-                ("wave_contours", "🌊 Wellige Konturen"),
-                ("hexagonal", "⬡ Sechseckig"),
-                ("circular", "⭕ Kreisförmig"),
-                ("asymmetric", "⚡ Asymmetrisch"),
-                ("minimal_clean", "⚪ Minimal & Clean")
+                ("abgerundet_modern", "🔵 Abgerundet Modern"),
+                ("scharf_zeitgemaess", "⚡ Scharf & Zeitgemäß"),
+                ("organisch_fliessend", "🌊 Organisch & Fließend"),
+                ("geometrisch_praezise", "📐 Geometrisch & Präzise"),
+                ("neon_tech", "💫 Neon Tech"),
+                ("editorial_clean", "📰 Editorial Clean"),
+                ("soft_neumorph", "🫧 Soft Neumorph"),
+                ("glassmorph_minimal", "💎 Glassmorph Minimal"),
+                ("clay_ui", "🏺 Clay UI"),
+                ("warm_documentary", "🎬 Warm Documentary")
             ],
             'container_shape': [
-                ("rectangle", "Rechteckig 📐"),
-                ("rounded_rectangle", "Abgerundet 📱"), 
-                ("circle", "Kreisförmig ⭕"),
-                ("hexagon", "Sechseckig ⬡"),
-                ("organic_blob", "Organisch 🫧")
+                ("abgerundet", "Abgerundet 📱"),
+                ("scharf", "Scharf 📐"),
+                ("organisch", "Organisch 🫧"),
+                ("geometrisch", "Geometrisch ⬡"),
+                ("capsule", "Capsule 💊"),
+                ("ribbon", "Ribbon 🎀"),
+                ("tag", "Tag 🏷️")
             ],
             'border_style': [
-                ("solid", "Durchgezogen ━"),
-                ("dashed", "Gestrichelt ┅"),
-                ("dotted", "Gepunktet ┈"),
-                ("soft_shadow", "Weicher Schatten 🌫️"),
-                ("glow", "Leuchteffekt ✨"),
-                ("none", "Ohne Rahmen")
+                ("keine", "Keine ❌"),
+                ("weicher_schatten", "Weicher Schatten 🌫️"),
+                ("harte_konturen", "Harte Konturen ⚡"),
+                ("gradient_rand", "Gradient-Rand 🌈"),
+                ("doppelstrich", "Doppelstrich ═"),
+                ("innenlinie", "Innenlinie ┃"),
+                ("emboss", "Emboss 🔲"),
+                ("outline_glow", "Outline-Glow ✨")
             ],
             'texture_style': [
-                ("solid", "Einfarbig 🎨"),
-                ("gradient", "Farbverlauf 🌈"),
-                ("pattern", "Muster 📐"),
-                ("glass_effect", "Glas-Effekt 💎"),
-                ("matte", "Matt 🎭")
+                ("farbverlauf", "Farbverlauf 🌈"),
+                ("glaseffekt", "Glas-Effekt 💎"),
+                ("matte_oberflaeche", "Matte Oberfläche 🎭"),
+                ("strukturiert", "Strukturiert 📐"),
+                ("paper_grain", "Paper Grain 📄"),
+                ("film_grain", "Film Grain 🎬"),
+                ("noise_gradient", "Noise Gradient 🌫️"),
+                ("subtle_pattern", "Subtle Pattern ⚪"),
+                ("soft_neumorph", "Soft Neumorph 🫧"),
+                ("emboss_deboss", "Emboss/Deboss 🔲")
             ],
             'background_treatment': [
-                ("solid", "Einfarbig 🎨"),
-                ("subtle_pattern", "Subtiles Muster 🌸"),
-                ("geometric", "Geometrisch 📐"),
-                ("organic", "Organisch 🌿"),
-                ("none", "Transparent")
+                ("transparent", "Transparent 👻"),
+                ("vollflaechig", "Vollflächig 🎨"),
+                ("gradient", "Gradient 🌈"),
+                ("subtiles_muster", "Subtiles Muster 🌸"),
+                ("duotone_motivtint", "Duotone Motivtint 🎨"),
+                ("vignette_soft", "Vignette Soft 🔍"),
+                ("depth_layers", "Depth Layers 📚")
             ],
             'corner_radius': [
                 ("small", "Klein (8px) ⌐"),
                 ("medium", "Mittel (16px) ⌜"), 
                 ("large", "Groß (24px) ⌞"),
-                ("xl", "Sehr groß (32px) ◜")
+                ("xl", "Sehr groß (32px) ◜"),
+                ("auto", "Auto-Radius 🔄")
             ],
             'accent_elements': [
-                ("classic", "Klassisch 🏛️"),
                 ("modern_minimal", "Modern Minimal ⚪"),
-                ("playful", "Verspielt 🎪"),
-                ("organic", "Organisch 🌱"),
-                ("bold", "Auffällig ⚡")
+                ("sanft_organisch", "Sanft Organisch 🌱"),
+                ("geometrisch_praezise", "Geometrisch Präzise 📐"),
+                ("kreativ_verspielt", "Kreativ Verspielt 🎪"),
+                ("micro_badges", "Micro-Badges 🏷️"),
+                ("divider_dots", "Divider Dots ⚫"),
+                ("icon_chips", "Icon Chips 🔲")
+            ],
+            'typography_style': [
+                ("humanist_sans", "Humanist Sans 👤"),
+                ("grotesk_bold", "Grotesk Bold 💪"),
+                ("serif_editorial", "Serif Editorial 📰"),
+                ("mono_detail", "Mono Detail 🔢"),
+                ("rounded_sans", "Rounded Sans 🔵")
+            ],
+            'photo_treatment': [
+                ("natural_daylight", "Natural Daylight ☀️"),
+                ("cinematic_warm", "Cinematic Warm 🎬"),
+                ("clean_clinic", "Clean Clinic 🏥"),
+                ("documentary_soft_grain", "Documentary Soft Grain 📹"),
+                ("duotone_subtle", "Duotone Subtle 🎨"),
+                ("bokeh_light", "Bokeh Light ✨")
+            ],
+            'depth_style': [
+                ("soft_shadow_stack", "Soft Shadow Stack 🌫️"),
+                ("drop_inner_shadow", "Drop + Inner Shadow 💧"),
+                ("card_elevation_1", "Card Elevation 1 📄"),
+                ("card_elevation_2", "Card Elevation 2 📋"),
+                ("card_elevation_3", "Card Elevation 3 📑")
             ]
         }
         

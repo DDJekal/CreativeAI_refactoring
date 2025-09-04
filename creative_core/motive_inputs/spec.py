@@ -46,8 +46,22 @@ def build_motive_spec(user_input_yaml: Union[str, Dict[str, Any]]) -> Dict[str, 
         accent_elements = input_data.get('accent_elements', ('modern_minimal', '⚪ Modern Minimal'))
         
         # Neue Layout-Proportionen (aus InputProcessor.process() migriert)
-        image_text_ratio = input_data.get('image_text_ratio', 50)
-        container_transparency = input_data.get('container_transparency', 0)
+        image_text_ratio = input_data.get('image_text_ratio', 70)
+        container_transparency = input_data.get('container_transparency', 80)
+        
+        # Erweiterte Design-Kategorien
+        typography_style = input_data.get('typography_style', 'humanist_sans')
+        photo_treatment = input_data.get('photo_treatment', 'natural_daylight')
+        depth_style = input_data.get('depth_style', 'soft_shadow_stack')
+        
+        # Erweiterte Slider-Parameter
+        element_spacing = input_data.get('element_spacing', 24)
+        container_padding = input_data.get('container_padding', 24)
+        shadow_intensity = input_data.get('shadow_intensity', 30)
+        grain_amount = input_data.get('grain_amount', 5)
+        tint_strength = input_data.get('tint_strength', 8)
+        glow_intensity = input_data.get('glow_intensity', 10)
+        elevation_level = input_data.get('elevation_level', 1)
         
         # Zusätzliche Motiv-Felder mit Defaults
         persona = input_data.get('persona', 'professionell')
@@ -70,6 +84,16 @@ def build_motive_spec(user_input_yaml: Union[str, Dict[str, Any]]) -> Dict[str, 
             'accent_elements': accent_elements,
             'image_text_ratio': image_text_ratio,
             'container_transparency': container_transparency,
+            'typography_style': typography_style,
+            'photo_treatment': photo_treatment,
+            'depth_style': depth_style,
+            'element_spacing': element_spacing,
+            'container_padding': container_padding,
+            'shadow_intensity': shadow_intensity,
+            'grain_amount': grain_amount,
+            'tint_strength': tint_strength,
+            'glow_intensity': glow_intensity,
+            'elevation_level': elevation_level,
             'persona': persona,
             'shot_type': shot_type,
             'environment': environment

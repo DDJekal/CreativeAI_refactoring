@@ -127,12 +127,12 @@ def PromptBuilder(state: Dict[str, Any]) -> Dict[str, Any]:
     if layout_id in full_bg_ids or ratio_val == 100:
         comp_block = (
             f"layout_id: {layout_id}. Das Motiv füllt 100 % der Leinwand als Vollbild-Hintergrund; "
-            "Textcontainer folgen der definierten Hierarchie (Headline → Subline → Benefits → Stellentitel → CTA → Standort)."
+            "Textcontainer folgen der definierten Hierarchie (Standort → Headline → Subline → Benefits → Stellentitel → CTA)."
         )
     else:
         comp_block = (
             f"layout_id: {layout_id}. Klares Split-Layout gemäß Slider: ausgewogene Text-/Bildspalte, "
-            "konsistente Abstände und sauberer Negativraum; Hierarchie: Headline → Subline → Benefits → Stellentitel → CTA → Standort."
+            "konsistente Abstände und sauberer Negativraum; Hierarchie: Standort → Headline → Subline → Benefits → Stellentitel → CTA."
         )
 
     slider_line = (

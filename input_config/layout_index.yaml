@@ -197,18 +197,67 @@ layout_engine:
   # Unterstützte Slider-Parameter
   supported_sliders:
     image_text_ratio:
-      min: 30
-      max: 70
-      default: 50
+      min: 55
+      max: 85
+      default: 70
       step: 5
-      description: "Verhältnis zwischen Bild und Text (30% = mehr Text, 70% = mehr Bild)"
+      description: "Verhältnis zwischen Bild und Text (55% = mehr Text, 85% = mehr Bild)"
       
     container_transparency:
-      min: 0
-      max: 100
+      min: 10
+      max: 90
       default: 80
       step: 5
-      description: "Transparenz der Container (0 = vollständig transparent, 100 = undurchsichtig)"
+      description: "Transparenz der Container (10 = sehr transparent, 90 = undurchsichtig)"
+      
+    element_spacing:
+      min: 12
+      max: 56
+      default: 24
+      step: 4
+      description: "Abstand zwischen Elementen in Pixeln"
+      
+    container_padding:
+      min: 16
+      max: 40
+      default: 24
+      step: 4
+      description: "Innenabstand der Container in Pixeln"
+      
+    shadow_intensity:
+      min: 0
+      max: 70
+      default: 30
+      step: 5
+      description: "Intensität der Schatten (0 = keine, 70 = sehr stark)"
+      
+    grain_amount:
+      min: 0
+      max: 25
+      default: 5
+      step: 1
+      description: "Menge des Film-/Paper-Grains (0 = keine, 25 = sehr viel)"
+      
+    tint_strength:
+      min: 0
+      max: 20
+      default: 8
+      step: 2
+      description: "Stärke der CI-Farbtönung (0 = keine, 20 = sehr stark)"
+      
+    glow_intensity:
+      min: 0
+      max: 30
+      default: 10
+      step: 2
+      description: "Intensität der Glow-Effekte (0 = keine, 30 = sehr stark)"
+      
+    elevation_level:
+      min: 0
+      max: 3
+      default: 1
+      step: 1
+      description: "Höhenstufe der Karten (0 = flach, 3 = sehr erhaben)"
       
   # Fallback-Verhalten
   fallbacks:
