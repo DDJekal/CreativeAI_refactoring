@@ -266,7 +266,10 @@ def build_chatgpt_prompt(payload: dict, fixed_choices: dict, sliders: dict, enfo
 - motiv_quality: {fixed_choices['motiv_quality']}
 - motiv_style: {fixed_choices['motiv_style']}
 - lighting_type: {fixed_choices['lighting_type']}
-- framing: {fixed_choices['framing']}"""
+- framing: {fixed_choices['framing']}
+- art_style: {fixed_choices.get('art_style', '')}
+- mood_atmosphere: {fixed_choices.get('mood_atmosphere', '')}
+- season_weather: {fixed_choices.get('season_weather', '')}"""
 
     if enforce_full_bg:
         slider_text = f"""- image_text_ratio: 100 % (erzwungen: Vollbild-Hintergrund durch Layout)
