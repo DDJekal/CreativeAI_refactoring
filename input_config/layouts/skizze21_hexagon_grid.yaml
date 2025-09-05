@@ -1,0 +1,68 @@
+layout_id: skizze21_hexagon_grid
+name: "Skizze 21 – Hexagon Grid"
+layout_type: hexagon_grid_layout
+description: "Sechseckiges Grid, Textcontainer in modularen Kacheln."
+
+canvas:
+  width: 1080
+  height: 1080
+  aspect_ratio: "1:1"
+
+zones:
+  standort_block:
+    x: 80
+    y: 80
+    width: 260
+    height: 70
+    z: 1
+    content_type: text_elements
+
+  headline_block:
+    x: 160
+    y: 200
+    width: 520
+    height: 140
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 720
+    y: 220
+    width: 280
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 120
+    y: 360
+    width: 380
+    height: 220
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 520
+    y: 380
+    width: 420
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 720
+    y: 520
+    width: 280
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
+    content_type: image_motiv
+
+

@@ -65,6 +65,96 @@ layouts:
     tags: ["grid", "modular", "flexible", "systematic"]
     preview: "Skizze12.png"
 
+  skizze18_zigzag_layout:
+    name: "Zigzag Layout"
+    description: "Zickzack-Anordnung mit versetzten Textblöcken"
+    file: "layouts/skizze18_zigzag_layout.yaml"
+    type: "dynamic_zigzag"
+    complexity: "medium"
+    tags: ["zigzag", "dynamic", "diagonal"]
+    preview: "Skizze18.png"
+
+  skizze19_wave_layout:
+    name: "Wave Layout"
+    description: "Organische, wellenförmige Anordnung der Textcontainer"
+    file: "layouts/skizze19_wave_layout.yaml"
+    type: "dynamic_wave"
+    complexity: "medium"
+    tags: ["wave", "organic", "flow"]
+    preview: "Skizze19.png"
+
+  skizze22_triangle_grid:
+    name: "Triangle Grid"
+    description: "Dreiecks-inspiriertes modulare Grid"
+    file: "layouts/skizze22_triangle_grid.yaml"
+    type: "dynamic_triangle_grid"
+    complexity: "hard"
+    tags: ["triangle", "grid", "geometric"]
+    preview: "Skizze22.png"
+
+  skizze23_magazine_spread:
+    name: "Magazine Spread"
+    description: "Editorial-Doppelseiten-Feeling mit klarer Typo"
+    file: "layouts/skizze23_magazine_spread.yaml"
+    type: "dynamic_magazine_spread"
+    complexity: "hard"
+    tags: ["magazine", "editorial", "spread"]
+    preview: "Skizze23.png"
+
+  skizze24_newspaper_layout:
+    name: "Newspaper Layout"
+    description: "Zeitungsstil mit Spalten und Modulen"
+    file: "layouts/skizze24_newspaper_layout.yaml"
+    type: "dynamic_newspaper"
+    complexity: "medium"
+    tags: ["newspaper", "columns", "editorial"]
+    preview: "Skizze24.png"
+
+  skizze14_circular_layout:
+    name: "Circular Layout"
+    description: "Zentriertes Motiv mit radial angeordneten Textcontainern"
+    file: "layouts/skizze14_circular_layout.yaml"
+    type: "dynamic_circular"
+    complexity: "medium"
+    tags: ["circular", "radial", "centered", "overlay"]
+    preview: "Skizze14.png"
+
+  skizze17_diagonal_cascade:
+    name: "Diagonal Cascade"
+    description: "Diagonal fließende Textkaskade über Motiv"
+    file: "layouts/skizze17_diagonal_cascade.yaml"
+    type: "dynamic_diagonal"
+    complexity: "medium"
+    tags: ["diagonal", "cascade", "dynamic"]
+    preview: "Skizze17.png"
+
+  skizze20_masonry_layout:
+    name: "Masonry Layout"
+    description: "Mosaik-/Masonry-Anordnung mit modularen Textbereichen"
+    file: "layouts/skizze20_masonry_layout.yaml"
+    type: "dynamic_masonry"
+    complexity: "hard"
+    tags: ["masonry", "mosaic", "modular"]
+    preview: "Skizze20.png"
+
+  skizze21_hexagon_grid:
+    name: "Hexagon Grid"
+    description: "Sechseckiges Grid, Textcontainer in modularen Kacheln"
+    file: "layouts/skizze21_hexagon_grid.yaml"
+    type: "dynamic_hex_grid"
+    complexity: "hard"
+    tags: ["hexagon", "grid", "geometric"]
+    preview: "Skizze21.png"
+
+  skizze29_story_format:
+    name: "Story Format"
+    description: "Story-orientiertes Layout mit vertikaler Hierarchie"
+    file: "layouts/skizze29_story_format.yaml"
+    type: "dynamic_story"
+    complexity: "easy"
+    tags: ["story", "vertical", "social"]
+    preview: "Skizze29.png"
+
   # ========================================
   # GRUPPE 3: Spezialisierte Layouts
   # ========================================
@@ -151,17 +241,17 @@ categories:
   modern_styles:
     name: "Moderne Styles"
     description: "Aktuelle, trendige Layout-Ansätze"
-    layouts: ["skizze10_modern_split", "skizze11_asymmetric", "skizze12_grid"]
+    layouts: ["skizze10_modern_split", "skizze11_asymmetric", "skizze12_grid", "skizze17_diagonal_cascade", "skizze18_zigzag_layout"]
     
   specialized:
     name: "Spezialisierte Layouts"
     description: "Für spezifische Anwendungsfälle optimiert"
-    layouts: ["skizze4_sidebar", "skizze5_magazine", "skizze6_card"]
+    layouts: ["skizze4_sidebar", "skizze5_magazine", "skizze6_card", "skizze20_masonry_layout", "skizze21_hexagon_grid", "skizze24_newspaper_layout"]
     
   creative:
     name: "Kreative Layouts"
     description: "Künstlerische und experimentelle Ansätze"
-    layouts: ["skizze7_hero", "skizze8_mosaic", "skizze9_minimal", "skizze13_abstract"]
+    layouts: ["skizze7_hero", "skizze8_mosaic", "skizze9_minimal", "skizze13_abstract", "skizze14_circular_layout", "skizze19_wave_layout"]
 
 # ========================================
 # KOMPLEXITÄTS-LEVEL
@@ -173,11 +263,11 @@ complexity_levels:
     
   medium:
     description: "Mittlere Komplexität, ausgewogene Flexibilität"
-    layouts: ["skizze1_vertical_split", "skizze2_horizontal_split", "skizze4_sidebar", "skizze6_card", "skizze10_modern_split"]
+    layouts: ["skizze1_vertical_split", "skizze2_horizontal_split", "skizze4_sidebar", "skizze6_card", "skizze10_modern_split", "skizze14_circular_layout", "skizze17_diagonal_cascade", "skizze18_zigzag_layout", "skizze19_wave_layout", "skizze24_newspaper_layout"]
     
   hard:
     description: "Hohe Komplexität, maximale Flexibilität"
-    layouts: ["skizze5_magazine", "skizze8_mosaic", "skizze11_asymmetric", "skizze12_grid", "skizze13_abstract"]
+    layouts: ["skizze5_magazine", "skizze8_mosaic", "skizze11_asymmetric", "skizze12_grid", "skizze13_abstract", "skizze20_masonry_layout", "skizze21_hexagon_grid", "skizze22_triangle_grid", "skizze23_magazine_spread"]
 
 # ========================================
 # LAYOUT-ENGINE KONFIGURATION

@@ -501,28 +501,28 @@ def _calculate_accent_elements(layout: dict, accent_elements: str) -> dict:
                             accent_specs["badge_radius_px"] = badge_radius
             
             elif element == "pin":
-            # Pin-Größe basierend auf CTA-Zone
-            if "cta_block" in zones:
-                zone_data = zones["cta_block"]
-                position = zone_data.get("position", "")
-                if position and "," in position:
-                    parts = position.split(",")
-                    if len(parts) >= 4:
-                        zone_height = int(parts[3])
-                        pin_size = max(12, min(zone_height // 6, 24))
-                        accent_specs["pin_size_px"] = pin_size
-        
-        elif element == "dot":
-            # Dot-Größe basierend auf Benefits-Zone
-            if "benefits_block" in zones:
-                zone_data = zones["benefits_block"]
-                position = zone_data.get("position", "")
-                if position and "," in position:
-                    parts = position.split(",")
-                    if len(parts) >= 4:
-                        zone_height = int(parts[3])
-                        dot_size = max(6, min(zone_height // 8, 16))
-                        accent_specs["dot_size_px"] = dot_size
+                # Pin-Größe basierend auf CTA-Zone
+                if "cta_block" in zones:
+                    zone_data = zones["cta_block"]
+                    position = zone_data.get("position", "")
+                    if position and "," in position:
+                        parts = position.split(",")
+                        if len(parts) >= 4:
+                            zone_height = int(parts[3])
+                            pin_size = max(12, min(zone_height // 6, 24))
+                            accent_specs["pin_size_px"] = pin_size
+
+            elif element == "dot":
+                # Dot-Größe basierend auf Benefits-Zone
+                if "benefits_block" in zones:
+                    zone_data = zones["benefits_block"]
+                    position = zone_data.get("position", "")
+                    if position and "," in position:
+                        parts = position.split(",")
+                        if len(parts) >= 4:
+                            zone_height = int(parts[3])
+                            dot_size = max(6, min(zone_height // 8, 16))
+                            accent_specs["dot_size_px"] = dot_size
     
     return {
         "elements": accent_elements,

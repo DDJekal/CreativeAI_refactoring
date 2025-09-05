@@ -1,0 +1,68 @@
+layout_id: skizze17_diagonal_cascade
+name: "Skizze 17 – Diagonal Cascade"
+layout_type: diagonal_cascade_layout
+description: "Diagonal fließende Textkaskade über Motiv, dynamische Leserichtung."
+
+canvas:
+  width: 1080
+  height: 1080
+  aspect_ratio: "1:1"
+
+zones:
+  standort_block:
+    x: 120
+    y: 140
+    width: 300
+    height: 60
+    z: 1
+    content_type: text_elements
+
+  headline_block:
+    x: 220
+    y: 240
+    width: 500
+    height: 130
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 340
+    y: 380
+    width: 480
+    height: 100
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 460
+    y: 520
+    width: 420
+    height: 180
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 580
+    y: 700
+    width: 360
+    height: 90
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 680
+    y: 840
+    width: 320
+    height: 90
+    z: 1
+    content_type: text_elements
+
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
+    content_type: image_motiv
+
+

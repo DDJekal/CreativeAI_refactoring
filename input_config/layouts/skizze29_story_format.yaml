@@ -1,0 +1,68 @@
+layout_id: skizze29_story_format
+name: "Skizze 29 – Story Format"
+layout_type: story_vertical_layout
+description: "Story-orientiertes Layout mit vertikaler Hierarchie und großen Textcontainern."
+
+canvas:
+  width: 1080
+  height: 1080
+  aspect_ratio: "1:1"
+
+zones:
+  standort_block:
+    x: 60
+    y: 80
+    width: 360
+    height: 70
+    z: 1
+    content_type: text_elements
+
+  headline_block:
+    x: 60
+    y: 170
+    width: 780
+    height: 180
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 60
+    y: 370
+    width: 720
+    height: 120
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 60
+    y: 510
+    width: 720
+    height: 220
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 60
+    y: 750
+    width: 560
+    height: 120
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 60
+    y: 890
+    width: 360
+    height: 120
+    z: 1
+    content_type: text_elements
+
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
+    content_type: image_motiv
+
+

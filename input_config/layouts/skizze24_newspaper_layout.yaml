@@ -1,0 +1,68 @@
+layout_id: skizze24_newspaper_layout
+name: "Skizze 24 – Newspaper Layout"
+layout_type: newspaper_layout
+description: "Zeitungsstil: schmale Spalten, klare Module, typografischer Fokus."
+
+canvas:
+  width: 1080
+  height: 1080
+  aspect_ratio: "1:1"
+
+zones:
+  standort_block:
+    x: 60
+    y: 60
+    width: 320
+    height: 70
+    z: 1
+    content_type: text_elements
+
+  headline_block:
+    x: 60
+    y: 150
+    width: 960
+    height: 140
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 60
+    y: 300
+    width: 460
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 540
+    y: 300
+    width: 480
+    height: 240
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 60
+    y: 560
+    width: 460
+    height: 120
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 540
+    y: 560
+    width: 320
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
+    content_type: image_motiv
+
+

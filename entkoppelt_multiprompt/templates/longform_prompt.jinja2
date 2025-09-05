@@ -52,7 +52,84 @@ Klares Split-Layout gemäß Slider: ausgewogene Text-/Bildspalte, konsistente Ab
 {% endif %}
 
 Form & Design
-layout_style: {{ spec.params.layout_style }}. Container: {{ spec.params.container_shape }} mit {{ spec.params.corner_radius }} Ecken. border_style: {{ spec.params.border_style }} (dezent). texture_style: {{ spec.params.texture_style }} (matt, haptisch). background_treatment: {{ spec.params.background_treatment }}. accent_elements: {{ spec.params.accent_elements }} (sparsam).
+layout_style: {{ spec.params.layout_style }}. 
+{% if spec.params.container_shape == "Abgerundet" -%}
+Container: Klassisch abgerundete Text-Container mit gleichmäßigen, sanften Ecken und freundlicher, einladender Form. Die Container haben konsistente Rundungen an allen Ecken.
+{% elif spec.params.container_shape == "Scharf" -%}
+Container: Scharfkantige Text-Container mit präzisen, geraden Linien und moderner, minimalistischer Ästhetik. Die Container haben keine Rundungen, nur scharfe 90-Grad-Ecken.
+{% elif spec.params.container_shape == "Organisch" -%}
+Container: Organisch geformte Text-Container mit unregelmäßigen, natürlichen Kanten und fließenden, weichen Übergängen. Die Container haben unregelmäßige, organische Formen.
+{% elif spec.params.container_shape == "Geometrisch" -%}
+Container: Geometrisch präzise Text-Container mit mathematisch exakten Formen und klaren, technischen Linien. Die Container haben präzise geometrische Formen.
+{% elif spec.params.container_shape == "Capsule" -%}
+Container: Kapselartige Text-Container mit extrem abgerundeten Ecken und sanfter, medizinisch-technischer Form. Die Container sind sehr stark abgerundet, fast oval.
+{% elif spec.params.container_shape == "Ribbon" -%}
+Container: Bandartige Text-Container mit minimalen Rundungen und schlanker, eleganter Form. Die Container haben sehr subtile Rundungen.
+{% elif spec.params.container_shape == "Tag" -%}
+Container: Tag-ähnliche Text-Container mit charakteristischer Form und moderner, web-orientierter Ästhetik. Die Container haben eine spezielle Tag-Form.
+{% elif spec.params.container_shape == "Asymmetrisch" -%}
+Container: Asymmetrische Text-Container mit unregelmäßigen, unkonventionellen Formen und zeitgemäßer, experimenteller Ästhetik. Die Container haben unregelmäßige, asymmetrische Formen.
+{% elif spec.params.container_shape == "Hexagon" -%}
+Container: Sechseckige (hexagonale) Text-Container mit geometrisch präzisen Kanten und moderner, tech-orientierter Ästhetik. Die Container haben sechs gleichmäßige Seiten mit scharfen, mathematisch exakten Ecken.
+{% elif spec.params.container_shape == "Diamond" -%}
+Container: Rautenförmige (diamantene) Text-Container mit diagonaler Ausrichtung und dynamischer, energiegeladener Form. Die Container sind als Rauten geformt mit vier gleichmäßigen Seiten.
+{% elif spec.params.container_shape == "Pill" -%}
+Container: Kapselartige (pill-förmige) Text-Container mit sehr stark abgerundeten Ecken und sanfter, medizinisch-technischer Form. Die Container sind oval-kapselartig geformt.
+{% elif spec.params.container_shape == "Rounded Square" -%}
+Container: Quadratische Text-Container mit gleichmäßig abgerundeten Ecken und ausgewogener, klassischer Form. Die Container sind quadratisch mit abgerundeten Ecken.
+{% elif spec.params.container_shape == "Soft Rectangle" -%}
+Container: Sanft abgerundete Rechteck-Container mit weichen Übergängen und freundlicher, einladender Form. Die Container sind rechteckig mit sanften Rundungen.
+{% elif spec.params.container_shape == "Wave" -%}
+Container: Wellenförmige, organisch fließende Text-Container mit sanften, unregelmäßigen Kanten und natürlicher, flüssiger Form. Die Container haben wellenartige, geschwungene Ränder.
+{% elif spec.params.container_shape == "Cloud" -%}
+Container: Wolkenartige, weiche Text-Container mit unregelmäßigen, organischen Kanten und sanft geschwungenen Formen. Die Container ähneln Wolken mit weichen, unregelmäßigen Rändern.
+{% elif spec.params.container_shape == "Bubble" -%}
+Container: Blasenartige, runde Text-Container mit sehr weichen, organischen Kanten und spielerischer, freundlicher Form. Die Container sind sehr rund und blasenartig geformt.
+{% elif spec.params.container_shape == "Cut Corner" -%}
+Container: Text-Container mit abgeschnittenen Ecken und geometrisch präzisen Schnitten für moderne, technische Optik. Die Container haben abgeschnittene Ecken mit geraden Schnitten.
+{% elif spec.params.container_shape == "Notched" -%}
+Container: Text-Container mit eingekerbten Seiten und unkonventionellen, modernen Formen. Die Container haben Kerben oder Einbuchtungen in den Seiten.
+{% elif spec.params.container_shape == "Floating" -%}
+Container: Schwebende Text-Container mit sanften Schatten und leichter, luftiger Erscheinung. Die Container schweben mit sanften Schatten über dem Hintergrund.
+{% elif spec.params.container_shape == "Card Stack" -%}
+Container: Gestapelte Karten-Container mit mehrschichtiger Tiefe und moderner, hierarchischer Anordnung. Die Container sind wie gestapelte Karten angeordnet.
+{% else -%}
+Container: {{ spec.params.container_shape }} mit {{ spec.params.corner_radius }} Ecken.
+{% endif -%}
+
+{% if spec.params.corner_radius == "Minimal 4px" -%}
+Eckenradius: Sehr subtile Rundungen (4px) für minimalistische, präzise Optik. Die Container haben nur sehr leichte Rundungen.
+{% elif spec.params.corner_radius == "Klein 8px" -%}
+Eckenradius: Kleine Rundungen (8px) für moderne, saubere Ästhetik. Die Container haben dezente Rundungen.
+{% elif spec.params.corner_radius == "Mittel 16px" -%}
+Eckenradius: Mittlere Rundungen (16px) für ausgewogene, freundliche Optik. Die Container haben moderate Rundungen.
+{% elif spec.params.corner_radius == "Gross 24px" -%}
+Eckenradius: Große Rundungen (24px) für weiche, einladende Formen. Die Container haben deutliche Rundungen.
+{% elif spec.params.corner_radius == "Sehr Gross 32px" -%}
+Eckenradius: Sehr große Rundungen (32px) für sehr weiche, organische Formen. Die Container haben starke Rundungen.
+{% elif spec.params.corner_radius == "Extra Gross 40px" -%}
+Eckenradius: Extra große Rundungen (40px) für extrem weiche, kapselartige Formen. Die Container haben sehr starke Rundungen.
+{% elif spec.params.corner_radius == "Asymmetrisch" -%}
+Eckenradius: Asymmetrische Rundungen mit verschiedenen Radien pro Ecke für dynamische, unkonventionelle Optik. Die Container haben unterschiedliche Rundungen an verschiedenen Ecken.
+{% elif spec.params.corner_radius == "Variable" -%}
+Eckenradius: Variable Rundungen basierend auf Container-Größe für adaptive, intelligente Formen. Die Container haben sich anpassende Rundungen.
+{% elif spec.params.corner_radius == "Organic" -%}
+Eckenradius: Organische, unregelmäßige Rundungen für natürliche, fließende Formen. Die Container haben unregelmäßige, organische Rundungen.
+{% elif spec.params.corner_radius == "Sharp Corners" -%}
+Eckenradius: Scharfe Ecken ohne Rundungen für präzise, technische Optik. Die Container haben keine Rundungen.
+{% elif spec.params.corner_radius == "Mixed Radius" -%}
+Eckenradius: Gemischte Rundungen mit verschiedenen Radien für kreative, experimentelle Formen. Die Container haben verschiedene Rundungen.
+{% elif spec.params.corner_radius == "Dynamic" -%}
+Eckenradius: Dynamische Rundungen die sich automatisch anpassen für intelligente, responsive Formen. Die Container haben sich anpassende Rundungen.
+{% elif spec.params.corner_radius == "Geometric" -%}
+Eckenradius: Geometrisch präzise Rundungen für technische, mathematische Formen. Die Container haben präzise geometrische Rundungen.
+{% elif spec.params.corner_radius == "Soft Edges" -%}
+Eckenradius: Sehr weiche Rundungen für sanfte, einladende Formen. Die Container haben sehr sanfte Übergänge.
+{% elif spec.params.corner_radius == "Auto-Radius" -%}
+Eckenradius: Automatische Rundungen basierend auf Container-Form und -Größe für optimale, intelligente Formen. Die Container haben sich automatisch anpassende Rundungen.
+{% endif -%}
+
+border_style: {{ spec.params.border_style }} (dezent). texture_style: {{ spec.params.texture_style }} (matt, haptisch). background_treatment: {{ spec.params.background_treatment }}. accent_elements: {{ spec.params.accent_elements }} (sparsam).
 
 Farbwelt & CI
 Verwende ausschließlich: primary {{ spec.params.ci_colors.primary }}, secondary {{ spec.params.ci_colors.secondary }}, accent {{ spec.params.ci_colors.accent }}, background {{ spec.params.ci_colors.background }}. Klare Lesbarkeit auf halbtransparenten Containern; natürliche Hauttöne beibehalten; Akzentfarbe sparsam.

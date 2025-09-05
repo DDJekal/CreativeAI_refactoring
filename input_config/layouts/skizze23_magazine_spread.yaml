@@ -1,0 +1,68 @@
+layout_id: skizze23_magazine_spread
+name: "Skizze 23 – Magazine Spread"
+layout_type: magazine_spread_layout
+description: "Editorial-Doppelseitengefühl: breite Headline, Spaltenfluss, klare Hierarchie."
+
+canvas:
+  width: 1080
+  height: 1080
+  aspect_ratio: "1:1"
+
+zones:
+  standort_block:
+    x: 60
+    y: 60
+    width: 360
+    height: 70
+    z: 1
+    content_type: text_elements
+
+  headline_block:
+    x: 60
+    y: 150
+    width: 960
+    height: 160
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 60
+    y: 320
+    width: 620
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 60
+    y: 440
+    width: 460
+    height: 240
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 560
+    y: 460
+    width: 460
+    height: 120
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 560
+    y: 600
+    width: 320
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
+    content_type: image_motiv
+
+

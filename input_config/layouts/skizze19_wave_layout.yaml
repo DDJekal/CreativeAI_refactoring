@@ -1,0 +1,68 @@
+layout_id: skizze19_wave_layout
+name: "Skizze 19 – Wave Layout"
+layout_type: wave_layout
+description: "Wellenförmige Anordnung: Textcontainer folgen einer weichen, organischen Kurve."
+
+canvas:
+  width: 1080
+  height: 1080
+  aspect_ratio: "1:1"
+
+zones:
+  standort_block:
+    x: 120
+    y: 120
+    width: 320
+    height: 70
+    z: 1
+    content_type: text_elements
+
+  headline_block:
+    x: 280
+    y: 220
+    width: 560
+    height: 160
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 460
+    y: 360
+    width: 520
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 220
+    y: 520
+    width: 480
+    height: 200
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 420
+    y: 740
+    width: 360
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 260
+    y: 880
+    width: 320
+    height: 100
+    z: 1
+    content_type: text_elements
+
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
+    content_type: image_motiv
+
+

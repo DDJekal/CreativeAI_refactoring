@@ -22,6 +22,16 @@ ALL_LAYOUTS = [
     "skizze11_infographic_layout",
     "skizze12_magazine_layout",
     "skizze13_portfolio_layout",
+    "skizze14_circular_layout",
+    "skizze17_diagonal_cascade",
+    "skizze20_masonry_layout",
+    "skizze21_hexagon_grid",
+    "skizze29_story_format",
+    "skizze18_zigzag_layout",
+    "skizze19_wave_layout",
+    "skizze22_triangle_grid",
+    "skizze23_magazine_spread",
+    "skizze24_newspaper_layout",
 ]
 
 # Layouts mit erzwungenem Vollbild-Motiv (100% Bild)

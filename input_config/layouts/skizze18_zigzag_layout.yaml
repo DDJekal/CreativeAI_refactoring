@@ -1,0 +1,68 @@
+layout_id: skizze18_zigzag_layout
+name: "Skizze 18 – Zigzag Layout"
+layout_type: zigzag_layout
+description: "Zickzack-Anordnung: Textblöcke versetzt diagonal über der Bildfläche."
+
+canvas:
+  width: 1080
+  height: 1080
+  aspect_ratio: "1:1"
+
+zones:
+  standort_block:
+    x: 80
+    y: 80
+    width: 320
+    height: 70
+    z: 1
+    content_type: text_elements
+
+  headline_block:
+    x: 480
+    y: 160
+    width: 520
+    height: 150
+    z: 1
+    content_type: text_elements
+
+  subline_block:
+    x: 140
+    y: 340
+    width: 460
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  benefits_block:
+    x: 520
+    y: 480
+    width: 420
+    height: 200
+    z: 1
+    content_type: text_elements
+
+  stellentitel_block:
+    x: 160
+    y: 720
+    width: 400
+    height: 110
+    z: 1
+    content_type: text_elements
+
+  cta_block:
+    x: 520
+    y: 860
+    width: 320
+    height: 100
+    z: 1
+    content_type: text_elements
+
+  motiv_area:
+    x: 0
+    y: 0
+    width: 1080
+    height: 1080
+    z: 0
+    content_type: image_motiv
+
+
