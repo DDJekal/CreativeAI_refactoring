@@ -61,14 +61,15 @@ def PromptPolicyValidator(state: Dict[str, Any]) -> Dict[str, Any]:
     if not itrp.startswith("100"):
         meta.setdefault("errors", []).append("image_text_ratio_not_100")
 
-    # Kein Text im Bild: verbiete positive Aufforderungen, nicht die Negationsformulierung
+    # Regel: Alle Textelemente als Overlays, nicht im Bildmotiv
     lowered = text.lower()
-    if "kein text im bild" not in lowered:
+    overlay_required = "separate_layers" in lowered or "overlays" in lowered
+    if not overlay_required:
         forbidden = [
-            "text im bild",
-            "ascii",
             "schreibe text ins bild",
             "schrift im motiv",
+            "text ins bild",
+            "texte ins motiv",
         ]
         if any(f in lowered for f in forbidden):
             meta.setdefault("errors", []).append("text_in_image_forbidden")

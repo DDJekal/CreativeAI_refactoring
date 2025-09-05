@@ -99,6 +99,7 @@ def compose(layout: Dict[str, Any], design: Dict[str, Any],
                 f'- CI palette: primary {ci_primary}, secondary {ci_secondary}, accent {ci_accent}, background {ci_background}',
                 '- Container look: background_opacity 0.84–0.90, corner_radius 16, soft shadow (blur 10–16), subtle gradients or light glass allowed; no hard outlines',
                 f'- Overlay guidance: align text containers to a common left edge (~{common_left_edge_pct}%); CTA intentionally indented (~{cta_indent_pct}%); keep rhythm ~{rhythm_pct}%.',
+                '- Image coverage: at least 55% width for the main image; full-bleed layouts may require 100%.',
                 '- If an optional element is absent, omit it entirely; do not substitute; preserve spacing rhythm and negative space.',
             ])
 
@@ -193,6 +194,8 @@ def compose(layout: Dict[str, Any], design: Dict[str, Any],
             comp_rules.append("- pin the top image band to the top edge")
         # Overlay-Semantik (ohne Textinhalte)
         comp_rules.append("- Overlay semantics: shared left edge; CTA indent if present; align to vertical rhythm")
+        # Globale Mindestregel fuer Bildanteil (ausser Vollbild-Pfaden)
+        comp_rules.append("- Image coverage: maintain at least 55% of the width for the main image; full-bleed layouts may require 100%.")
         scene_lines.extend(comp_rules)
 
         # CI-Palette und Container-Style

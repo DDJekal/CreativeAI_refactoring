@@ -39,16 +39,78 @@ CI-COLORS (strict)
 - background: {{ spec.params.ci_colors.background }}
 
 Szene & Atmosphaere
-Ein einfühlsames Recruiting-Motiv in {{ spec.user_texts.location }}. Die Stimmung ist {{ spec.params.motiv_quality }} mit {{ spec.params.motiv_style }}er Note. Sanftes {{ spec.params.lighting_type }}; {{ spec.params.framing }} für Nähe und Präsenz. Dezente Struktur unterstützt eine organisch-fließende Bildsprache.
+Ein {{ spec.params.mood_atmosphere }}es Recruiting-Motiv in {{ spec.user_texts.location }}. 
+Die Stimmung ist {{ spec.params.motiv_quality }} mit {{ spec.params.motiv_style }}er Note. 
+Kunststil: {{ spec.params.art_style }}. 
+Atmosphäre: {{ spec.params.season_weather }}. 
+Sanftes {{ spec.params.lighting_type }}; {{ spec.params.framing }} für Nähe und Präsenz. 
+Dezente Struktur unterstützt eine organisch-fließende Bildsprache.
 
 Komposition & Layout
+{% set gp = (spec.params.geometry_preset|string).strip() %}
+{% if gp %}
+{% if gp == 'vertical_split' %}
+Zweispaltig: Links Textstapel, rechts Motiv; gemeinsame linke Kante, definierter Gutter, sichere Ränder 3 %.
+{% elif gp == 'vertical_split_left' %}
+Zweispaltig: Links Motiv, rechts Textstapel; klare Spaltenkante, definierter Gutter, sichere Ränder 3 %.
+{% elif gp == 'centered_overlay' %}
+Zentrierte Container-Gruppe über vollflächigem Motiv; ruhige Hierarchie Standort → Headline → Subline → Benefits → CTA.
+{% elif gp == 'diagonal_overlay' %}
+Diagonale Container-Abfolge von oben-links nach unten-rechts; CTA links unten, Standort oben rechts.
+{% elif gp == 'asymmetric_overlay' %}
+Asymmetrische, dynamische Containerverteilung mit klarer Leserichtung; CTA rechts außen.
+{% elif gp == 'grid_overlay' %}
+Grid-basierte Container-Gruppe über Vollbildmotiv; keine Headline, Fokus auf Subline und Stellentitel.
+{% elif gp == 'split_layout' %}
+Oberer Bereich Textstapel, unterer Bereich Motiv (Split); sichere Ränder, definierte vertikale Abstände.
+{% elif gp == 'hero_layout' %}
+Hero: Motiv oben als Bühne, Text unten in geordneter Gruppe; CTA rechts oben reduzierter.
+{% elif gp == 'dual_headline_full_bg' %}
+Vollbild-Motiv mit zwei getrennten Headline-Containern; Subline, Titel und CTA darunter.
+{% elif gp == 'modern_split' %}
+Moderner Split mit großzügigen Negativräumen; Text in schmaler Spalte, Motivfläche klar getrennt.
+{% elif gp == 'infographic' %}
+Infografik-Layout mit Informationsmodulen und CTA; klare modulare Trennung.
+{% elif gp == 'magazine' %}
+Editorial/Magazine-Anmutung: großzügige Weißräume, klare Typo-Hierarchie, CTA eigenständig platziert.
+{% elif gp == 'portfolio' %}
+Portfolio-Layout: große Präsentationsflächen, knapper Text, klare CTA-Position.
+{% elif gp == 'circular_spotlight' %}
+Zirkulärer Schwerpunkt (Spotlight) im Motiv; Text radial angeordnet, klare Hierarchie.
+{% elif gp == 'diagonal_cascade' %}
+Diagonale Kaskade der Textcontainer; Bewegung über die Schräge, CTA als Ruheanker.
+{% elif gp == 'zigzag_flow' %}
+Zickzack-Fluss der Container; Blickführung in Stufen, saubere Kanten.
+{% elif gp == 'wave_flow' %}
+Organische Wellenlinie; sanfte Stufen für Textcontainer, CTA stabil am Ende.
+{% elif gp == 'masonry_layout' %}
+Masonry-Anmutung mehrerer Karten; konsistente Abstände, klare Priorisierung.
+{% elif gp == 'hexagon_grid' %}
+Hexagonales Grid für Container; präzise Kanten, reduzierter CTA.
+{% elif gp == 'triangle_grid' %}
+Trianguläres Grid; klare Geometrie, stabile Leserichtung.
+{% elif gp == 'magazine_spread' %}
+Doppelseiten-Anmutung; Headline und Fließtext separiert, CTA im sichtbaren Drittel.
+{% elif gp == 'newspaper_layout' %}
+Zeitungs-Layout; Spaltenraster, klare Rubrikenlogik, ruhiger CTA.
+{% elif gp == 'story_format' %}
+Story-Format; Hochformat-Dramaturgie, klare Sequenz, CTA im unteren Drittel.
+{% else %}
+Standardisierte Containeranordnung gemäß Preset {{ gp }} mit sicherer Hierarchie und Abständen.
+{% endif %}
+{% else %}
+{# Fallback: bisherige Prozentlogik #}
 {% set full_bg_ids = ['skizze3_centered_layout','skizze4_diagonal_layout','skizze5_asymmetric_layout','skizze6_grid_layout','skizze9_dual_headline_layout'] %}
 {% set ratio_str = (spec.params.sliders.image_text_ratio|string).strip() %}
 layout_id: {{ spec.params.layout_id }}.
 {% if spec.params.layout_id in full_bg_ids or ratio_str.startswith('100') %}
-Das Motiv füllt 100 % der Leinwand als Vollbild-Hintergrund; Textcontainer liegen als Overlays im Negativraum und folgen der definierten Hierarchie (Standort → Headline → Subline → Benefits → Stellentitel → CTA).
+Bildanteil 100 %, Textanteil 0 %. Textcontainer als Overlays im Negativraum; Hierarchie: Standort → Headline → Subline → Benefits → Stellentitel → CTA. Vertikale Abstände exakt gleich groß; sichere Ränder 3 %.
 {% else %}
-Klares Split-Layout gemäß Slider: ausgewogene Text-/Bildspalte, konsistente Abstände und sauberer Negativraum. Hierarchie: Standort → Headline → Subline → Benefits → Stellentitel → CTA.
+{% set ratio_num = (ratio_str | int(default=60)) %}
+{% set img_pct = [85, [55, ratio_num] | max ] | min %}
+{% set txt_pct = 100 - img_pct %}
+Exaktes Split-Layout: Bildspalte {{ img_pct }} %, Textspalte {{ txt_pct }} %; Gutter 5–6 %, sichere Ränder 3 %. Vertikale Abstände exakt gleich groß; gemeinsame linke Kante für Textcontainer; CTA bewusst eingerückt. Mindestregel: Bildanteil ≥ 55 %.
+{% endif %}
 {% endif %}
 
 Form & Design
@@ -135,7 +197,7 @@ Farbwelt & CI
 Verwende ausschließlich: primary {{ spec.params.ci_colors.primary }}, secondary {{ spec.params.ci_colors.secondary }}, accent {{ spec.params.ci_colors.accent }}, background {{ spec.params.ci_colors.background }}. Klare Lesbarkeit auf halbtransparenten Containern; natürliche Hauttöne beibehalten; Akzentfarbe sparsam.
 
 Text & Content (separate_layers)
-Kein Text im Bild, alle Texte als separate_layers.
+Alle Textelemente werden ausschließlich als separate Overlays gerendert, nicht im Bildmotiv selbst. Alle Texte als separate_layers.
 {% if "standort" in spec.meta.active_roles -%}
 - Standort (klein): "{{ spec.user_texts.location }}"
 {% endif -%}
@@ -161,5 +223,6 @@ Vollbild- oder Split-Motiv trägt die emotionale Hauptwirkung; Textcontainer sch
 
 Technische Regeln & Engine-Optimierung
 - text_rendering: "separate_layers"
+- Bildregel: Erzeuge ein textfreies Foto. Keinerlei Buchstaben/Zahlen/Icons/Logos/Bullets/UI‑Formen im Bild. Nur Fotografie.
 - 1080×1080, social-ready, keine Rahmen/Wasserzeichen/Logos
 - Slider (fix): image_text_ratio {{ spec.params.sliders.image_text_ratio }}, container_transparency {{ spec.params.sliders.container_transparency }}, element_spacing {{ spec.params.sliders.element_spacing }}, container_padding {{ spec.params.sliders.container_padding }}, shadow_intensity {{ spec.params.sliders.shadow_intensity }}

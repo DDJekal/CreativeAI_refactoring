@@ -104,6 +104,7 @@ def ParseSpec(state: Dict[str, Any]) -> Dict[str, Any]:
 
         layout_id = _p("layout_id")
         layout_style = _p("layout_style")
+        geometry_preset = _p("geometry_preset")
         container_shape = _p("container_shape")
         border_style = _p("border_style")
         texture_style = _p("texture_style")
@@ -114,6 +115,9 @@ def ParseSpec(state: Dict[str, Any]) -> Dict[str, Any]:
         motiv_style = _p("motiv_style")
         lighting_type = _p("lighting_type")
         framing = _p("framing")
+        art_style = _p("art_style")
+        mood_atmosphere = _p("mood_atmosphere")
+        season_weather = _p("season_weather")
 
         # SLIDER Felder direkt ziehen
         image_text_ratio = _extract("image_text_ratio") or ""
@@ -141,6 +145,7 @@ def ParseSpec(state: Dict[str, Any]) -> Dict[str, Any]:
             },
             "params": {
                 "layout_id": layout_id,
+                "geometry_preset": geometry_preset,
                 "layout_style": layout_style,
                 "container_shape": container_shape,
                 "border_style": border_style,
@@ -152,6 +157,9 @@ def ParseSpec(state: Dict[str, Any]) -> Dict[str, Any]:
                 "motiv_style": motiv_style,
                 "lighting_type": lighting_type,
                 "framing": framing,
+                "art_style": art_style,
+                "mood_atmosphere": mood_atmosphere,
+                "season_weather": season_weather,
                 "sliders": {
                     "image_text_ratio": image_text_ratio,
                     "container_transparency": container_transparency,

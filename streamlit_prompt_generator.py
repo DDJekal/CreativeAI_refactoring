@@ -4,8 +4,22 @@ import streamlit as st
 from streamlit.components.v1 import html
 from entkoppelt_multiprompt.graph import build_app
 from entkoppelt_multiprompt.pretty_output import generate_human_readable_output
+from creative_core.evaluation.database import ElementEvaluationDB
+from creative_core.evaluation.ui_components import EvaluationInterface
+from creative_core.evaluation.weighted_generator import WeightedElementGenerator
 
 st.set_page_config(page_title="ChatGPT Prompt Generator", page_icon="🧩", layout="centered")
+
+# Evaluationssystem initialisieren (oben, damit es im Hauptfluss verfügbar ist)
+eval_db = ElementEvaluationDB()
+eval_ui = EvaluationInterface(eval_db)
+
+def wchoice(element_type: str, options: list[str]) -> str:
+    """Gewichtete Auswahl basierend auf gespeicherten Bewertungen; Fallback zu random."""
+    try:
+        return eval_db.get_weighted_choice(element_type, options)
+    except Exception:
+        return random.choice(options)
 
 # Feste Layout-IDs aus deinem Set
 ALL_LAYOUTS = [
@@ -91,6 +105,62 @@ MOTIV_STYLE = ["Natuerlich & Candid", "Documentary-Stil", "Studio-Professional",
 LIGHTING_TYPE = ["Natuerliches Tageslicht", "Studio-Beleuchtung", "Dramatisches Licht", "Sanftes Licht", "Kontrastreiches Licht"]
 FRAMING = ["Nahaufnahme", "Halbtotale", "Totale", "Detailaufnahme", "Gruppenaufnahme"]
 
+# Erweiterte Motivbeschreibungs-Parameter
+MOTIV_QUALITY = [
+    "Authentisch & Warm", "Professionell & Vertrauensvoll", "Einfuehlsam & Menschlich", 
+    "Dynamisch & Energetisch", "Ruhig & Beruhigend", "Inspirierend & Motivierend",
+    "Vertrauensvoll & Serioes", "Freundlich & Einladend", "Modern & Zeitgemaess"
+]
+
+MOTIV_STYLE = [
+    "Natuerlich & Candid", "Documentary-Stil", "Studio-Professional", 
+    "Cinematisch & Dramatisch", "Kuenstlerisch & Kreativ", "Editorial & Clean",
+    "Lifestyle & Casual", "Corporate & Business", "Creative & Artistic"
+]
+
+# Neue Kategorie: Kunststile & Ästhetiken
+ART_STYLE = [
+    "Studio Ghibli", "Simpsons Cartoon", "Pixar 3D", "Disney Classic", "Anime Realistic",
+    "Watercolor Paint", "Oil Painting", "Digital Art", "Minimalist Flat", "Vintage Retro",
+    "Cyberpunk Neon", "Steampunk Industrial", "Art Nouveau", "Bauhaus Modern", "Pop Art",
+    "Impressionist", "Expressionist", "Surrealist", "Abstract", "Photorealistic"
+]
+
+# Neue Kategorie: Stimmung & Atmosphäre
+MOOD_ATMOSPHERE = [
+    "Warm & Cozy", "Cool & Professional", "Energetic & Dynamic", "Calm & Serene",
+    "Mysterious & Intriguing", "Playful & Fun", "Elegant & Sophisticated", "Raw & Authentic",
+    "Futuristic & Tech", "Nostalgic & Vintage", "Dramatic & Intense", "Soft & Gentle"
+]
+
+# Neue Kategorie: Jahreszeit & Wetter
+SEASON_WEATHER = [
+    "Spring Fresh", "Summer Bright", "Autumn Warm", "Winter Cozy", "Rainy Day",
+    "Sunny Day", "Cloudy Soft", "Golden Hour", "Blue Hour", "Foggy Mysterious",
+    "Stormy Dramatic", "Snowy Peaceful"
+]
+
+# Erweiterte Beleuchtung
+LIGHTING_TYPE = [
+    "Natuerliches Tageslicht", "Studio-Beleuchtung", "Dramatisches Licht", 
+    "Sanftes Licht", "Kontrastreiches Licht", "Warmes Abendlicht", "Kuehles Morgenlicht",
+    "Neon-Beleuchtung", "Kerzenlicht", "Mondlicht", "Spotlight", "Ambient Light"
+]
+
+# Erweiterte Kameraperspektive
+FRAMING = [
+    "Nahaufnahme", "Halbtotale", "Totale", "Detailaufnahme", "Gruppenaufnahme",
+    "Vogelperspektive", "Froschperspektive", "Schraege Ansicht", "Makro-Detail",
+    "Weitwinkel", "Teleobjektiv", "Drohnen-Perspektive"
+]
+
+# Erweiterte Foto-Behandlung
+PHOTO_TREATMENT = [
+    "Natural Daylight", "Cinematic Warm", "Clean Clinic", "Documentary Soft Grain",
+    "Duotone Subtle", "Bokeh Light", "High Contrast", "Low Key", "High Key",
+    "Sepia Vintage", "Black & White", "HDR Enhanced", "Film Grain", "Digital Clean"
+]
+
 # CI-Farben (strict) – Default + Paletten (zufällige Auswahl pro Run)
 CI = {
     "primary": "#8E24AA",
@@ -139,6 +209,34 @@ def rand_int(a, b):
 def choose(arr):
     return random.choice(arr)
 
+def geometry_preset_for(layout_id: str) -> str:
+    m = {
+        "skizze1_vertical_split": "vertical_split",
+        "skizze2_vertical_split_left": "vertical_split_left",
+        "skizze3_centered_layout": "centered_overlay",
+        "skizze4_diagonal_layout": "diagonal_overlay",
+        "skizze5_asymmetric_layout": "asymmetric_overlay",
+        "skizze6_grid_layout": "grid_overlay",
+        "skizze7_split_layout": "split_layout",
+        "skizze8_hero_layout": "hero_layout",
+        "skizze9_dual_headline_layout": "dual_headline_full_bg",
+        "skizze10_modern_split": "modern_split",
+        "skizze11_infographic_layout": "infographic",
+        "skizze12_magazine_layout": "magazine",
+        "skizze13_portfolio_layout": "portfolio",
+        "skizze14_circular_layout": "circular_spotlight",
+        "skizze17_diagonal_cascade": "diagonal_cascade",
+        "skizze18_zigzag_layout": "zigzag_flow",
+        "skizze19_wave_layout": "wave_flow",
+        "skizze20_masonry_layout": "masonry_layout",
+        "skizze21_hexagon_grid": "hexagon_grid",
+        "skizze22_triangle_grid": "triangle_grid",
+        "skizze23_magazine_spread": "magazine_spread",
+        "skizze24_newspaper_layout": "newspaper_layout",
+        "skizze29_story_format": "story_format",
+    }
+    return m.get(layout_id, "auto")
+
 def build_chatgpt_prompt(payload: dict, fixed_choices: dict, sliders: dict, enforce_full_bg: bool, ci: dict | None = None) -> str:
     # Schlanker, klarer Meta-Prompt für ChatGPT (Deutsch)
     user_texts = f"""- location: {payload.get('location','')}
@@ -154,6 +252,7 @@ def build_chatgpt_prompt(payload: dict, fixed_choices: dict, sliders: dict, enfo
 - cta: {payload.get('cta','')}"""
 
     fixed_params = f"""- layout_id: {fixed_choices['layout_id']}
+- geometry_preset: {fixed_choices.get('geometry_preset','auto')}
 - layout_style: {fixed_choices['layout_style']}
 - container_shape: {fixed_choices['container_shape']}
 - border_style: {fixed_choices['border_style']}
@@ -198,6 +297,41 @@ def build_chatgpt_prompt(payload: dict, fixed_choices: dict, sliders: dict, enfo
 - accent: {_ci['accent']}
 - background: {_ci['background']}"""
 
+    # Beschreibung der Komposition basierend auf geometry_preset (robust statt Prozenten)
+    gp = fixed_choices.get('geometry_preset', 'auto')
+    _gp_desc_map = {
+        'vertical_split': 'Zweispaltig: Links Text, rechts Motiv; gemeinsame linke Kante, definierter Gutter, sichere Ränder 3 %.',
+        'vertical_split_left': 'Zweispaltig: Links Motiv, rechts Text; klare Spaltenkante, definierter Gutter, sichere Ränder 3 %.',
+        'centered_overlay': 'Zentrierte Container-Gruppe über Vollbildmotiv; ruhige Hierarchie Standort → Headline → Subline → Benefits → Stellentitel → CTA.',
+        'diagonal_overlay': 'Diagonale Container-Abfolge; CTA links unten, Standort oben rechts.',
+        'asymmetric_overlay': 'Asymmetrische Containerverteilung mit klarer Leserichtung; CTA rechts außen.',
+        'grid_overlay': 'Grid-basierte Container-Gruppe; keine Headline, Fokus auf Subline/Stellentitel.',
+        'split_layout': 'Oberer Bereich Textstapel, unterer Bereich Motiv (Split).',
+        'hero_layout': 'Hero: Motiv oben als Bühne, Text unten; CTA rechts oben reduziert.',
+        'dual_headline_full_bg': 'Vollbild-Motiv mit zwei getrennten Headline-Containern; Subline, Titel und CTA darunter.',
+        'modern_split': 'Moderner Split; großzügige Negativräume; schmale Textspalte.',
+        'infographic': 'Infografik-Layout; Informationsmodule und CTA klar getrennt.',
+        'magazine': 'Editorial/Magazine; großzügige Weißräume, klare Typo-Hierarchie.',
+        'portfolio': 'Portfolio; große Präsentationsflächen, knapper Text, klare CTA.',
+        'circular_spotlight': 'Zirkulärer Motiv-Schwerpunkt; Text radial angeordnet.',
+        'diagonal_cascade': 'Diagonale Kaskade; CTA als Ruheanker.',
+        'zigzag_flow': 'Zickzack-Fluss der Container; gestufte Blickführung.',
+        'wave_flow': 'Organische Wellenlinie; CTA stabil am Ende.',
+        'masonry_layout': 'Masonry-Anmutung; konsistente Abstände, klare Priorisierung.',
+        'hexagon_grid': 'Hexagonales Grid; präzise Kanten, reduzierter CTA.',
+        'triangle_grid': 'Trianguläres Grid; klare Geometrie, stabile Leserichtung.',
+        'magazine_spread': 'Doppelseiten-Anmutung; CTA im sichtbaren Drittel.',
+        'newspaper_layout': 'Zeitungs-Raster; Spaltenlogik, ruhiger CTA.',
+        'story_format': 'Story-Format; klare Sequenz, CTA im unteren Drittel.',
+    }
+    composition_desc = _gp_desc_map.get(gp)
+    if not composition_desc:
+        composition_desc = (
+            '100 % Vollbild; Textcontainer als Overlays im Negativraum; sichere Ränder 3 %.'
+            if enforce_full_bg else
+            'Anordnung gemäß geometry_preset; Mindestregel: Bildanteil ≥ 55 %; definierte Abstände.'
+        )
+
     prompt = f"""Rolle: Du bist Experte fuer DALL·E‑3‑Prompts.
 Ziel: Erzeuge einen hochwertigen, deutschsprachigen Prompt im untenstehenden Ziel-Format (2000–3000 Zeichen), text_rendering: "separate_layers". Nur die gelieferten USER‑Texte verwenden, nichts hinzufuegen.
 
@@ -215,10 +349,15 @@ CI‑COLORS (strict)
 
 ZIEL‑PROMPT‑FORMAT (genau diese Reihenfolge)
 Szene & Atmosphaere
-[… abgestimmt auf Motiv …]
+Ein {{ spec.params.mood_atmosphere }}es Recruiting-Motiv in {{ spec.user_texts.location }}. 
+Die Stimmung ist {{ spec.params.motiv_quality }} mit {{ spec.params.motiv_style }}er Note. 
+Kunststil: {{ spec.params.art_style }}. 
+Atmosphäre: {{ spec.params.season_weather }}. 
+Sanftes {{ spec.params.lighting_type }}; {{ spec.params.framing }} für Nähe und Präsenz. 
+Dezente Struktur unterstützt eine organisch-fließende Bildsprache.
 
 Komposition & Layout
-[… exakte Anordnung, Bezug auf layout_id, Slider, Hierarchie; Motiv{" = 100 % Vollbild" if enforce_full_bg else " ≥ image_text_ratio"} …]
+{composition_desc}
 
 Form & Design
 [… Container-Formen, Border/Shadow/Texture, Eckenradius, Akzente …]
@@ -234,7 +373,9 @@ Balance & Wirkung
 
 Technische Regeln & Engine‑Optimierung
 - text_rendering: "separate_layers"
-- Umlaute im Overlay als ae/oe/ue/ss; im Bild selbst KEINE Texte/ASCII‑Hinweise
+- Bild‑Regel: Create a text‑free photograph only. No letters, numbers, icons, logos, bullets or UI shapes anywhere. Photography only.
+- Overlay‑Order: Render EXACTLY 7 text blocks, in this order, each ONCE: location, headline_1, headline_2, subline, benefits_list (max 3 bullets), job_title, cta. forbidden: any secondary lists, mirrored copies, repeated bullets, duplicated location or CTA.
+- Umlaute im Overlay als ae/oe/ue/ss; Alle Textelemente werden ausschließlich als separate Overlays gerendert, nicht im Bildmotiv selbst; keine ASCII‑Hinweise im Motiv
 - 1080×1080, social‑ready, keine Rahmen/Wasserzeichen
 - Laenge gesamt: 2000–3000 Zeichen
 - {layout_rule}
@@ -244,7 +385,7 @@ Validierung (vor Ausgabe pruefen)
 - Pro Set genau 1 Option (fix vorgegeben)
 - Alle Slider gesetzt (fix vorgegeben)
 - Keine Inhalte ausserhalb der USER‑Texte
-- “separate_layers” vorhanden; KEIN Text im Bild
+- “separate_layers” vorhanden; Alle Textelemente werden ausschließlich als separate Overlays gerendert, nicht im Bildmotiv selbst.
 """
     return prompt
 
@@ -402,14 +543,17 @@ with st.form("text_inputs"):
     generate = st.form_submit_button("Prompt generieren")
 
 if generate:
-    # Randomisierte Wahl der nicht-textlichen Parameter
-    layout_id = choose(ALL_LAYOUTS)
+    # Gewichtete Wahl der nicht-textlichen Parameter
+    layout_id = wchoice("layout_id", ALL_LAYOUTS)
     enforce_full_bg = layout_id in FULL_BG_LAYOUTS
+    geometry_preset = geometry_preset_for(layout_id)
 
     fixed_choices = {
         "layout_id": layout_id,
-        "layout_style": choose(LAYOUT_STYLE),
-        "container_shape": choose(CONTAINER_SHAPE),
+        "geometry_preset": geometry_preset,  # NEU
+        "layout_style": wchoice("layout_style", LAYOUT_STYLE),
+        "container_shape": wchoice("container_shape", CONTAINER_SHAPE),
+        # Ab hier bleiben die restlichen Parameter zufällig (nicht gewichtet)
         "border_style": choose(BORDER_STYLE),
         "texture_style": choose(TEXTURE_STYLE),
         "background_treatment": choose(BACKGROUND_TREATMENT),
@@ -418,9 +562,14 @@ if generate:
         "typography_style": choose(TYPOGRAPHY_STYLE),
         "photo_treatment": choose(PHOTO_TREATMENT),
         "depth_style": choose(DEPTH_STYLE),
+        # Motiv-Parameter (2 Stück) gewichtet
+        "motiv_style": wchoice("motiv_style", MOTIV_STYLE),
+        "lighting_type": wchoice("lighting_type", LIGHTING_TYPE),
+        # Weitere Motiv-Parameter random
         "motiv_quality": choose(MOTIV_QUALITY),
-        "motiv_style": choose(MOTIV_STYLE),
-        "lighting_type": choose(LIGHTING_TYPE),
+        "art_style": choose(ART_STYLE),  # NEU
+        "mood_atmosphere": choose(MOOD_ATMOSPHERE),  # NEU
+        "season_weather": choose(SEASON_WEATHER),  # NEU
         "framing": choose(FRAMING),
     }
 
@@ -519,4 +668,85 @@ if generate:
         height=40,
     )
 
-st.caption("Hinweis: Nicht‑textliche Parameter werden bei jeder Generierung zufaellig bestimmt. Vollbild‑Layouts behalten 100% Bild bei.")
+    # Prompt im Session State speichern für die Evaluation
+    st.session_state['generated_prompt'] = final_prompt
+
+    # Generated Elements in Session State spiegeln (für Evaluation & spätere Nutzung)
+    for k, v in fixed_choices.items():
+        st.session_state[k] = v
+
+    # Evaluationsformular anzeigen
+    st.divider()
+    session_id = st.session_state.get('session_id', 'default')
+    eval_ui.show_element_evaluation_form(
+        generated_elements={
+            'layout_id': fixed_choices['layout_id'],
+            'layout_style': fixed_choices['layout_style'],
+            'container_shape': fixed_choices['container_shape'],
+            'motiv_style': fixed_choices['motiv_style'],
+            'lighting_type': fixed_choices['lighting_type'],
+            'prompt_text': final_prompt
+        },
+        session_id=session_id,
+        context=f"layout_{fixed_choices['layout_id']}"
+    )
+
+    with st.expander("📊 Bewertungsstatistiken anzeigen"):
+        eval_ui.show_evaluation_stats()
+
+st.caption("Hinweis: Nicht‑textliche Parameter werden bei jeder Generierung gewichtet bestimmt. Vollbild‑Layouts behalten 100% Bild bei.")
+
+# Initialisierung des Evaluationssystems
+@st.cache_resource
+def init_evaluation_system():
+    db = ElementEvaluationDB()
+    ui = EvaluationInterface(db)
+    generator = WeightedElementGenerator(db)
+    return db, ui, generator
+
+# In der Hauptfunktion:
+def main():
+    # Evaluationssystem initialisieren
+    eval_db, eval_ui, weighted_generator = init_evaluation_system()
+    
+    if st.button("🎲 Style randomisieren", type="secondary", use_container_width=True):
+        # Statt random.choice() verwenden wir jetzt gewichtete Auswahl
+        generated_elements = weighted_generator.generate_weighted_elements()
+        
+        # Elemente in Session State speichern
+        for key, value in generated_elements.items():
+            st.session_state[key] = value
+        
+        st.rerun()
+    
+    # Nach der Prompt-Generierung: Evaluationsformular anzeigen
+    if 'generated_prompt' in st.session_state:
+        st.divider()
+        
+        # Generierte Elemente sammeln
+        generated_elements = {
+            'layout_style': st.session_state.get('layout_style', ''),
+            'container_shape': st.session_state.get('container_shape', ''),
+            'border_style': st.session_state.get('border_style', ''),
+            'texture_style': st.session_state.get('texture_style', ''),
+            'background_treatment': st.session_state.get('background_treatment', ''),
+            'corner_radius': st.session_state.get('corner_radius', ''),
+            'accent_elements': st.session_state.get('accent_elements', ''),
+            'motiv_quality': st.session_state.get('motiv_quality', ''),
+            'motiv_style': st.session_state.get('motiv_style', ''),
+            'lighting_type': st.session_state.get('lighting_type', ''),
+            'framing': st.session_state.get('framing', ''),
+            'prompt_text': st.session_state.get('generated_prompt', '')
+        }
+        
+        # Evaluationsformular anzeigen
+        session_id = st.session_state.get('session_id', 'default')
+        eval_ui.show_element_evaluation_form(
+            generated_elements=generated_elements,
+            session_id=session_id,
+            context=f"layout_{st.session_state.get('selected_layout', 'unknown')}"
+        )
+        
+        # Statistiken anzeigen (optional)
+        with st.expander("📊 Bewertungsstatistiken anzeigen"):
+            eval_ui.show_evaluation_stats()
