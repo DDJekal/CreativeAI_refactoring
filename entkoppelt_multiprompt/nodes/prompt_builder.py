@@ -128,7 +128,8 @@ TEMPLATE = (
     "Klarer Negativraum und konsistente Abstände sorgen für ruhige, professionelle Wirkung.\n\n"
     "Technische Regeln & Engine-Optimierung\n"
     "text_rendering: \"separate_layers\". 1080×1080, social-ready, keine Rahmen/Wasserzeichen/Logos. "
-    "Alle Textelemente werden ausschließlich als separate Overlays gerendert, nicht im Bildmotiv selbst."
+    "Alle Textelemente werden ausschließlich als separate Overlays gerendert, nicht im Bildmotiv selbst. "
+    "Duplikats-Regel: Jedes Textelement genau 1× rendern; keine doppelten/gespiegelten Rollen; keine wiederholten Bullets; kein doppelter Standort oder CTA."
 )
 
 
