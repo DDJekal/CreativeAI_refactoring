@@ -252,6 +252,7 @@ def compose(layout: Dict[str, Any], design: Dict[str, Any],
         tech_lines = [
             "TECH & NEGATIVE",
             "- text_rendering: separate_layers (outside the image)",
+            "- overlay_uniqueness: each text element appears at most once; no duplicates or mirrored copies; no repeated bullets; no duplicate location or CTA",
             f"- Negative: {NEGATIVE_LINE}",
         ]
         tech_block = "\n".join(tech_lines)
@@ -300,6 +301,7 @@ def _get_fallback_prompt() -> str:
     tech = (
         "TECH & NEGATIVE\n"
         "- text_rendering: separate_layers (outside the image)\n"
+        "- overlay_uniqueness: each text element appears at most once; no duplicates or mirrored copies; no repeated bullets; no duplicate location or CTA\n"
         f"- Negative: {negatives}"
     )
     return f"{scene}\n\n{visual}\n\n{style}\n\n{tech}"
