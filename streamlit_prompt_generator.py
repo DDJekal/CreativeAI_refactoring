@@ -526,19 +526,34 @@ with st.expander("🎨 Alle verfügbaren CI-Paletten anzeigen"):
 st.divider()
 
 with st.form("text_inputs"):
-    col1, col2 = st.columns(2)
-    with col1:
-        location = st.text_input("Standort", key="location", value=st.session_state.get("location", ""))
-        headline = st.text_input("Headline (Single)", key="headline", value=st.session_state.get("headline", ""))
-        subline = st.text_input("Subline", key="subline", value=st.session_state.get("subline", ""))
-        benefit_1 = st.text_input("Benefit 1", key="benefit_1", value=st.session_state.get("benefit_1", ""))
-        stellentitel = st.text_input("Stellentitel", key="stellentitel", value=st.session_state.get("stellentitel", ""))
-    with col2:
+    # Neue Reihenfolge: Standort → Stellentitel → Headline 1/2 → Subline → Benefits → CTA
+    location = st.text_input("Standort", key="location", value=st.session_state.get("location", ""))
+    stellentitel = st.text_input("Stellentitel", key="stellentitel", value=st.session_state.get("stellentitel", ""))
+
+    col_h1, col_h2 = st.columns(2)
+    with col_h1:
         headline_1 = st.text_input("Headline 1 (Dual)", key="headline_1", value=st.session_state.get("headline_1", ""))
+    with col_h2:
         headline_2 = st.text_input("Headline 2 (Dual)", key="headline_2", value=st.session_state.get("headline_2", ""))
-        benefit_2 = st.text_input("Benefit 2", key="benefit_2", value=st.session_state.get("benefit_2", ""))
-        benefit_3 = st.text_input("Benefit 3", key="benefit_3", value=st.session_state.get("benefit_3", ""))
-        cta = st.text_input("CTA", key="cta", value=st.session_state.get("cta", ""))
+
+    subline = st.text_input("Subline", key="subline", value=st.session_state.get("subline", ""))
+
+    # Benefits als ein einziges Textfeld (eine Zeile pro Benefit)
+    _default_benefits_text = "\n".join([
+        s for s in [
+            st.session_state.get("benefit_1", ""),
+            st.session_state.get("benefit_2", ""),
+            st.session_state.get("benefit_3", "")
+        ] if s
+    ])
+    benefits_text = st.text_area(
+        "Benefits (eine pro Zeile)",
+        key="benefits_text",
+        value=st.session_state.get("benefits_text", _default_benefits_text),
+        height=100,
+    )
+
+    cta = st.text_input("CTA", key="cta", value=st.session_state.get("cta", ""))
 
     generate = st.form_submit_button("Prompt generieren")
 
@@ -597,6 +612,17 @@ if generate:
             "glow_intensity": rand_int(0, 30),
             "elevation_level": rand_int(0, 3),
         }
+
+    # Headline (Single) intern aus Headline 1 + 2 zusammensetzen
+    _h1 = (headline_1 or "").strip()
+    _h2 = (headline_2 or "").strip()
+    headline = (f"{_h1} {_h2}" if _h1 or _h2 else "").strip()
+
+    # Benefits aus Textarea in bis zu 3 Zeilen aufteilen
+    _benefit_lines = [b.strip() for b in (benefits_text or "").split("\n") if b.strip()]
+    benefit_1 = _benefit_lines[0] if len(_benefit_lines) > 0 else ""
+    benefit_2 = _benefit_lines[1] if len(_benefit_lines) > 1 else ""
+    benefit_3 = _benefit_lines[2] if len(_benefit_lines) > 2 else ""
 
     # ALTEN Workflow (Roh-Block) erzeugen → dient als spec_raw für den neuen Workflow
     payload = {

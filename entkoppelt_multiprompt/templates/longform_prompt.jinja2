@@ -24,6 +24,8 @@ GEWAEHLTE PARAMETER (fix)
 - motiv_style: {{ spec.params.motiv_style }}
 - lighting_type: {{ spec.params.lighting_type }}
 - framing: {{ spec.params.framing }}
+ - photo_treatment: {{ spec.params.photo_treatment }}
+ - depth_style: {{ spec.params.depth_style }}
 
 SLIDER (fix)
 - image_text_ratio: {{ spec.params.sliders.image_text_ratio }}
@@ -43,7 +45,7 @@ Ein {{ spec.params.mood_atmosphere }}es Recruiting-Motiv in {{ spec.user_texts.l
 Die Stimmung ist {{ spec.params.motiv_quality }} mit {{ spec.params.motiv_style }}er Note. 
 Kunststil: {{ spec.params.art_style }}. 
 Atmosphäre: {{ spec.params.season_weather }}. 
-Sanftes {{ spec.params.lighting_type }}; {{ spec.params.framing }} für Nähe und Präsenz. 
+Sanftes {{ spec.params.lighting_type }}; {{ spec.params.framing }} für Nähe und Präsenz. Foto‑Behandlung: {{ spec.params.photo_treatment }}. Tiefenwirkung: {{ spec.params.depth_style }}. 
 Dezente Struktur unterstützt eine organisch-fließende Bildsprache.
 
 Komposition & Layout
@@ -225,4 +227,5 @@ Technische Regeln & Engine-Optimierung
 - text_rendering: "separate_layers"
 - Bildregel: Erzeuge ein textfreies Foto. Keinerlei Buchstaben/Zahlen/Icons/Logos/Bullets/UI‑Formen im Bild. Nur Fotografie.
 - 1080×1080, social-ready, keine Rahmen/Wasserzeichen/Logos
+- Duplikats-Regel: Kein Textelement mehrfach oder gespiegelt ausgeben; jede Rolle höchstens 1×. Keine doppelten Standorte/CTAs; Benefits max. 3 Bullets ohne Wiederholungen.
 - Slider (fix): image_text_ratio {{ spec.params.sliders.image_text_ratio }}, container_transparency {{ spec.params.sliders.container_transparency }}, element_spacing {{ spec.params.sliders.element_spacing }}, container_padding {{ spec.params.sliders.container_padding }}, shadow_intensity {{ spec.params.sliders.shadow_intensity }}

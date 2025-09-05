@@ -27,6 +27,37 @@ _SCENE_ATMO_MAP = {
     "authentisch & warm": "documentary soft grain, warm tonal bias +3, subtle vignetting",
 }
 
+_PHOTO_TREATMENT_MAP = {
+    # Grundbegriffe und Varianten (de/en) → konsistente Prompt-Phrasen
+    "natural daylight": "natural daylight balance, neutral grading, soft rolloff",
+    "natural daylight ": "natural daylight balance, neutral grading, soft rolloff",
+    "natural": "natural daylight balance, neutral grading, soft rolloff",
+    "natural daylight/": "natural daylight balance, neutral grading, soft rolloff",
+    "clean clinic": "clinical clean grading, high clarity, neutral whites, low saturation shifts",
+    "documentary soft grain": "documentary-style soft film grain, subtle texture, preserved midtones",
+    "duotone subtle": "subtle duotone toning, restrained split hues",
+    "bokeh light": "shallow depth of field with bokeh highlights, creamy background",
+    "high contrast": "high contrast, deep blacks and crisp highlights, rich micro-contrast",
+    "low key": "low‑key tonality, subdued highlights, deep shadows",
+    "high key": "high‑key tonality, bright midtones, soft shadows",
+    "sepia vintage": "sepia toning, vintage character, warm paper feel",
+    "black & white": "black and white photography, clean luminance contrast",
+    "black and white": "black and white photography, clean luminance contrast",
+    "hdr enhanced": "enhanced dynamic range (HDR feel), balanced highlight and shadow detail",
+    "film grain": "visible film grain, analog texture, soft halation",
+    "digital clean": "clean digital rendering, low noise, crisp fine detail",
+    "cinematic warm": "cinematic warm grading, gentle halation, rich skin tones",
+    "cinematic": "cinematic warm grading, gentle halation, rich skin tones",
+}
+
+_DEPTH_STYLE_MAP = {
+    "soft shadow stack": "soft layered shadows, gentle depth separation",
+    "drop + inner shadow": "drop shadow plus inner shadow for dimensional edges",
+    "card elevation 1": "subtle card elevation, light soft shadow",
+    "card elevation 2": "medium card elevation, moderated shadow",
+    "card elevation 3": "deep card elevation, pronounced shadow",
+}
+
 def _normalize_scene_term(value: str) -> str:
     if not isinstance(value, str):
         return value
@@ -54,6 +85,16 @@ def _normalize_scene_fields(params: Dict[str, Any]) -> Dict[str, Any]:
     for fld in ["lighting_type", "mood_atmosphere", "season_weather"]:
         if fld in out and isinstance(out[fld], str):
             out[fld] = _normalize_scene_term(out[fld])
+    # Zusätzliche Felder: photo_treatment, depth_style
+    def _norm_from_map(value: Any, mapping: Dict[str, str]) -> Any:
+        if not isinstance(value, str):
+            return value
+        k = value.strip().lower()
+        return mapping.get(k, value)
+    if "photo_treatment" in out:
+        out["photo_treatment"] = _norm_from_map(out.get("photo_treatment"), _PHOTO_TREATMENT_MAP)
+    if "depth_style" in out:
+        out["depth_style"] = _norm_from_map(out.get("depth_style"), _DEPTH_STYLE_MAP)
     return out
 
 
@@ -61,7 +102,8 @@ TEMPLATE = (
     "Szene & Atmosphaere\n"
     "Ein {mood_atmosphere}es Recruiting-Motiv in {location}. Die Stimmung ist {motiv_quality} mit {motiv_style}er Note. "
     "Kunststil: {art_style}. Atmosphäre: {season_weather}. "
-    "Sanftes {lighting_type}; {framing} für Nähe und Präsenz. Dezente Struktur unterstützt eine organisch-fließende Bildsprache.\n\n"
+    "Sanftes {lighting_type}; {framing} für Nähe und Präsenz. Foto‑Behandlung: {photo_treatment}. Tiefenwirkung: {depth_style}. "
+    "Dezente Struktur unterstützt eine organisch-fließende Bildsprache.\n\n"
     "Komposition & Layout\n"
     "{comp_block}\n"
     "{slider_line}\n\n"
@@ -289,6 +331,8 @@ def PromptBuilder(state: Dict[str, Any]) -> Dict[str, Any]:
         season_weather=p.get("season_weather", ""),
         lighting_type=p.get("lighting_type", ""),
         framing=p.get("framing", ""),
+        photo_treatment=p.get("photo_treatment", ""),
+        depth_style=p.get("depth_style", ""),
         comp_block=comp_block,
         slider_line=slider_line,
         layout_style=p.get("layout_style", ""),
@@ -328,6 +372,8 @@ def PromptBuilder(state: Dict[str, Any]) -> Dict[str, Any]:
         "lighting_type": p.get("lighting_type"),
         "mood_atmosphere": p.get("mood_atmosphere"),
         "season_weather": p.get("season_weather"),
+        "photo_treatment": p.get("photo_treatment"),
+        "depth_style": p.get("depth_style"),
     })
 
     state["dalle_prompt"] = text
