@@ -373,8 +373,9 @@ Balance & Wirkung
 
 Technische Regeln & Engine‑Optimierung
 - text_rendering: "separate_layers"
-- Bild‑Regel: Create a text‑free photograph only. No letters, numbers, icons, logos, bullets or UI shapes anywhere. Photography only.
+- Bild‑Regel: Alle Textelemente werden ausschließlich als separate Overlays gerendert, nicht im Bildmotiv selbst. Create a text‑free photograph only. No letters, numbers, icons, logos, bullets or UI shapes anywhere. Photography only.
 - Overlay‑Order: Render EXACTLY 7 text blocks, in this order, each ONCE: location, headline_1, headline_2, subline, benefits_list (max 3 bullets), job_title, cta. forbidden: any secondary lists, mirrored copies, repeated bullets, duplicated location or CTA.
+- Duplikats-Regel: Kein Textelement mehrfach oder gespiegelt ausgeben; jede Rolle höchstens 1×. Keine doppelten Standorte/CTAs; Benefits max. 3 Bullets ohne Wiederholungen.
 - Umlaute im Overlay als ae/oe/ue/ss; Alle Textelemente werden ausschließlich als separate Overlays gerendert, nicht im Bildmotiv selbst; keine ASCII‑Hinweise im Motiv
 - 1080×1080, social‑ready, keine Rahmen/Wasserzeichen
 - Laenge gesamt: 2000–3000 Zeichen
